@@ -30,4 +30,14 @@ public class TestLifeForm {
     entity.takeHit(10);
     assertEquals(30, entity.getCurrentLifePoints());
   }
+  @Test
+  public void testTakeHitAgain() {
+    LifeForm entity;
+    entity = new MockLifeForm("Bob", 40);
+    assertEquals("Bob", entity.getName());
+    entity.takeHit(10);
+    assertEquals(30, entity.getCurrentLifePoints());
+    entity.takeHit(10);
+    assertEquals(20, entity.getCurrentLifePoints());
+  }
 }
