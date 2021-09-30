@@ -3,6 +3,7 @@ package lifeform;
 public abstract class LifeForm {
   String name;
   int points;
+  int attack;
 
   /**
    * LifeForms
@@ -26,6 +27,7 @@ public abstract class LifeForm {
   public LifeForm(String n, int p, int attack) {
     name = n;
     points = p;
+    this.attack = attack;
   }
 
   /**
@@ -56,8 +58,32 @@ public abstract class LifeForm {
    * @param damage
    */
   public void takeHit(int damage) {
-    if (points - damage >= 0) {
+    if (points - damage < 0) {
+      points = 0;
+    } else if (points - damage >= 0) {
       points -= damage;
+    }
+  }
+
+  /**
+   * 
+   * @return attack strength
+   */
+  public int getAttackStrength() {
+    return this.attack;
+  }
+
+  /**
+   * attacks
+   * 
+   * @param opponent
+   */
+  public void attack(LifeForm opponent) {
+    if (points <= 0) {
+      attack = 0;
+    } else {
+      opponent.takeHit(this.attack);
+
     }
   }
 

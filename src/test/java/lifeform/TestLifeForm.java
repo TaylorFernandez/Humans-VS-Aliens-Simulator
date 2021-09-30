@@ -22,6 +22,7 @@ public class TestLifeForm {
     assertEquals("Bob", entity.getName());
     assertEquals(40, entity.getCurrentLifePoints());
   }
+
   @Test
   public void testTakeHit() {
     LifeForm entity;
@@ -30,6 +31,7 @@ public class TestLifeForm {
     entity.takeHit(10);
     assertEquals(30, entity.getCurrentLifePoints());
   }
+
   @Test
   public void testTakeHitAgain() {
     LifeForm entity;
@@ -39,5 +41,21 @@ public class TestLifeForm {
     assertEquals(30, entity.getCurrentLifePoints());
     entity.takeHit(10);
     assertEquals(20, entity.getCurrentLifePoints());
+  }
+
+  @Test
+  public void testAttack() {
+    LifeForm luke = new MockLifeForm("Luke", 50, 30);
+    LifeForm tommy = new MockLifeForm("Tom", 50, 25);
+    luke.attack(tommy);
+    assertEquals(20, tommy.getCurrentLifePoints());
+  }
+
+  @Test
+  public void testDeadAttack() {
+    LifeForm luke = new MockLifeForm("Luke", 0, 30);
+    LifeForm tommy = new MockLifeForm("Tom", 50, 25);
+    luke.attack(tommy);
+    assertEquals(50, tommy.getCurrentLifePoints());
   }
 }

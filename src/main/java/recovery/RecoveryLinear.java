@@ -15,7 +15,7 @@ public class RecoveryLinear implements RecoveryBehavior {
       return 0;
     }
     currentLife += recoveryAmount;
-    if (currentLife == maxLifePts || currentLife > maxLifePts) {
+    if (currentLife >= maxLifePts) {
       return maxLifePts;
     }
     return currentLife;

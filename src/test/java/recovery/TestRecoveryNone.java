@@ -7,9 +7,10 @@ import org.junit.Test;
 public class TestRecoveryNone {
 
   @Test
-  public void testMaxLP() {
+  public void testMaxLp() {
     RecoveryNone none = new RecoveryNone();
   }
+
   @Test
   public void testCurrentLessMax() {
     RecoveryNone none = new RecoveryNone();

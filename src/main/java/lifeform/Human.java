@@ -2,8 +2,6 @@ package lifeform;
 
 public class Human extends LifeForm {
   int armor;
-  int points;
-  String name;
 
   /**
    * constructor for human
@@ -13,9 +11,7 @@ public class Human extends LifeForm {
    * @param a
    */
   public Human(String n, int p, int a) {
-    super(n, p);
-    name = n;
-    points = p;
+    super(n, p, 5);
     armor = a;
   }
 
@@ -41,6 +37,25 @@ public class Human extends LifeForm {
       return 0;
     }
     return armor;
+  }
 
+  @Override
+  public void takeHit(int damage) {
+    int i = 0;
+    int temp = damage;
+    if (armor <= 0) {
+      if (points - damage >= 0) {
+        points -= damage;
+      }
+    } else if (armor - damage < 0) {
+      points = points - (damage - armor);
+      armor = 0;
+
+    } else if (armor > 0) {
+      armor -= damage;
+    }
+    if (points <= 0) {
+      points = 0;
+    }
   }
 }

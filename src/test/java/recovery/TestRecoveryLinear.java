@@ -13,6 +13,7 @@ public class TestRecoveryLinear {
     int result = rl.calculateRecovery(maxLifePts, maxLifePts);
     assertEquals(maxLifePts, result);
   }
+
   @Test
   public void fullNoMax() {
     RecoveryLinear rl = new RecoveryLinear(3);
@@ -21,6 +22,7 @@ public class TestRecoveryLinear {
     int result = rl.calculateRecovery(currentLife, maxLifePts);
     assertEquals(13, result);
   }
+
   @Test
   public void recoverTooMuch() {
     RecoveryLinear rl = new RecoveryLinear(50);
@@ -29,6 +31,7 @@ public class TestRecoveryLinear {
     int result = rl.calculateRecovery(currentLife, maxLifePts);
     assertEquals(50, result);
   }
+
   @Test
   public void noRecover() {
     RecoveryLinear rl = new RecoveryLinear(200);
@@ -37,6 +40,7 @@ public class TestRecoveryLinear {
     int result = rl.calculateRecovery(currentLife, maxLifePts);
     assertEquals(0, result);
   }
+
   @Test
   public void testEqual() {
     RecoveryLinear rl = new RecoveryLinear(50);
