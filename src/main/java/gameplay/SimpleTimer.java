@@ -55,7 +55,7 @@ public class SimpleTimer extends Thread implements Timer {
   public void run() {
     for (int x = 0; x < 50; x++) {
       try {
-        Thread.sleep(this.sleep);
+        Thread.sleep(sleep);
         timeChanged();
       } catch (InterruptedException e) {
         ;
