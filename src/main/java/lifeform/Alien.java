@@ -37,15 +37,12 @@ public class Alien extends LifeForm implements TimerObserver {
     xd = behavior;
     maxLifePoints = maxHp;
     this.recoveryRate = recoveryRate;
-    try {
       if (recoveryRate <= 0) {
         throw new RecoveryRateException("Recovery Rate is zero");
       } else {
         this.recoveryRate = recoveryRate;
       }
-    } catch (RecoveryRateException e) {
-      ;
-    }
+
   }
 
   public int getMaxLifePoints() {
