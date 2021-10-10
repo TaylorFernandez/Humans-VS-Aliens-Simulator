@@ -1,5 +1,7 @@
 package weapon;
 
+import exceptions.WeaponException;
+
 public abstract class GenericWeapon extends java.lang.Object implements Weapon {
   protected int baseDamage;
   protected int currentAmmo;
@@ -11,7 +13,7 @@ public abstract class GenericWeapon extends java.lang.Object implements Weapon {
   public GenericWeapon(){
   }
   
-  public abstract int fire(int distance);
+  public abstract int fire(int distance) throws WeaponException;
   
   public abstract java.lang.String toString();
   

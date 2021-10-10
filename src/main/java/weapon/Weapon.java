@@ -1,10 +1,11 @@
 package weapon;
 
+import exceptions.WeaponException;
 import gameplay.TimerObserver;
 
 public interface Weapon extends TimerObserver {
   
-  int fire(int distance);
+  int fire(int distance) throws WeaponException;
   
   int getBaseDamage();
   
