@@ -211,5 +211,6 @@ of class.
 |---|---|---|---|---|
 | 1 | 10a-11a, 10/08 | MCT162 | All members | Meet the team |
 | 2 | 5PM - 5:30PM, 10/10/2021 | Discord | All Members | Discuss splitting up work|
+| 3 | 2PM - 3PM | In class | All Members | Discuss splitting up work|
 
 
