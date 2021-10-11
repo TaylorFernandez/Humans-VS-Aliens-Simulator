@@ -27,8 +27,11 @@ public class PlasmaCannon extends GenericWeapon{
     if(distance < 0) {
       throw new WeaponException("Negative Shooting Distance");
     }
+
     if(distance <= maxRange) {
       double temp = baseDamage * (currentAmmo / maxAmmo);
+      shotsLeft--;
+      currentAmmo--;
       int damage = (int) Math.floor(temp);
       return damage;
     }
