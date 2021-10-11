@@ -200,6 +200,7 @@ Answer: Other members will decide how much of the grade the member should miss b
 | Task2 | Name | Date | Description |
 | Task3 | | | |
 | PlasmaCannon | Taylor Fernandez | 10/20/2021 | 10/11/2021 - Finished PlasmaCannon class. Working on tests.|
+| ChainGun | Luke Henry | 10/20/2021 | 10/11/2021 - Worked on ChainGun.
 
 
 # Team Meeting Log
@@ -211,5 +212,6 @@ of class.
 |---|---|---|---|---|
 | 1 | 10a-11a, 10/08 | MCT162 | All members | Meet the team |
 | 2 | 5PM - 5:30PM, 10/10/2021 | Discord | All Members | Discuss splitting up work|
+| 3 | 2PM - 3PM | In class | All Members | Discuss splitting up work|
 
 
