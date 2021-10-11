@@ -199,7 +199,7 @@ Answer: Other members will decide how much of the grade the member should miss b
 | Task1 | Name | Date | Description |
 | Task2 | Name | Date | Description |
 | Task3 | | | |
-| Task4 | | | |
+| PlasmaCannon | Taylor Fernandez | 10/20/2021 | 10/11/2021 - Finished PlasmaCannon class. Working on tests.|
 
 
 # Team Meeting Log
