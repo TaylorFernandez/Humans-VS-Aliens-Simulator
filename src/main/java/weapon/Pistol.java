@@ -22,6 +22,7 @@ public class Pistol extends GenericWeapon {
       throw new WeaponException("negative Fire Distance");
     }
     
+    
     //Check to see if the weapon can be fired again.
     if (shotsLeft <= 0 || currentAmmo <= 0) {
       return 0;
