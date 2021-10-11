@@ -38,7 +38,7 @@ public class Pistol extends GenericWeapon {
     }
   }
   
-  public java.lang.String toString()  {
-    return null;
+  public String toString()  {
+    return "Pistol";
   }
 }
