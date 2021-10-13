@@ -70,7 +70,6 @@ public class TestLifeForm {
     Weapon w = new PlasmaCannon();
     Weapon x = new PlasmaCannon();
     MockLifeForm form = new MockLifeForm("Bob", 100);
-    MockLifeForm form2 = new MockLifeForm("Joe", 100);
     
     assertTrue(form.pickUpWeapon(w));
     
