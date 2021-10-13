@@ -1,9 +1,13 @@
 package lifeform;
 
-public abstract class LifeForm {
+import exceptions.WeaponException;
+import weapon.Weapon;
+
+public abstract class LifeForm{
   String name;
   int points;
   int attack;
+  protected Weapon weapon;
 
   /**
    * LifeForms
@@ -77,14 +81,43 @@ public abstract class LifeForm {
    * attacks
    * 
    * @param opponent
+   * @throws WeaponException 
    */
-  public void attack(LifeForm opponent) {
-    if (points <= 0) {
-      attack = 0;
-    } else {
-      opponent.takeHit(this.attack);
+  public void attack(LifeForm opponent, int distance) throws WeaponException {
+    if(weapon == null) {
+      if (points <= 0) {
+        attack = 0;
+      } else {
+        opponent.takeHit(this.attack);
 
+      }
+    }else {
+      if(distance < weapon.getMaxRange() && distance > 5)
+      {
+        weapon.fire(distance);
+      }else {
+        opponent.takeHit(this.attack);
+      }
     }
   }
-
+  
+  /**
+   * Method allows LifeForm to pick up weapons
+   * @param w - weapon intended to be picked up
+   */
+  
+  public boolean pickUpWeapon(Weapon w) {
+    if(weapon == null) {
+      weapon = w;
+      return true;
+    }else {
+      return false;
+    }
+  }
+  
+  public Weapon dropWeapon() {
+    Weapon oldWeapon = weapon;
+    weapon = null;
+    return oldWeapon;
+  }
 }
