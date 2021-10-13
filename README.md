@@ -197,10 +197,10 @@ Answer: Other members will decide how much of the grade the member should miss b
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
 | Task1 | Name | Date | Description |
-| Task2 | Name | Date | Description |
-| Task3 | | | |
+| attachments | Yong Lin & Evan Paules | 10/20/2021 | Starting |
+| Pistol | Yong Hang Lin | 10/20/2021 | 10/11/2021 - finished Pistol |
 | PlasmaCannon | Taylor Fernandez | 10/20/2021 | 10/11/2021 - Finished PlasmaCannon class. Working on tests.|
-| ChainGun | Luke Henry | 10/20/2021 | 10/11/2021 - Worked on ChainGun.
+| ChainGun | Luke Henry | 10/20/2021 | 10/11/2021 - Worked on ChainGun.|
 
 
 # Team Meeting Log
