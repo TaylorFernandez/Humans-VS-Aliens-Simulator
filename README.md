@@ -201,6 +201,8 @@ Answer: Other members will decide how much of the grade the member should miss b
 | PlasmaCannon | Taylor Fernandez | 10/20/2021 | 10/11/2021 - Finished PlasmaCannon class. Working on tests.|
 | ChainGun | Luke Henry | 10/20/2021 | 10/11/2021 - Worked on ChainGun.|
 |Attachment Class | Taylor Fernandez | 10/20/2021 | 10/13/2021  - Completed Attachment Class|
+|LifeForm Class | Taylor Fernandez | 10/20/2021 | 10/13/2021 - Added new abilities to LifeForm|
+|LifeForm Test | Taylor Fernande | 10/20/2021 | 10/13//20213 - Added tests with the new LifeForm |
 
 
 # Team Meeting Log
