@@ -197,7 +197,7 @@ Answer: Other members will decide how much of the grade the member should miss b
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
 | Attachments | Yong Lin & Evan Paules | 10/20/2021 | Starting |
-| Pistol | Yong Hang Lin | 10/20/2021 | 10/11/2021 - finished Pistol |
+| Pistol | Yong Hang Lin | 10/20/2021 | 10/11/2021 - Finished Pistol |
 | PlasmaCannon | Taylor Fernandez | 10/20/2021 | 10/11/2021 - Finished PlasmaCannon class. Working on tests.|
 | ChainGun | Luke Henry | 10/20/2021 | 10/11/2021 - Worked on ChainGun.|
 |Attachment Class | Taylor Fernandez | 10/20/2021 | 10/13/2021  - Completed Attachment Class|
