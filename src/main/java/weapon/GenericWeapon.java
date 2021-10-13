@@ -2,6 +2,9 @@ package weapon;
 
 import exceptions.WeaponException;
 
+//I think we should remove "extends java.lang.Object
+//I don't that it does anything
+
 public abstract class GenericWeapon extends java.lang.Object implements Weapon {
   protected int baseDamage;
   protected int currentAmmo;
