@@ -1,5 +1,7 @@
 package weapon;
 
+import exceptions.WeaponException;
+
 public abstract class Attachment implements Weapon {
 		protected Weapon base;
 
@@ -19,8 +21,9 @@ public abstract class Attachment implements Weapon {
 		 * Fires the weapon. Accounts for changes to damage done by attachments
 		 * 
 		 * @param distance - distance between weapon and target
+		 * @throws WeaponException 
 		 */
-		public abstract int fire(int distance);
+		public abstract int fire(int distance) throws WeaponException;
 
 		public int getBaseDamage() {
 				return base.getBaseDamage();

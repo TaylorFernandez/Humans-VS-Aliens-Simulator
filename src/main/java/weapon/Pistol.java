@@ -28,11 +28,11 @@ public class Pistol extends GenericWeapon {
       return 0;
     }
     
-    double temp = (double)baseDamage*(((double)maxRange - (double)distance + 10)/(double)maxRange);
-    int damage = (int) Math.floor(temp);
-    currentAmmo--;
-    shotsLeft--;
-    if(distance <= maxRange) {     
+    if(distance <= maxRange) { 
+      double temp = (double)baseDamage*(((double)maxRange - (double)distance + 10)/(double)maxRange);
+      int damage = (int) Math.floor(temp);
+      currentAmmo--;
+      shotsLeft--;    
       return damage;
     } else {
       return 0;

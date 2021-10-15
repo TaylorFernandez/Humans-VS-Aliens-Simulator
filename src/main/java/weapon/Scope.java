@@ -1,5 +1,6 @@
 package weapon;
 
+import exceptions.WeaponException;
 import gameplay.TimerObserver;
 
 /*
@@ -19,7 +20,7 @@ public class Scope extends Attachment implements Weapon, TimerObserver {
 		 * This method adds damage based on the distance of the target
 		 */
 		@Override
-		public int fire(int distance) {
+		public int fire(int distance) throws WeaponException {
 
 				if (base.getMaxRange() < distance && distance <= base.getMaxRange() + 10) {
 						return base.getBaseDamage() + 5;
