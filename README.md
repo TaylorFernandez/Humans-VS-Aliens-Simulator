@@ -196,6 +196,7 @@ Answer: Other members will decide how much of the grade the member should miss b
 
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
+| Scope/Stabilizer| Evan Paules | 10/20/2021 | Finished |
 | Attachments | Yong Lin & Evan Paules | 10/20/2021 | Starting |
 | Pistol | Yong Hang Lin | 10/20/2021 | 10/11/2021 - Finished Pistol |
 | PlasmaCannon | Taylor Fernandez | 10/20/2021 | 10/11/2021 - Finished PlasmaCannon class. Working on tests.|
