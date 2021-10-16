@@ -1,5 +1,6 @@
 package weapon;
 
+import exceptions.AttachmentException;
 import exceptions.WeaponException;
 import gameplay.TimerObserver;
 
@@ -10,7 +11,7 @@ import gameplay.TimerObserver;
  */
 public class Scope extends Attachment implements Weapon, TimerObserver {
 
-		public Scope(Weapon base) {
+		public Scope(Weapon base) throws AttachmentException {
 				Scope one = new Scope(base);
 				one.getMaxRange();
 				this.base = base;
