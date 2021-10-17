@@ -9,7 +9,7 @@ public class PowerBooster extends Attachment {
    * @param base
    */
   public PowerBooster(Weapon base) {
-    Scope one = new Scope(base);
+    PowerBooster one = new PowerBooster(base);
     one.getMaxRange();
     this.base = base;
   }
@@ -26,8 +26,7 @@ public class PowerBooster extends Attachment {
       return 0;
     }
     double powerBoostDamage = 1 + ((double)base.getCurrentAmmo()/base.getMaxAmmo());
-    
-    return (int) Math.floor(powerBoostDamage);
+    return (int) Math.floor(base.fire(distance) * powerBoostDamage);
   }
 
   @Override
