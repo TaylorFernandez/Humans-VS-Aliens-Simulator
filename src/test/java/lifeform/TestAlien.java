@@ -7,6 +7,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import exceptions.RecoveryRateException;
+import exceptions.WeaponException;
 import gameplay.SimpleTimer;
 import recovery.RecoveryBehavior;
 import recovery.RecoveryLinear;
@@ -32,11 +33,11 @@ public class TestAlien {
   }
 
   @Test
-  public void testAttackRecover() throws RecoveryRateException {
+  public void testAttackRecover() throws RecoveryRateException, WeaponException {
     SimpleTimer st = new SimpleTimer(1000);
     Alien allen = new Alien("Allen", 10, new RecoveryLinear(3));
     Alien alex = new Alien("Alex", 12, new RecoveryLinear(3));
-    allen.attack(alex);
+    allen.attack(alex, 5);
     alex.recover();
     assertEquals(5, alex.getCurrentLifePoints());
   }

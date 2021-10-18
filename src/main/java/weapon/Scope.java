@@ -11,34 +11,38 @@ import gameplay.TimerObserver;
  */
 public class Scope extends Attachment implements Weapon, TimerObserver {
 
-		public Scope(Weapon base) throws AttachmentException {
-				Scope one = new Scope(base);
-				one.getMaxRange();
-				this.base = base;
+	public Scope(Weapon base) throws AttachmentException {
+//				Scope one = new Scope(base);
+//				one.getMaxRange();
+		this.base = base;
+	}
+
+	/*
+	 * This method adds damage based on the distance of the target
+	 */
+	@Override
+	public int fire(int distance) throws WeaponException {
+
+		if (base.getMaxRange() < distance && distance <= base.getMaxRange() + 10) {
+			return base.getBaseDamage() + 5;
+		} 
+		if (base.getMaxRange() < distance) {
+			return 0;
 		}
+		else
+			return base.getBaseDamage() * (1 + (base.getBaseDamage() + 5 - distance) / base.getBaseDamage() + 5);
 
-		/*
-		 * This method adds damage based on the distance of the target
-		 */
-		@Override
-		public int fire(int distance) throws WeaponException {
+	}
 
-				if (base.getMaxRange() < distance && distance <= base.getMaxRange() + 10) {
-						return base.getBaseDamage() + 5;
-				} else
-						return base.getBaseDamage() * (1 + (base.getBaseDamage() + 5 - distance) / base.getBaseDamage() + 5);
+	@Override
+	public int getMaxRange() {
+		return base.getMaxRange() + 10;
+	}
 
-		}
+	@Override
+	public String toString() {
+		return " + Scope";
 
-		@Override
-		public int getMaxRange() {
-				return base.getMaxRange() + 10;
-		}
-
-		@Override
-		public String toString() {
-				return " + Scope";
-
-		}
+	}
 
 }
