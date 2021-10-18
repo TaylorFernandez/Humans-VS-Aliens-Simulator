@@ -12,10 +12,10 @@ import gameplay.TimerObserver;
 public class Scope extends Attachment implements Weapon, TimerObserver {
 
   public Scope(Weapon base) throws AttachmentException {
+    this.base = base;
     if (base.getNumAttachments() == 2) {
       throw new AttachmentException("Attachments cannot exceed 2");
     }
-    this.base = base;
   }
 
   @Override

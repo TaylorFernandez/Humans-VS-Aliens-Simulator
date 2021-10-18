@@ -3,7 +3,7 @@ package lifeform;
 import exceptions.WeaponException;
 import weapon.Weapon;
 
-public abstract class LifeForm{
+public abstract class LifeForm {
   String name;
   int points;
   int attack;
@@ -39,9 +39,6 @@ public abstract class LifeForm{
    * @return the name
    */
   public String getName() {
-    /**
-     * @return the name of the lifeform
-     */
     return name;
   }
 
@@ -50,9 +47,6 @@ public abstract class LifeForm{
    * @return the points
    */
   public int getCurrentLifePoints() {
-    /**
-     * @return the number of life points
-     */
     return points;
   }
 
@@ -62,10 +56,10 @@ public abstract class LifeForm{
    * @param damage
    */
   public void takeHit(int damage) {
-    if (points - damage < 0) {
+    if (getCurrentLifePoints() - damage < 0) {
       points = 0;
     } else if (points - damage >= 0) {
-      points -= damage;
+      points = getCurrentLifePoints() - damage;
     }
   }
 
@@ -85,48 +79,54 @@ public abstract class LifeForm{
       entity.takeHit(getAttackStrength());
     }
   }
-  
+
   /**
    * attacks
    * 
    * @param opponent
-   * @throws WeaponException 
+   * @throws WeaponException
    */
   public void attack(LifeForm opponent, int distance) throws WeaponException {
-    if(weapon == null) {
-      if (points <= 0) {
-        attack = 0;
-      } else {
-        opponent.takeHit(this.attack);
-
+    if (!hasWeapon() || weapon.getCurrentAmmo() <= 0) {
+      if (distance <= 5) {
+        opponent.takeHit(getAttackStrength());
       }
-    }else {
-      if(distance < weapon.getMaxRange() && distance > 5)
-      {
-        weapon.fire(distance);
-      }else {
-        opponent.takeHit(this.attack);
-      }
+    } else {
+      opponent.takeHit(weapon.fire(distance));
     }
   }
-  
+
   /**
    * Method allows LifeForm to pick up weapons
+   * 
    * @param w - weapon intended to be picked up
    */
-  
+
   public boolean pickUpWeapon(Weapon w) {
-    if(weapon == null) {
+    if (!hasWeapon()) {
       weapon = w;
       return true;
-    }else {
+    } else {
       return false;
     }
   }
-  
+
   public Weapon dropWeapon() {
-    Weapon oldWeapon = weapon;
-    weapon = null;
-    return oldWeapon;
+    if (hasWeapon()) {
+      Weapon oldWeapon = weapon;
+      weapon = null;
+      return oldWeapon;
+    }
+    return null;
+  }
+
+  /**
+   * Returns true if the caller has a weapon
+   */
+  public boolean hasWeapon() {
+    if (weapon == null) {
+      return false;
+    }
+    return true;
   }
 }

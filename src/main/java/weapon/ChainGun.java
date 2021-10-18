@@ -1,8 +1,9 @@
 package weapon;
 
 import exceptions.WeaponException;
+import gameplay.TimerObserver;
 
-public class ChainGun extends GenericWeapon {
+public class ChainGun extends GenericWeapon implements TimerObserver, Weapon {
 	public ChainGun() {
 		baseDamage = 15;
 		maxRange = 60;

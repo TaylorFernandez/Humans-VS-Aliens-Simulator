@@ -4,13 +4,13 @@ import exceptions.AttachmentException;
 import exceptions.WeaponException;
 import gameplay.TimerObserver;
 
-public class Stabilizer extends Attachment implements Weapon, TimerObserver {
+public class Stabilizer extends Attachment {
 
   public Stabilizer(Weapon base) throws AttachmentException {
+    this.base = base;
     if (base.getNumAttachments() == 2) {
       throw new AttachmentException("Attachments cannot exceed 2");
     }
-    this.base = base;
   }
 
   /*

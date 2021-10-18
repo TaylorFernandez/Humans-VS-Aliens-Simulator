@@ -2,11 +2,12 @@ package weapon;
 
 import exceptions.AttachmentException;
 import exceptions.WeaponException;
+import gameplay.TimerObserver;
 
 //I think we should remove "extends java.lang.Object
 //I don't that it does anything
 
-public abstract class GenericWeapon extends java.lang.Object implements Weapon {
+public abstract class GenericWeapon extends java.lang.Object implements Weapon, TimerObserver {
   protected int baseDamage;
   protected int currentAmmo;
   protected int maxAmmo;
@@ -19,7 +20,7 @@ public abstract class GenericWeapon extends java.lang.Object implements Weapon {
   
   public abstract int fire(int distance) throws WeaponException;
   
-  public abstract java.lang.String toString();
+  public abstract String toString();
   
   public int getNumAttachments() throws AttachmentException {
     return 0;
@@ -54,6 +55,6 @@ public abstract class GenericWeapon extends java.lang.Object implements Weapon {
   }
   
   public void updateTime(int time) {
-    
+    shotsLeft = rateOfFire;
   }
 }

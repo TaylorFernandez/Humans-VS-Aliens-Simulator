@@ -3,8 +3,9 @@
 package weapon;
 
 import exceptions.WeaponException;
+import gameplay.TimerObserver;
 
-public class PlasmaCannon extends GenericWeapon{
+public class PlasmaCannon extends GenericWeapon implements TimerObserver, Weapon {
   
   //Constructor for the Plasma Cannon
   public PlasmaCannon() {

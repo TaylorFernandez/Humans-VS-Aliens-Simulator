@@ -1,8 +1,9 @@
 package weapon;
 
 import exceptions.WeaponException;
+import gameplay.TimerObserver;
 
-public class Pistol extends GenericWeapon {
+public class Pistol extends GenericWeapon implements TimerObserver, Weapon {
   /**
    * Pistol
    */
@@ -21,7 +22,6 @@ public class Pistol extends GenericWeapon {
     if(distance < 0) {
       throw new WeaponException("negative Fire Distance");
     }
-    
     
     //Check to see if the weapon can be fired again.
     if (shotsLeft <= 0 || currentAmmo <= 0) {
