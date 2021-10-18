@@ -6,8 +6,8 @@ import gameplay.TimerObserver;
 
 public class Stabilizer extends Attachment implements Weapon, TimerObserver {
 
-		public Stabilizer(Weapon baseWeapon) throws AttachmentException {
-				base = baseWeapon;
+		public Stabilizer(Weapon base) throws AttachmentException {
+			this.base = base;
 		}
 
 		/*
@@ -16,15 +16,23 @@ public class Stabilizer extends Attachment implements Weapon, TimerObserver {
 		 */
 		@Override
 		public int fire(int distance) throws WeaponException {
-				if (base.getShotsLeft() == 0) {
-						base.reload();
-				}
-				int damage = (int) Math.floor(base.fire(distance) * 1.25);
-				return damage;
+		  if (distance < 0) {
+	      throw new WeaponException("Cannot be less than 0");
+	    }
+
+	    if (getShotsLeft() == 0) {
+	      return 0; 
+	    }
+				
+	    if (base.getCurrentAmmo() == 0) {
+				base.reload();
+			}
+	    
+			return Double.valueOf(Math.floor(base.fire(distance) * 1.25)).intValue();
 		}
 
 		@Override
 		public String toString() {
-				return " + Stabilizer";
+				return base.toString() + " +Stabilizer";
 		}
 }
