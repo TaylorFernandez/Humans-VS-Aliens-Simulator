@@ -57,7 +57,7 @@ public abstract class Attachment implements Weapon {
 		  if (base.getNumAttachments() == 2) {
 	      throw new AttachmentException("Attachments cannot exceed 2");
 	    }
-			return base.getNumAttachments();
+			return base.getNumAttachments() + 1;
 		}
 
 		/**

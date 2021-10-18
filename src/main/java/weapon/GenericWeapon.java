@@ -1,5 +1,6 @@
 package weapon;
 
+import exceptions.AttachmentException;
 import exceptions.WeaponException;
 
 //I think we should remove "extends java.lang.Object
@@ -20,7 +21,7 @@ public abstract class GenericWeapon extends java.lang.Object implements Weapon {
   
   public abstract java.lang.String toString();
   
-  public int getNumAttachments() {
+  public int getNumAttachments() throws AttachmentException {
     return 0;
   }
   
