@@ -7,8 +7,9 @@ public class PowerBooster extends Attachment {
 
   /**
    * Adds PowerBooster
+   * 
    * @param base
-   * @throws AttachmentException 
+   * @throws AttachmentException
    */
   public PowerBooster(Weapon base) throws AttachmentException {
     if (base.getNumAttachments() == 2) {
@@ -28,12 +29,12 @@ public class PowerBooster extends Attachment {
     if (getShotsLeft() == 0) {
       return 0;
     }
-    double powerBoostDamage = 1 + ((double)base.getCurrentAmmo()/base.getMaxAmmo());
-    return  Double.valueOf(Math.floor(powerBoostDamage * base.fire(distance))).intValue();
+    double powerBoostDamage = 1 + ((double) base.getCurrentAmmo() / base.getMaxAmmo());
+    return Double.valueOf(Math.floor(powerBoostDamage * base.fire(distance))).intValue();
   }
 
   @Override
   public String toString() {
-    return base.toString() + " +PowerBooster"; 
+    return base.toString() + " +PowerBooster";
   }
 }
