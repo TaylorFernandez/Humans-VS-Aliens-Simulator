@@ -6,16 +6,15 @@ import exceptions.WeaponException;
 public abstract class Attachment implements Weapon {
 		protected Weapon base;
 
-		public Attachment() {
-		}
-		/**
-		 * Atachment constructor
-		 * 
-		 * @param baseWeapon - weapon attachment is being added to
-		 */
-		public Attachment(Weapon baseWeapon) {
-			base = baseWeapon;
-		}
+    public Attachment() {
+    }
+    /**
+     * Atachment constructor
+     * @param baseWeapon - weapon attachment is being added to
+     */
+    public Attachment(Weapon baseWeapon) {
+      base = baseWeapon;
+    }
 
 		/**
 		 * Fires the weapon. Accounts for changes to damage done by attachments
@@ -32,6 +31,7 @@ public abstract class Attachment implements Weapon {
 		/**
 		 * gets the current ammo of the weapon
 		 */
+    @Override
 		public int getCurrentAmmo() {
 			return base.getCurrentAmmo();
 		}
@@ -39,6 +39,7 @@ public abstract class Attachment implements Weapon {
 		/**
 		 * gets the maximum ammo the base weapon can hold
 		 */
+    @Override
 		public int getMaxAmmo() {
 			return base.getMaxAmmo();
 		}
@@ -46,6 +47,7 @@ public abstract class Attachment implements Weapon {
 		/**
 		 * Gets the maximum range the base weapon can shoot
 		 */
+    @Override
 		public int getMaxRange() {
 			return base.getMaxRange();
 		}
@@ -53,6 +55,7 @@ public abstract class Attachment implements Weapon {
 		/**
 		 * Gets the number of attachments the base weapon has
      */
+		@Override
 		public int getNumAttachments() throws AttachmentException {
 		  if (base.getNumAttachments() == 2) {
 	      throw new AttachmentException("Attachments cannot exceed 2");
@@ -63,6 +66,7 @@ public abstract class Attachment implements Weapon {
 		/**
 		 * Gets the rate of fire of the base weapon
 		 */
+    @Override
 		public int getRateOfFire() {
 			return base.getRateOfFire();
 		}
@@ -70,6 +74,7 @@ public abstract class Attachment implements Weapon {
 		/**
 		 * gets the shots the weapon can shoot in the current round
 		 */
+    @Override
 		public int getShotsLeft() {
 			return base.getShotsLeft();
 		}
@@ -77,6 +82,7 @@ public abstract class Attachment implements Weapon {
 		/**
 		 * reloads the weapon
 		 */
+    @Override
 		public void reload() {
 			base.reload();
 		}
@@ -86,7 +92,8 @@ public abstract class Attachment implements Weapon {
 		 * 
 		 * @param time - current round
 		 */
+    @Override
 		public void updateTime(int time) {
-			base.reload();
+			base.updateTime(time);
 		}
 }

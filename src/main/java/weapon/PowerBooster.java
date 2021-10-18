@@ -13,7 +13,7 @@ public class PowerBooster extends Attachment {
    */
   public PowerBooster(Weapon base) throws AttachmentException {
     this.base = base;
-    if (base.getNumAttachments() == 2) {
+    if (this.base.getNumAttachments() == 2) {
       throw new AttachmentException("Attachments cannot exceed 2");
     }
   }

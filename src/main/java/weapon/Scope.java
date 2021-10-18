@@ -9,11 +9,11 @@ import gameplay.TimerObserver;
  * Scope is an extension of Attachment and uses Weapon and TimerObserver Interfaces.
  * This Modifies a weapons damage and distance
  */
-public class Scope extends Attachment implements Weapon, TimerObserver {
+public class Scope extends Attachment {
 
   public Scope(Weapon base) throws AttachmentException {
     this.base = base;
-    if (base.getNumAttachments() == 2) {
+    if (this.base.getNumAttachments() == 2) {
       throw new AttachmentException("Attachments cannot exceed 2");
     }
   }
@@ -40,9 +40,6 @@ public class Scope extends Attachment implements Weapon, TimerObserver {
       return base.fire(base.getMaxRange()) + 5;
     }
 
-    if (base.getMaxRange() < distance) {
-      return 0;
-    }
     double ampedRange = getMaxRange() - distance;
     ampedRange = 1 + (ampedRange / getMaxRange());
     return Double.valueOf(Math.floor(ampedRange * base.fire(distance))).intValue();
