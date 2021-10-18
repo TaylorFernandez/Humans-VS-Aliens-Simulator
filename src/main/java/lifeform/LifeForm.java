@@ -78,6 +78,15 @@ public abstract class LifeForm{
   }
 
   /**
+   * @param entity is the target
+   */
+  public void attack(LifeForm entity) {
+    if (getCurrentLifePoints() > 0) {
+      entity.takeHit(getAttackStrength());
+    }
+  }
+  
+  /**
    * attacks
    * 
    * @param opponent
