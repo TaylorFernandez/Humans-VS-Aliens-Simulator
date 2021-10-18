@@ -37,7 +37,6 @@ public class PlasmaCannon extends GenericWeapon implements TimerObserver, Weapon
       return damage;
     }
     return 0;
-    
   }
 
   /**
