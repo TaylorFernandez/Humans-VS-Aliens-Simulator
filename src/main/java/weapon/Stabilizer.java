@@ -7,6 +7,9 @@ import gameplay.TimerObserver;
 public class Stabilizer extends Attachment implements Weapon, TimerObserver {
 
 		public Stabilizer(Weapon base) throws AttachmentException {
+		  if (base.getNumAttachments() == 2) {
+	      throw new AttachmentException("Attachments cannot exceed 2");
+	    }
 			this.base = base;
 		}
 

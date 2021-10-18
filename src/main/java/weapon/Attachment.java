@@ -1,5 +1,6 @@
 package weapon;
 
+import exceptions.AttachmentException;
 import exceptions.WeaponException;
 
 public abstract class Attachment implements Weapon {
@@ -51,8 +52,11 @@ public abstract class Attachment implements Weapon {
 
 		/**
 		 * Gets the number of attachments the base weapon has
-		 */
-		public int getNumAttachments() {
+     */
+		public int getNumAttachments() throws AttachmentException {
+		  if (base.getNumAttachments() == 2) {
+	      throw new AttachmentException("Attachments cannot exceed 2");
+	    }
 			return base.getNumAttachments();
 		}
 

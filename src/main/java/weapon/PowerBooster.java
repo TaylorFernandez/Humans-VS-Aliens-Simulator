@@ -1,5 +1,6 @@
 package weapon;
 
+import exceptions.AttachmentException;
 import exceptions.WeaponException;
 
 public class PowerBooster extends Attachment {
@@ -7,8 +8,12 @@ public class PowerBooster extends Attachment {
   /**
    * Adds PowerBooster
    * @param base
+   * @throws AttachmentException 
    */
-  public PowerBooster(Weapon base) {
+  public PowerBooster(Weapon base) throws AttachmentException {
+    if (base.getNumAttachments() == 2) {
+      throw new AttachmentException("Attachments cannot exceed 2");
+    }
     this.base = base;
   }
 

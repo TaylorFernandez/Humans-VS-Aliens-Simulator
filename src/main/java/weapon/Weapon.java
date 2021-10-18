@@ -1,5 +1,6 @@
 package weapon;
 
+import exceptions.AttachmentException;
 import exceptions.WeaponException;
 import gameplay.TimerObserver;
 
@@ -15,7 +16,7 @@ public interface Weapon extends TimerObserver {
   
   int getMaxRange();
   
-  int getNumAttachments();
+  int getNumAttachments() throws AttachmentException;
   
   int getRateOfFire();
   
