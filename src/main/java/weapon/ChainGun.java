@@ -34,7 +34,7 @@ public class ChainGun extends GenericWeapon implements TimerObserver, Weapon {
 
   @Override
   public String toString() {
-    return "Chain Gun";
+    return "ChainGun";
   }
 
 }
