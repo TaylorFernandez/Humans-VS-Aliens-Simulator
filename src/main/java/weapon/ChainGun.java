@@ -5,6 +5,10 @@ import exceptions.WeaponException;
 import gameplay.TimerObserver;
 
 public class ChainGun extends GenericWeapon implements TimerObserver, Weapon {
+  
+  /**
+   * creates a ChainGun
+   */
   public ChainGun() {
     baseDamage = 15;
     maxRange = 60;
@@ -23,7 +27,7 @@ public class ChainGun extends GenericWeapon implements TimerObserver, Weapon {
       return 0;
     }
     double temp = (double) baseDamage * ((double) distance / (double) maxRange);
-    int damage = (int)Math.floor(temp);
+    int damage = (int) Math.floor(temp);
     currentAmmo--;
     shotsLeft--;
     if (distance <= maxRange) {

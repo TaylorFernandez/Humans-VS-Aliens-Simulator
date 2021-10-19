@@ -11,6 +11,11 @@ import gameplay.TimerObserver;
  */
 public class Scope extends Attachment {
 
+  /**
+   * creates a new scope
+   * 
+   * @param base
+   */
   public Scope(Weapon base) throws AttachmentException {
     this.base = base;
     if (this.base.getNumAttachments() == 2) {

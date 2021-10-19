@@ -6,8 +6,10 @@ import exceptions.WeaponException;
 import gameplay.TimerObserver;
 
 public class PlasmaCannon extends GenericWeapon implements TimerObserver, Weapon {
-  
-  //Constructor for the Plasma Cannon
+
+  /**
+   * constructor for the plasma cannon
+   */
   public PlasmaCannon() {
     baseDamage = 50;
     maxRange = 40;
@@ -18,29 +20,30 @@ public class PlasmaCannon extends GenericWeapon implements TimerObserver, Weapon
   }
 
   /**
-   * method that calculated damage dealt to a LifeForm.
-   * Calculates damage. Damage decreases as currentAmmo decreases.
-   * returns 0 when distance is greater than maxRange and throws an exception when there is a negative distance
+   * method that calculated damage dealt to a LifeForm. Calculates damage. Damage
+   * decreases as currentAmmo decreases. returns 0 when distance is greater than
+   * maxRange and throws an exception when there is a negative distance
+   * 
    * @param distance - distance between the shooter and target
    */
   @Override
   public int fire(int distance) throws WeaponException {
-    if(distance < 0) {
+    if (distance < 0) {
       throw new WeaponException("Negative Shooting Distance");
     }
 
-    if(shotsLeft == 0 || currentAmmo == 0) {
+    if (shotsLeft == 0 || currentAmmo == 0) {
       return 0;
     }
-    
-    if(distance <= maxRange) {
-      double temp = (double)baseDamage * ((double)currentAmmo / (double)maxAmmo);
+
+    if (distance <= maxRange) {
+      double temp = (double) baseDamage * ((double) currentAmmo / (double) maxAmmo);
       shotsLeft--;
       currentAmmo--;
       int damage = (int) Math.floor(temp);
       return damage;
     }
-   
+
     shotsLeft--;
     currentAmmo--;
     return 0;

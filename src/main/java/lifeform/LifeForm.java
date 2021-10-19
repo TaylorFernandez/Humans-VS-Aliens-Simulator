@@ -87,16 +87,17 @@ public abstract class LifeForm {
    * @throws WeaponException
    */
   public void attack(LifeForm opponent, int distance) throws WeaponException {
-    if(points > 0) {
-      if(!hasWeapon() || weapon.getCurrentAmmo() <=0) {
-        if(distance <= 5) {
+    if (points > 0) {
+      if (!hasWeapon() || weapon.getCurrentAmmo() <= 0) {
+        if (distance <= 5) {
           opponent.takeHit(getAttackStrength());
         }
-      }else {
+      } else {
         opponent.takeHit(weapon.fire(distance));
       }
     }
   }
+
   /**
    * Method allows LifeForm to pick up weapons
    * 
@@ -111,7 +112,10 @@ public abstract class LifeForm {
       return false;
     }
   }
-
+  
+  /**
+   * allows the LifeForm to drop a weapon
+   */
   public Weapon dropWeapon() {
     if (hasWeapon()) {
       Weapon oldWeapon = weapon;

@@ -6,6 +6,11 @@ import gameplay.TimerObserver;
 
 public class Stabilizer extends Attachment {
 
+  /**
+   * creates a new stabilizer
+   * 
+   * @param base
+   */
   public Stabilizer(Weapon base) throws AttachmentException {
     this.base = base;
     if (base.getNumAttachments() == 2) {
@@ -28,7 +33,7 @@ public class Stabilizer extends Attachment {
     }
 
     int newDamage = Double.valueOf(Math.floor(base.fire(distance) * 1.25)).intValue();
-    
+
     if (base.getCurrentAmmo() == 0) {
       base.reload();
     }

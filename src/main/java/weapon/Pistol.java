@@ -29,7 +29,8 @@ public class Pistol extends GenericWeapon implements TimerObserver, Weapon {
     }
 
     if (distance <= maxRange) {
-      double temp = (double) baseDamage * (((double) maxRange - (double) distance + 10) / (double) maxRange);
+      double temp = (double) baseDamage * (((double) maxRange  
+                         - (double) distance + 10) / (double) maxRange);
       currentAmmo--;
       shotsLeft--;
       return (int) Math.floor(temp);
