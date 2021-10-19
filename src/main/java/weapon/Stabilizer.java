@@ -27,11 +27,13 @@ public class Stabilizer extends Attachment {
       return 0;
     }
 
+    int newDamage = Double.valueOf(Math.floor(base.fire(distance) * 1.25)).intValue();
+    
     if (base.getCurrentAmmo() == 0) {
       base.reload();
     }
 
-    return Double.valueOf(Math.floor(base.fire(distance) * 1.25)).intValue();
+    return newDamage;
   }
 
   @Override

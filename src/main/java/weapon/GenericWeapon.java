@@ -7,7 +7,7 @@ import gameplay.TimerObserver;
 //I think we should remove "extends java.lang.Object
 //I don't that it does anything
 
-public abstract class GenericWeapon extends java.lang.Object implements Weapon, TimerObserver {
+public abstract class GenericWeapon implements Weapon, TimerObserver {
   protected int baseDamage;
   protected int currentAmmo;
   protected int maxAmmo;

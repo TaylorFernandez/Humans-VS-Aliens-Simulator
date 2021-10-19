@@ -34,6 +34,8 @@ public class Pistol extends GenericWeapon implements TimerObserver, Weapon {
       shotsLeft--;
       return (int) Math.floor(temp);
     } else {
+      currentAmmo--;
+      shotsLeft--;
       return 0;  
       
     }
