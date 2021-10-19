@@ -29,13 +29,20 @@ public class PlasmaCannon extends GenericWeapon implements TimerObserver, Weapon
       throw new WeaponException("Negative Shooting Distance");
     }
 
+    if(shotsLeft == 0 || currentAmmo == 0) {
+      return 0;
+    }
+    
     if(distance <= maxRange) {
-      double temp = baseDamage * (currentAmmo / maxAmmo);
+      double temp = (double)baseDamage * ((double)currentAmmo / (double)maxAmmo);
       shotsLeft--;
       currentAmmo--;
       int damage = (int) Math.floor(temp);
       return damage;
     }
+   
+    shotsLeft--;
+    currentAmmo--;
     return 0;
   }
 
