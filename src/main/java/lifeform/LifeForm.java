@@ -87,6 +87,7 @@ public abstract class LifeForm {
    * @throws WeaponException
    */
   public void attack(LifeForm opponent, int distance) throws WeaponException {
+<<<<<<< HEAD
     if(points > 0) {
        if (!hasWeapon() || weapon.getCurrentAmmo() <= 0) {
         if (distance <= 5) {
@@ -94,6 +95,15 @@ public abstract class LifeForm {
         }
       } else {
       opponent.takeHit(weapon.fire(distance));
+=======
+    if (getCurrentLifePoints() > 0) {
+      if (!hasWeapon() || weapon.getCurrentAmmo() <= 0) {
+        if (distance <= 5) {
+          opponent.takeHit(getAttackStrength());
+        }
+      } else {
+        opponent.takeHit(weapon.fire(distance));
+>>>>>>> branch 'master' of https://gitlab.engr.ship.edu/swe200-2021f/lab4-team9.git
       }
     }
   }
