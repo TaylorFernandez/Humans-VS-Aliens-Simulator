@@ -4,10 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
-
-import exceptions.EnvironmentException;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
 import weapon.ChainGun;
@@ -71,8 +68,8 @@ public class TestCell {
     assertEquals(bob, cell.getLifeForm());
   }
   
-  @Test(expected= EnvironmentException.class)
-  public void testWeaponFunction() throws EnvironmentException {
+  @Test
+  public void testWeaponFunction(){
     Cell c1 = new Cell();
     
     Weapon w1 = new PlasmaCannon();
@@ -81,16 +78,17 @@ public class TestCell {
     
     Weapon w3 = new Pistol();
     
-    c1.addWeapon(w1);
+    assertTrue(c1.addWeapon(w1));
     assertEquals(c1.getWeaponsCount(), 1);
     
-    c1.addWeapon(w2);
+    
+    assertTrue(c1.addWeapon(w2));
     assertEquals(c1.getWeaponsCount(), 2);
     
-    c1.addWeapon(w3);
+    assertFalse(c1.addWeapon(w3));
     
     c1.removeWeapon(w1);
     assertEquals(c1.getWeaponsCount(), 1);
-    assertEquals(c1.getWeapon1(), w1);
+    assertEquals(c1.getWeapon1(), w2);
   }
 }

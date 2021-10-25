@@ -23,54 +23,62 @@ public class Cell {
   public LifeForm getLifeForm() {
     return being;
   }
-  
+
   /**
    * adds weapon to the ArrayList
    * 
    * @param weapon - weapon being added
    */
-  
-  public void addWeapon(Weapon w) throws EnvironmentException{
+
+  public boolean addWeapon(Weapon w) {
     if(weapons.size() < 2) {
-       weapons.add(w);
-    }else {
-      throw new EnvironmentException("Can't have more than two weapons on a cell");
-     }
+      weapons.add(w);
+      return true;
+    }else if(weapons.size() <= 2) {
+      return false;
+    }
+    
+    return false;
   }
-  
-  
+
   /**
    * gets the first weapon in the ArrayList
    * 
-   *@returns firstWeapon
+   * @returns firstWeapon
    */
-   public Weapon getWeapon1() {
-     return weapons.get(0);
-   }
-   
-   /**
-    * gets the second weapon in the ArrayList
-    * 
-    * @return second Weapon
-    */
-   
-   public Weapon getWeapon2() {
-     return weapons.get(1);
-   }
-   
-   /**
-    * gets the number of weapons in the cell
-    * 
-    * @return number of Weapons
-    */
-   
-   public int getWeaponsCount() {
-     return weapons.size();
-   }
-   
-   public void removeWeapon(Weapon w) {
-     weapons.remove(w);
-   }
+  public Weapon getWeapon1() {
+    return weapons.get(0);
+  }
+
+  /**
+   * gets the second weapon in the ArrayList
+   * 
+   * @return second Weapon
+   */
+
+  public Weapon getWeapon2() {
+    return weapons.get(1);
+  }
+
+  /**
+   * gets the number of weapons in the cell
+   * 
+   * @return number of Weapons
+   */
+
+  public int getWeaponsCount() {
+    return weapons.size();
+  }
+
+  public Weapon removeWeapon(Weapon w) {
+    if (weapons.remove(w) == false) {
+      return null;
+    } else {
+      weapons.remove(w);
+      return w;
+    }
+  }
+
   /**
    * Treis to add the LifeForm to the Cell. Will not add if a LifeFrom is already
    * present.
