@@ -10,6 +10,8 @@ import lifeform.LifeForm;
 public class Environment {
   Cell[][] cells;
   private static Environment env;
+  int numRow;
+  int numCol;
 
   /**
    * constuctor
@@ -17,6 +19,8 @@ public class Environment {
    * @param cols of the 2d array
    */
   private Environment(int rows, int cols) {
+    numRow = rows;
+    numCol = cols;
     cells = new Cell[rows][cols];
     for (int i = 0; i < rows; i++) {
       for (int j = 0; j < cols; j++) {
@@ -25,12 +29,29 @@ public class Environment {
     }
   }
   
+  public int getRow() {
+    return numRow;
+  }
+  
+  public int getCol() {
+    return numCol;
+  }
+  
+  public double getDistance(int row1, int col1, int row2, int col2) {
+    int xDistance = Math.abs(col1 - col2);
+    int yDistance = Math.abs(row1 - row2);
+    
+    double distance = Math.sqrt((Math.pow(xDistance, 2) + Math.pow(yDistance, 2)));
+    return distance * 5;
+  }
+  
   /**
    * Singleton Method
    * @param rows - rows in the Environment
    * @param cols - columns in the Environment
    * @return env 
    */
+  
   public static Environment getEnvironment(int rows, int cols) {
     if(env == null) {
       env = new Environment(rows, cols);
