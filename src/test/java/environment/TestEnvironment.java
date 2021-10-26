@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
+import exceptions.EnvironmentException;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
 import weapon.PlasmaCannon;
@@ -71,7 +72,7 @@ public class TestEnvironment {
   }
   
 @Test 
-  public void testDistanceSameCol() {
+  public void testDistanceSameCol() throws EnvironmentException {
 	Environment env1 = Environment.getEnvironment(10, 10);
 	MockLifeForm form1 = new MockLifeForm("bob", 100);
 	MockLifeForm form2 = new MockLifeForm("jim", 100);
@@ -83,19 +84,19 @@ public class TestEnvironment {
   }
 
 @Test
-public void testDistanceSameRow() {
+public void testDistanceSameRow() throws EnvironmentException {
 	Environment env1 = Environment.getEnvironment(10, 10);
 	MockLifeForm form1 = new MockLifeForm("bob", 100);
 	MockLifeForm form2 = new MockLifeForm("jim", 100);
 	
-	env1.addLifeForm(form1, 2, 1);
+	env1.addLifeForm(form1, 3, 1);
 	env1.addLifeForm(form2, 1, 1);
 	
 	assertEquals(5.0, env1.getDistance(form2, form1), 0.01);
 }
 
 @Test
-public void testDistanceDifferentBoth() {
+public void testDistanceDifferentBoth() throws EnvironmentException {
   Environment env1 = Environment.getEnvironment(10, 10);
   MockLifeForm form1 = new MockLifeForm("bob", 100);
   MockLifeForm form2 = new MockLifeForm("jim", 100);

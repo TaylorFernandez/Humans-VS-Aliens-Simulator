@@ -1,5 +1,6 @@
 package environment;
 
+import exceptions.EnvironmentException;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
@@ -95,12 +96,27 @@ public class Environment {
    * @return
    */
 
-  public double getDistance(int row1, int col1, int row2, int col2) {
-    int distanceX = Math.abs(col1 - col2);
-    int distanceY = Math.abs(row1 - row2);
-
-    double distance = Math.sqrt((Math.pow(distanceX, 2) + Math.pow(distanceY, 2)));
-    return distance * 5;
+  public double getDistance(int row1, int col1, int row2, int col2) throws EnvironmentException {
+    if (row1 < 0 || col1 < 0 || row2 < 0 || col2 < 0) {
+      throw new EnvironmentException("Rows and columns cannot be less than zero");
+    }
+    if (row1 >= numRow || col1 >= numCol || row2 >= numRow || col2 >= numCol) {
+      throw new EnvironmentException("Rows and columns are out of bounds!");
+    }
+    
+    int distanceX = Math.abs(col2 - col1);
+    if (row1 == row2) {
+      return distanceX * 5; 
+    }
+    int distanceY = Math.abs(row2 - row1);
+    if (col1 == col2) {
+      return distanceY * 5; 
+    }
+    if (row1 != row2 && col1 != col2) {
+      double distance = Math.sqrt((Math.pow(distanceX, 2) + Math.pow(distanceY, 2)));
+      return distance * 5;
+    }
+    return 0;
   }
 
   /**
@@ -109,10 +125,8 @@ public class Environment {
    * @return env
    */
 
-  public double getDistance(LifeForm l1, LifeForm l2) {
-    double distance = this.getDistance(l1.getRow(), l1.getCol(), l2.getRow(), l2.getCol());
-
-    return distance;
+  public double getDistance(LifeForm l1, LifeForm l2) throws EnvironmentException {
+    return this.getDistance(l1.getRow(), l1.getCol(), l2.getRow(), l2.getCol());
   }
 
   /**
