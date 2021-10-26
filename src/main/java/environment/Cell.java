@@ -13,7 +13,8 @@ import weapon.Weapon;
  *
  */
 public class Cell {
-  ArrayList<Weapon> weapons = new ArrayList<Weapon>();
+  Weapon weapon1;
+  Weapon weapon2;
   LifeForm being;
   boolean bool;
 
@@ -31,13 +32,13 @@ public class Cell {
    */
 
   public boolean addWeapon(Weapon w) {
-    if(weapons.size() < 2) {
-      weapons.add(w);
+    if(weapon1 == null && weapon2 != w) {
+      weapon1 = w;
       return true;
-    }else if(weapons.size() <= 2) {
-      return false;
+    } else if(weapon2 == null && weapon1 != w) {
+      weapon2 = w;
+      return true;
     }
-    
     return false;
   }
 
@@ -47,7 +48,7 @@ public class Cell {
    * @returns firstWeapon
    */
   public Weapon getWeapon1() {
-    return weapons.get(0);
+    return weapon1;
   }
 
   /**
@@ -57,7 +58,7 @@ public class Cell {
    */
 
   public Weapon getWeapon2() {
-    return weapons.get(1);
+    return weapon2;
   }
 
   /**
@@ -67,16 +68,25 @@ public class Cell {
    */
 
   public int getWeaponsCount() {
-    return weapons.size();
+    int count = 0;
+    if(weapon1 != null) {
+      count++;
+    }
+    if(weapon2 != null) {
+      count++;
+    }
+    return count;
   }
 
   public Weapon removeWeapon(Weapon w) {
-    if (weapons.remove(w) == false) {
-      return null;
-    } else {
-      weapons.remove(w);
+    if (weapon1 == w) {
+      weapon1 = null;
+      return w;
+    } else if (weapon2 == w){
+      weapon2 = null;
       return w;
     }
+    return null;
   }
 
   /**
