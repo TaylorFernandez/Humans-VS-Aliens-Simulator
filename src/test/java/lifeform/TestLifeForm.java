@@ -97,6 +97,32 @@ public class TestLifeForm {
     
     form.attack(form2, 3);
     
-    assertEquals(form2.getCurrentLifePoints(), 97);
+    assertEquals(form2.getCurrentLifePoints(), 50);
   }
+  
+  @Test
+  public void storeNums() {
+	  MockLifeForm form = new MockLifeForm("Bob", 100, 3);
+	  form.setLocation(1, 1);
+	  assertEquals(1, form.getRow());
+	  assertEquals(1, form.getCol());
+  }
+  
+  @Test
+  public void storeNegNums() {
+	  MockLifeForm form = new MockLifeForm("Bob", 100, 3);
+	  form.setLocation(-1, -1);
+	  assertEquals(-1, form.getRow());
+	  assertEquals(-1, form.getCol());
+  }
+  
+  @Test
+  public void storeNegNums2() {
+	  MockLifeForm form = new MockLifeForm("Bob", 100, 3);
+	  form.setLocation(-4, -5);
+	  assertEquals(-1, form.getRow());
+	  assertEquals(-1, form.getCol());
+  }
+  
+  
 }

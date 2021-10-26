@@ -52,6 +52,7 @@ public abstract class LifeForm {
    * @param p
    * @param attack
    */
+  
   public LifeForm(String n, int p, int attack) {
     name = n;
     points = p;

@@ -26,16 +26,13 @@ public class Cell {
   }
 
   /**
-   * adds weapon to the ArrayList
-   * 
-   * @param weapon - weapon being added
+   * @return true if weapon added.
    */
-
   public boolean addWeapon(Weapon w) {
-    if(weapon1 == null && weapon2 != w) {
+    if (weapon1 == null && weapon2 != w) {
       weapon1 = w;
       return true;
-    } else if(weapon2 == null && weapon1 != w) {
+    } else if (weapon2 == null && weapon1 != w) {
       weapon2 = w;
       return true;
     }
@@ -69,20 +66,25 @@ public class Cell {
 
   public int getWeaponsCount() {
     int count = 0;
-    if(weapon1 != null) {
+    if (weapon1 != null) {
       count++;
     }
-    if(weapon2 != null) {
+    if (weapon2 != null) {
       count++;
     }
     return count;
   }
 
+  /**
+   * removes weapon.
+   * 
+   * @return removed weapon.
+   */
   public Weapon removeWeapon(Weapon w) {
     if (weapon1 == w) {
       weapon1 = null;
       return w;
-    } else if (weapon2 == w){
+    } else if (weapon2 == w) {
       weapon2 = null;
       return w;
     }
@@ -90,7 +92,7 @@ public class Cell {
   }
 
   /**
-   * Treis to add the LifeForm to the Cell. Will not add if a LifeFrom is already
+   * Tries to add the LifeForm to the Cell. Will not add if a LifeFrom is already
    * present.
    * 
    * @param entity
