@@ -74,13 +74,16 @@ public class TestEnvironment {
 @Test 
   public void testDistanceSameCol() throws EnvironmentException {
 	Environment env1 = Environment.getEnvironment(10, 10);
+	env1.clearBoard();
 	MockLifeForm form1 = new MockLifeForm("bob", 100);
 	MockLifeForm form2 = new MockLifeForm("jim", 100);
 	
 	env1.addLifeForm(form1, 1, 1);
 	env1.addLifeForm(form2, 1, 2);
 	
-	assertEquals(5.0, env1.getDistance(form1, form2), 0.01);
+	double distance = env1.getDistance(form1, form2);
+	
+	assertEquals(5.0, distance, 0.01);
   }
 
 @Test
@@ -89,7 +92,7 @@ public void testDistanceSameRow() throws EnvironmentException {
 	MockLifeForm form1 = new MockLifeForm("bob", 100);
 	MockLifeForm form2 = new MockLifeForm("jim", 100);
 	
-	env1.addLifeForm(form1, 3, 1);
+	env1.addLifeForm(form1, 2, 1);
 	env1.addLifeForm(form2, 1, 1);
 	
 	assertEquals(5.0, env1.getDistance(form2, form1), 0.01);

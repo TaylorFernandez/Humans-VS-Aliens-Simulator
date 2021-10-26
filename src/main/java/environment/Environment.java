@@ -153,7 +153,14 @@ public class Environment {
    * @return
    */
   public boolean addLifeForm(LifeForm entity, int rows, int cols) {
-    return cells[rows][cols].addLifeForm(entity);
+    if (entity != null) {
+      if (cells[rows][cols].getLifeForm() == null) {
+        cells[rows][cols].addLifeForm(entity);
+        entity.setLocation(rows, cols);
+        return true;
+      }
+    }
+    return false;
   }
 
   /**
