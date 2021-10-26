@@ -8,6 +8,8 @@ public abstract class LifeForm {
   int points;
   int attack;
   protected Weapon weapon;
+  int row;
+  int col;
 
   /**
    * LifeForms
@@ -20,7 +22,29 @@ public abstract class LifeForm {
     name = n;
     points = p;
   }
-
+  
+  /**
+   * sets the location of the LifeForm
+   */
+  public void setLocation(int rowPos, int colPos) {
+    row = rowPos;
+    col = colPos;
+  }
+  
+  /**
+   * gets the column of the LifeForm
+   */
+  public int getCol() {
+    return col;
+  }
+  
+  /**
+   * gets the row of the LifeForm
+   * @return
+   */
+  public int getRow() {
+    return row;
+  }
   /**
    * constructor for lifeForm
    * 
