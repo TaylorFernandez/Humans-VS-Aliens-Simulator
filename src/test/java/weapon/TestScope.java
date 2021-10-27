@@ -19,27 +19,27 @@ public class TestScope {
 	public void testScope() throws AttachmentException, WeaponException {
 		Weapon p = new Scope(new Pistol());
 		assertEquals(60, p.getMaxRange());
-		assertEquals(70, p.fire(5)); // testing damage
-		assertEquals(15, p.fire(55));
+		assertEquals(21, p.fire(5)); // testing damage
+		assertEquals(7, p.fire(55));
 		assertEquals(0, p.fire(65));
-		assertEquals(30, p.fire(50));
+		assertEquals(0, p.fire(50));
 	}
 
 	@Test
 	public void testDoubleScope() throws AttachmentException, WeaponException {
 		Weapon p = new Scope(new Scope(new Pistol()));
 		assertEquals(70, p.getMaxRange()); // testing range is updated with a second scope
-		assertEquals(70, p.fire(5));
-		assertEquals(20, p.fire(55));
-		assertEquals(15, p.fire(65));
+		assertEquals(40, p.fire(5));
+		assertEquals(8, p.fire(55));
+		assertEquals(0, p.fire(65));
 
 	}
 
 	@Test
 	public void testScopeAndStabalizer() throws AttachmentException, WeaponException {
 		Weapon p = new Scope(new Stabilizer(new Pistol()));
-		assertEquals(70, p.fire(5));
-		assertEquals(15, p.fire(55));
+		assertEquals(24, p.fire(5));
+		assertEquals(7, p.fire(55));
 		assertEquals(0, p.fire(65));
 
 	}
@@ -47,9 +47,9 @@ public class TestScope {
 	@Test
 	public void testScopeAndPowerBooster() throws AttachmentException, WeaponException {
 		Weapon s = new Scope(new PowerBooster(new Pistol()));
-		assertEquals(30, s.fire(50));
-		assertEquals(70, s.fire(5));
-		assertEquals(15, s.fire(55));
+		assertEquals(4, s.fire(50));
+		assertEquals(38, s.fire(5));
+		assertEquals(0, s.fire(55));
 	}
 
 }

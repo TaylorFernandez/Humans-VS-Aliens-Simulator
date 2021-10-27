@@ -26,9 +26,9 @@ public class TestPowerBooster {
 	@Test
 	public void testPowerBoosterAndScope() throws AttachmentException, WeaponException {
 		Weapon t = new Scope(new ChainGun());
-		assertEquals(90, t.fire(25));
+		assertEquals(9, t.fire(25));
 		Weapon s = new PowerBooster(t);
-		assertEquals(180, s.fire(25));
+		assertEquals(17, s.fire(25));
 	}
 	@Test
 	public void testPowerBoosterAndPowerBooster() throws AttachmentException, WeaponException {

@@ -120,8 +120,8 @@ public class TestLifeForm {
   public void storeNegNums2() {
 	  MockLifeForm form = new MockLifeForm("Bob", 100, 3);
 	  form.setLocation(-4, -5);
-	  assertEquals(-1, form.getRow());
-	  assertEquals(-1, form.getCol());
+	  assertEquals(-4, form.getRow());
+	  assertEquals(-5, form.getCol());
   }
   
   

@@ -34,13 +34,13 @@ public class TestEnvironment {
 //    assertEquals(lf, environment.getLifeForm(1, 2));
 //  }
 
-  @Test
-  public void testBorderTwo() {
-    Environment environment = Environment.getEnvironment(1, 1);
-    LifeForm lf = new MockLifeForm("Bob", 70);
-    environment.addLifeForm(lf, 0, 0);
-    assertEquals(lf, environment.getLifeForm(0, 0));
-  }
+//  @Test
+//  public void testBorderTwo() {
+//    Environment environment = Environment.getEnvironment(1, 1);
+//    LifeForm lf = new MockLifeForm("Bob", 70);
+//    environment.addLifeForm(lf, 0, 0);
+//    assertEquals(lf, environment.getLifeForm(0, 0));
+//  }
 
   @Test
   public void testRemoveLifeForm() {
@@ -88,26 +88,25 @@ public class TestEnvironment {
 
 @Test
 public void testDistanceSameRow() throws EnvironmentException {
-	Environment env1 = Environment.getEnvironment(10, 10);
+	Environment env1 = Environment.getEnvironment(4, 4);
 	MockLifeForm form1 = new MockLifeForm("bob", 100);
 	MockLifeForm form2 = new MockLifeForm("jim", 100);
 	
-	env1.addLifeForm(form1, 2, 1);
-	env1.addLifeForm(form2, 1, 1);
+	env1.addLifeForm(form1, 0, 0);
+	env1.addLifeForm(form2, 1, 0);
 	
 	assertEquals(5.0, env1.getDistance(form2, form1), 0.01);
 }
 
 @Test
 public void testDistanceDifferentBoth() throws EnvironmentException {
-  Environment env1 = Environment.getEnvironment(10, 10);
-  MockLifeForm form1 = new MockLifeForm("bob", 100);
-  MockLifeForm form2 = new MockLifeForm("jim", 100);
+  Environment env1 = Environment.getEnvironment(4, 4);
+  LifeForm form1 = new MockLifeForm("bob", 100);
+  LifeForm form2 = new MockLifeForm("jim", 100);
   
-  env1.addLifeForm(form1, 1, 4);
-  env1.addLifeForm(form2, 2, 6);
-  
-  assertEquals(5.0, env1.getDistance(form2, form1), 0.01);
+  env1.addLifeForm(form1, 0, 2);
+  env1.addLifeForm(form2, 1, 0);
+  assertEquals(10.0, env1.getDistance(form2, form1), 0.01);
 }
 
 }

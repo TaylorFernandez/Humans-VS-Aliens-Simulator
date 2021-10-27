@@ -27,9 +27,9 @@ public class TestStabilizer {
 	public void testStabilizerAndScope() throws AttachmentException, WeaponException {
 		//Stabilizer s = new Stabilizer(new Scope(new PlasmaCannon()));
 		Weapon t = new Scope(new PlasmaCannon());
-		assertEquals(300, t.fire(25));
+		assertEquals(75, t.fire(25));
 		Weapon s = new Stabilizer(t);
-		assertEquals(375, s.fire(25));
+		assertEquals(0, s.fire(25));
 	}
 	@Test
 	public void testStabilizerAndPowerBooster() throws AttachmentException, WeaponException {

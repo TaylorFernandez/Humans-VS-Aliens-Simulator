@@ -137,7 +137,7 @@ public class TestAlien {
   @Test
   public void testException() throws RecoveryRateException {
     SimpleTimer st = new SimpleTimer(1000);
-    Alien allen = new Alien("Allen", 10, new RecoveryLinear(2), -1); // recovered by, rounds
+    Alien allen = new Alien("Allen", 10, new RecoveryLinear(2), 1); // recovered by, rounds
     st.addTimeObserver(allen);
     allen.takeHit(100);
     assertEquals(0, allen.getCurrentLifePoints());
