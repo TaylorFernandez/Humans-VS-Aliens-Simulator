@@ -1,65 +1,103 @@
 package gameUI;
 
-import javax.swing.*;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import java.awt.image.BufferedImage;
-import java.awt.Image;
-import java.awt.Graphics;
-import java.awt.Color;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
+import environment.Environment;
+import lifeform.Alien;
+import lifeform.Human;
+import weapon.ChainGun;
+import weapon.Pistol;
+import weapon.PlasmaCannon;
 
 public class ImageCreator {
-  public ImageIcon createEnvironment() {
-    BufferedImage exampleImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
 
-    Graphics drawer = exampleImage.getGraphics();
+  public JButton[][] drawElements(JButton[][] buttons, Environment environ) {
+    JButton[][] buttonArray = buttons;
+    for (int i = 0; i < buttonArray.length; i++) {
+      for (int j = 0; j < buttonArray[i].length; j++) {
+        if(environ.getCell(i, j).getLifeForm() == null && environ.getCell(i, j).getWeaponsCount() == 0) {
+          buttonArray[i][j].setIcon(new ImageIcon("assets/Environment/Environment.png"));
+        }
+        if (environ.getCell(i, j).getLifeForm() != null) {
 
-    drawer.setColor(new Color(65, 102, 0));
-    drawer.fillRect(0, 0, 50, 50);
+          if (environ.getCell(i, j).getLifeForm().getClass() == Human.class) {
+            if (environ.getCell(i, j).getWeaponsCount() == 0) {
+              buttonArray[i][j].setIcon(new ImageIcon("assets/Human/Human.png"));
+            }
 
-    return new ImageIcon(exampleImage);
+            if (environ.getCell(i, j).getWeaponsCount() == 1) {
+              if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class) {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Human/HumanWithPistol.png"));
+              } else if (environ.getCell(i, j).getWeapon1().getClass() == PlasmaCannon.class) {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Human/HumanWithPlasma.png"));
+              } else {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Human/HumanWithChain.png"));
+              }
+            } else if(environ.getCell(i, j).getWeaponsCount() == 2){
+              if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class
+                  && environ.getCell(i,j).getWeapon2().getClass() == ChainGun.class) {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Human/HumanWithPistolAndChain.png"));
+              } else if (environ.getCell(i, j).getWeapon1().getClass() == PlasmaCannon.class
+                  && environ.getCell(i, i).getWeapon2().getClass() == ChainGun.class) {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Human/HumanWithPlasmaAndChain.png"));
+              } else {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Human/HumanWithPistolAndPlasma.png"));
+              }
+            }
+          } else if (environ.getCell(i, j).getLifeForm().getClass() == Alien.class) {
+            if (environ.getCell(i, j).getWeaponsCount() == 0) {
+              buttonArray[i][j].setIcon(new ImageIcon("assets/Alien/Alien.png"));
+            }
+
+            if (environ.getCell(i, j).getWeaponsCount() == 1) {
+              if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class) {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Alien/AlienWithPistol.png"));
+              } else if (environ.getCell(i, j).getWeapon1().getClass() == ChainGun.class) {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Alien/AlienWithChain.png"));
+              } else {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Alien/AlienWithPlasma.png"));
+              }
+            } else {
+              if (environ.getCell(i, j).getWeaponsCount() == 2) {
+                if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class
+                    && environ.getCell(i,j).getWeapon2().getClass() == ChainGun.class) {
+                  buttonArray[i][j].setIcon(new ImageIcon("assets/Alien/AlienWithPistolAndChain.png"));
+                } else if (environ.getCell(i, j).getWeapon1().getClass() == PlasmaCannon.class
+                    && environ.getCell(i, i).getWeapon2().getClass() == ChainGun.class) {
+                  buttonArray[i][j].setIcon(new ImageIcon("assets/Alien/AlienWithPlasmaAndChain.png"));
+                } else {
+                  buttonArray[i][j].setIcon(new ImageIcon("assets/Alien/AlienWithPistolAndPlasma.png"));
+                }
+              }
+            }
+          }
+        } else {
+          if (environ.getCell(i, j).getWeaponsCount() == 1) {
+            if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class) {
+              buttonArray[i][j].setIcon(new ImageIcon("assets/Environment/Pistol.png"));
+            } else if (environ.getCell(i, j).getWeapon1().getClass() == ChainGun.class) {
+              buttonArray[i][j].setIcon(new ImageIcon("assets/Environment/ChainGun.png"));
+            } else {
+              buttonArray[i][j].setIcon(new ImageIcon("assets/Environment/PlasmaCannon.png"));
+            }
+          } else {
+            if (environ.getCell(i, j).getWeaponsCount() == 2) {
+              if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class
+                  && environ.getCell(i,j).getWeapon2().getClass() == ChainGun.class) {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Environment/PistolAndChain.png"));
+              } else if (environ.getCell(i, j).getWeapon1().getClass() == PlasmaCannon.class
+                  && environ.getCell(i, i).getWeapon2().getClass() == ChainGun.class) {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Environment/PlasmaAndChain.png"));
+              } else {
+                buttonArray[i][j].setIcon(new ImageIcon("assets/Environment/PistolAndPlasma.png"));
+              }
+
+            }
+          }
+        }
+      }
+    }
+    return buttonArray;
   }
-
-  public ImageIcon createHighlighted() {
-    BufferedImage exampleImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
-
-    Graphics drawer = exampleImage.getGraphics();
-
-    drawer.setColor(new Color(255, 255, 0));
-    drawer.fillRect(0, 0, 50, 50);
-
-    return new ImageIcon(exampleImage);
-  }
-
-  public ImageIcon createImage() {
-    BufferedImage exampleImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
-
-    Graphics drawer = exampleImage.getGraphics();
-
-    drawer.setColor(new Color(65, 102, 0));
-    drawer.fillRect(0, 0, 50, 50);
-
-    drawer.setColor(new Color(0, 255, 0));
-    drawer.fillOval(20, 20, 10, 10);
-
-    return new ImageIcon(exampleImage);
-  }
-
-  public ImageIcon createHuman() {
-    BufferedImage exampleImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
-
-    Graphics drawer = exampleImage.getGraphics();
-
-    drawer.setColor(new Color(65, 102, 0));
-    drawer.fillRect(0, 0, 50, 50);
-
-    drawer.setColor(new Color(0, 255, 0));
-    drawer.fillOval(20, 20, 10, 10);
-
-    return new ImageIcon(exampleImage);
-  }
-  
-
 }

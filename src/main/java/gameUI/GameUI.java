@@ -22,9 +22,6 @@ public class GameUI extends ImageCreator implements ActionListener {
   JLabel bottom;
   Environment environ;
   boolean[][] wasLifeForm;
-  ImageIcon environment = createEnvironment();
-  ImageIcon highlighted = createHighlighted();
-  ImageIcon human = createHuman();
   ImageIcon humanWithPistol = new ImageIcon("assets/HumanWithPistol.png");
 
   /**
@@ -53,23 +50,22 @@ public class GameUI extends ImageCreator implements ActionListener {
       for (int j = 0; j < buttonArray.length; j++) {
         buttonArray[i][j] = new JButton();
         buttonArray[i][j].addActionListener(this);
-        buttonArray[i][j].setIcon(environment);
+        buttonArray[i][j].setIcon(new ImageIcon("assets/Environment/Environment.png"));
         buttonArray[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
         rightPanel.add(buttonArray[i][j]);
       }
     }
-    drawElements();
-
+    drawElements(buttonArray, env);
     frame.add("East", rightPanel);
-
-    buttonArray[2][2].setIcon(humanWithPistol);
-
+   
     move = new JButton("move");
     move.addActionListener(this);
     leftPanel.add("North", move);
+    frame.add("West", leftPanel);
 
     frame.pack();
     frame.setVisible(true);
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
   /**
@@ -92,31 +88,10 @@ public class GameUI extends ImageCreator implements ActionListener {
    * @param row    - row of button pressed
    * @param col    - column of button pressed
    */
-  public void highlight(JButton button, int row, int col) {
-    if (button.getIcon() == environment) {
-      button.setIcon(highlighted);
-    } else if (button.getIcon() == human) {
-      wasLifeForm[row][col] = true;
-      button.setIcon(highlighted);
-    } else if (button.getIcon() == highlighted) {
-      if (wasLifeForm[row][col] == true) {
-        button.setIcon(human);
-      } else {
-        button.setIcon(environment);
-      }
-    }
-  }
+  
+ public void highlight(JButton button, int row, int col) {
+   
+ }
 
-  public void drawElements() {
-    for (int i = 0; i < buttonArray.length; i++) {
-      for (int j = 0; j < buttonArray[i].length; j++) {
-        if (environ.getCell(i, j).getLifeForm()!= null) {
-          if (environ.getCell(i, j).getLifeForm().getClass() == Human.class) {
-            buttonArray[i][j].setIcon(new ImageIcon("assets/Human.png"));
-            buttonArray[i][j].addActionListener(this);
-          }
-        }
-      }
-    }
-  }
+
 }
