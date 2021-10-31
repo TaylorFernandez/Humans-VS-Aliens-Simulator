@@ -11,7 +11,7 @@ public abstract class Attachment implements Weapon {
 
   /**
    * Atachment constructor
-   * 
+   *
    * @param baseWeapon - weapon attachment is being added to
    */
   public Attachment(Weapon baseWeapon) {
@@ -20,20 +20,22 @@ public abstract class Attachment implements Weapon {
 
   /**
    * Fires the weapon. Accounts for changes to damage done by attachments
-   * 
+   *
    * @param distance - distance between weapon and target
    * @throws WeaponException
    */
-  public abstract int fire(int distance) throws WeaponException;
+  @Override
+public abstract int fire(int distance) throws WeaponException;
 
-  public int getBaseDamage() {
+  @Override
+public int getBaseDamage() {
     return base.getBaseDamage();
   }
 
   /**
    * gets the current ammo of the weapon
    */
-  @Override
+@Override
   public int getCurrentAmmo() {
     return base.getCurrentAmmo();
   }
@@ -41,7 +43,8 @@ public abstract class Attachment implements Weapon {
   /**
    * gets the maximum ammo the base weapon can hold
    */
-  @Override
+ 
+@Override
   public int getMaxAmmo() {
     return base.getMaxAmmo();
   }
@@ -49,7 +52,8 @@ public abstract class Attachment implements Weapon {
   /**
    * Gets the maximum range the base weapon can shoot
    */
-  @Override
+
+@Override
   public int getMaxRange() {
     return base.getMaxRange();
   }
@@ -57,7 +61,8 @@ public abstract class Attachment implements Weapon {
   /**
    * Gets the number of attachments the base weapon has
    */
-  @Override
+
+@Override
   public int getNumAttachments() throws AttachmentException {
     if (base.getNumAttachments() == 2) {
       throw new AttachmentException("Attachments cannot exceed 2");
@@ -68,7 +73,8 @@ public abstract class Attachment implements Weapon {
   /**
    * Gets the rate of fire of the base weapon
    */
-  @Override
+
+@Override
   public int getRateOfFire() {
     return base.getRateOfFire();
   }
@@ -76,7 +82,8 @@ public abstract class Attachment implements Weapon {
   /**
    * gets the shots the weapon can shoot in the current round
    */
-  @Override
+
+@Override
   public int getShotsLeft() {
     return base.getShotsLeft();
   }
@@ -84,17 +91,19 @@ public abstract class Attachment implements Weapon {
   /**
    * reloads the weapon
    */
-  @Override
+
+@Override
   public void reload() {
     base.reload();
   }
 
   /**
    * notifies the weapon/attachments when a round has gone by
-   * 
+   *
    * @param time - current round
    */
-  @Override
+
+@Override
   public void updateTime(int time) {
     base.updateTime(time);
   }

@@ -13,7 +13,7 @@ public abstract class LifeForm {
 
   /**
    * LifeForms
-   * 
+   *
    * @param n name of life form
    * @param p points for life form constructor to create the lifeform with a name
    *          and amount of lifepoints.
@@ -22,7 +22,7 @@ public abstract class LifeForm {
     name = n;
     points = p;
   }
-  
+
   /**
    * sets the location of the LifeForm
    */
@@ -30,14 +30,14 @@ public abstract class LifeForm {
     row = rowPos;
     col = colPos;
   }
-  
+
   /**
    * gets the column of the LifeForm
    */
   public int getCol() {
     return col;
   }
-  
+
   /**
    * gets the row of the LifeForm
    * @return
@@ -47,12 +47,12 @@ public abstract class LifeForm {
   }
   /**
    * constructor for lifeForm
-   * 
+   *
    * @param n
    * @param p
    * @param attack
    */
-  
+
   public LifeForm(String n, int p, int attack) {
     name = n;
     points = p;
@@ -60,7 +60,7 @@ public abstract class LifeForm {
   }
 
   /**
-   * 
+   *
    * @return the name
    */
   public String getName() {
@@ -68,7 +68,7 @@ public abstract class LifeForm {
   }
 
   /**
-   * 
+   *
    * @return the points
    */
   public int getCurrentLifePoints() {
@@ -77,7 +77,7 @@ public abstract class LifeForm {
 
   /**
    * hits an enity
-   * 
+   *
    * @param damage
    */
   public void takeHit(int damage) {
@@ -89,7 +89,7 @@ public abstract class LifeForm {
   }
 
   /**
-   * 
+   *
    * @return attack strength
    */
   public int getAttackStrength() {
@@ -107,7 +107,7 @@ public abstract class LifeForm {
 
   /**
    * attacks
-   * 
+   *
    * @param opponent
    * @throws WeaponException
    */
@@ -125,7 +125,7 @@ public abstract class LifeForm {
 
   /**
    * Method allows LifeForm to pick up weapons
-   * 
+   *
    * @param w - weapon intended to be picked up
    */
 
@@ -137,7 +137,7 @@ public abstract class LifeForm {
       return false;
     }
   }
-  
+
   /**
    * allows the LifeForm to drop a weapon
    */

@@ -20,7 +20,7 @@ public class TestChainGun {
 
 	/**
 	 * test that hte gun can do damage within range
-	 * 
+	 *
 	 * @throws WeaponException
 	 */
 	@Test
@@ -31,7 +31,7 @@ public class TestChainGun {
 
 	/**
 	 * test that the gun will do zero damage if the target is out of range
-	 * 
+	 *
 	 * @throws WeaponException
 	 */
 	@Test
@@ -42,7 +42,7 @@ public class TestChainGun {
 
 	/**
 	 * Test that the gun will do zero damage if there are no shots left
-	 * 
+	 *
 	 * @throws WeaponException
 	 */
 	@Test
@@ -57,7 +57,7 @@ public class TestChainGun {
 
 	/**
 	 * test that the gun will do zero damage if there are no shots left
-	 * 
+	 *
 	 * @throws WeaponException
 	 */
 	@Test
@@ -69,7 +69,7 @@ public class TestChainGun {
 
 	/**
 	 * Test that the exception will be thrown if the range is negative
-	 * 
+	 *
 	 * @throws WeaponException
 	 */
 	@Test(expected = WeaponException.class)
@@ -77,7 +77,7 @@ public class TestChainGun {
 		ChainGun g = new ChainGun();
 		int damage = g.fire(-10);
 	}
-	
+
 	@Test
 	public void testUpdateAmmo() throws WeaponException {
 		ChainGun g = new ChainGun();
@@ -86,9 +86,9 @@ public class TestChainGun {
 		g.fire(65);
 		assertEquals(38, g.getCurrentAmmo());
 	}
-	
-	//i can't go below 36 rounds of ammo becasue it taps into 
-	//shotsLeft being zero, thus returning zero and not 
+
+	//i can't go below 36 rounds of ammo becasue it taps into
+	//shotsLeft being zero, thus returning zero and not
 	//decreasing the shots by one
 	@Test
 	public void testReload() throws WeaponException {

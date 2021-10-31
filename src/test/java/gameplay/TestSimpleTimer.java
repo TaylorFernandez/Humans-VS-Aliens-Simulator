@@ -2,13 +2,7 @@ package gameplay;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Ignore;
 import org.junit.Test;
-
-import exceptions.RecoveryRateException;
-import lifeform.Alien;
-import recovery.RecoveryLinear;
-import recovery.RecoveryNone;
 
 public class TestSimpleTimer {
 

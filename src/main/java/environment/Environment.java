@@ -6,7 +6,7 @@ import weapon.Weapon;
 
 /**
  * an environment that holds everything
- * 
+ *
  * @author lh2565
  *
  */
@@ -19,7 +19,7 @@ public class Environment {
 
   /**
    * constuctor
-   * 
+   *
    * @param rows of the 2d array
    * @param cols of the 2d array
    */
@@ -33,10 +33,12 @@ public class Environment {
       }
     }
   }
-
+  public Cell getCell(int row, int col) {
+    return cells[row][col];
+  }
   /**
    * gets the weapons from a specific cell
-   * 
+   *
    * @return list of weapons
    */
 
@@ -63,9 +65,9 @@ public class Environment {
   }
 
   /**
-   * 
+   *
    * clears board of cells.
-   * 
+   *
    */
   public void clearBoard() {
     for (int i = 0; i < numRow; i++) {
@@ -88,7 +90,7 @@ public class Environment {
 
   /**
    * gets the distance between two points
-   * 
+   *
    * @param row1
    * @param col1
    * @param row2
@@ -103,14 +105,14 @@ public class Environment {
     if (row1 >= numRow || col1 >= numCol || row2 >= numRow || col2 >= numCol) {
       throw new EnvironmentException("Rows and columns are out of bounds!");
     }
-    
+
     int distanceX = Math.abs(col2 - col1);
     if (row1 == row2) {
-      return distanceX * 5; 
+      return distanceX * 5;
     }
     int distanceY = Math.abs(row2 - row1);
     if (col1 == col2) {
-      return distanceY * 5; 
+      return distanceY * 5;
     }
     if (row1 != row2 && col1 != col2) {
       double distance = Math.sqrt((Math.pow(distanceX, 2) + Math.pow(distanceY, 2)));
@@ -121,7 +123,7 @@ public class Environment {
 
   /**
    * Singleton Method
-   * 
+   *
    * @return env
    */
 
@@ -131,7 +133,7 @@ public class Environment {
 
   /**
    *
-   * 
+   *
    * @param rows - rows in the Environment
    * @param cols - columns in the Environment
    * @return environment
@@ -146,7 +148,7 @@ public class Environment {
 
   /**
    * Adds lifeform to the Environment
-   * 
+   *
    * @param entity - Entity being added
    * @param rows   - Row where the LifeForm is being added
    * @param cols   - Column where the LifeForm is being added
@@ -165,7 +167,7 @@ public class Environment {
 
   /**
    * gets the LifeForm from a current Cell
-   * 
+   *
    * @param rows - row where the LifeForm is being gotten
    * @param cols - column where the LifeForm is being gotten
    * @return
@@ -176,7 +178,7 @@ public class Environment {
 
   /**
    * Removes the LifeForm from the Environment
-   * 
+   *
    * @param rows - Row where the LifeForm is being removed
    * @param cols - Column where the LifeForm is being removed
    */

@@ -7,7 +7,7 @@ public class PowerBooster extends Attachment {
 
   /**
    * Adds PowerBooster
-   * 
+   *
    * @param base
    * @throws AttachmentException
    */
@@ -21,7 +21,8 @@ public class PowerBooster extends Attachment {
   /*
    * Damage increases depending on the currentAmmo/maxAmmo
    */
-  @Override
+ 
+@Override
   public int fire(int distance) throws WeaponException {
     if (distance < 0) {
       throw new WeaponException("Cannot be less than 0");
@@ -33,7 +34,8 @@ public class PowerBooster extends Attachment {
     return Double.valueOf(Math.floor(powerBoostDamage * base.fire(distance))).intValue();
   }
 
-  @Override
+
+@Override
   public String toString() {
     return base.toString() + " +PowerBooster";
   }

@@ -1,8 +1,8 @@
 package lifeform;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -12,7 +12,7 @@ import weapon.Weapon;
 
 /**
  * Tests that functionality provided by the LifefForm class
- * 
+ *
  * @author lh2565
  *
  */
@@ -64,42 +64,42 @@ public class TestLifeForm {
     luke.attack(tommy, 2);
     assertEquals(50, tommy.getCurrentLifePoints());
   }
-  
+
   @Test
   public void testUsingWeapon() throws WeaponException {
     Weapon w = new PlasmaCannon();
     Weapon x = new PlasmaCannon();
     MockLifeForm form = new MockLifeForm("Bob", 100);
-    
+
     assertTrue(form.pickUpWeapon(w));
-    
+
     assertFalse(form.pickUpWeapon(x));
-    
+
     w.fire(3);
-    
+
     assertEquals(w.getCurrentAmmo(), 3);
-    
+
     w.reload();
-    
+
     assertEquals(w.getCurrentAmmo(), 4);
-    
-    
+
+
     assertEquals(form.dropWeapon(), w);
   }
-  
+
   @Test
   public void testMeleeWithWeapon() throws WeaponException {
     Weapon w = new PlasmaCannon();
     MockLifeForm form = new MockLifeForm("Bob", 100, 3);
     MockLifeForm form2 = new MockLifeForm("Fred", 100);
-    
+
     form.pickUpWeapon(w);
-    
+
     form.attack(form2, 3);
-    
+
     assertEquals(form2.getCurrentLifePoints(), 50);
   }
-  
+
   @Test
   public void storeNums() {
 	  MockLifeForm form = new MockLifeForm("Bob", 100, 3);
@@ -107,7 +107,7 @@ public class TestLifeForm {
 	  assertEquals(1, form.getRow());
 	  assertEquals(1, form.getCol());
   }
-  
+
   @Test
   public void storeNegNums() {
 	  MockLifeForm form = new MockLifeForm("Bob", 100, 3);
@@ -115,7 +115,7 @@ public class TestLifeForm {
 	  assertEquals(-1, form.getRow());
 	  assertEquals(-1, form.getCol());
   }
-  
+
   @Test
   public void storeNegNums2() {
 	  MockLifeForm form = new MockLifeForm("Bob", 100, 3);
@@ -123,6 +123,6 @@ public class TestLifeForm {
 	  assertEquals(-4, form.getRow());
 	  assertEquals(-5, form.getCol());
   }
-  
-  
+
+
 }

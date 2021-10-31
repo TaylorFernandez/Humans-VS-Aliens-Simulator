@@ -14,47 +14,58 @@ public abstract class GenericWeapon implements Weapon, TimerObserver {
   protected int maxRange;
   protected int rateOfFire;
   protected int shotsLeft;
-  
+
   public GenericWeapon(){
   }
-  
-  public abstract int fire(int distance) throws WeaponException;
-  
-  public abstract String toString();
-  
-  public int getNumAttachments() throws AttachmentException {
+
+  @Override
+public abstract int fire(int distance) throws WeaponException;
+
+  @Override
+public abstract String toString();
+
+  @Override
+public int getNumAttachments() throws AttachmentException {
     return 0;
   }
-  
-  public void reload() {
+
+  @Override
+public void reload() {
     currentAmmo = maxAmmo;
   }
-  
-  public int getBaseDamage() {
+
+  @Override
+public int getBaseDamage() {
     return baseDamage;
   }
-  
-  public int getMaxRange() {
+
+  @Override
+public int getMaxRange() {
     return maxRange;
   }
-  
-  public int getRateOfFire() {
+
+  @Override
+public int getRateOfFire() {
     return rateOfFire;
   }
-  
-  public int getMaxAmmo() {
+
+  @Override
+public int getMaxAmmo() {
     return maxAmmo;
   }
-  
-  public int getCurrentAmmo() {
+
+  @Override
+public int getCurrentAmmo() {
     return currentAmmo;
   }
-  
-  public int getShotsLeft() {
+
+  @Override
+public int getShotsLeft() {
     return shotsLeft;
   }
-  
-  public void updateTime(int time) {
+
+  @Override
+public void updateTime(int time) {
     shotsLeft = rateOfFire;
   }
 }

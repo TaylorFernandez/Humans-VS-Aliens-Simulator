@@ -10,7 +10,8 @@ public class RecoveryLinear implements RecoveryBehavior {
   /**
    * calculation of the linear recovery
    */
-  public int calculateRecovery(int currentLife, int maxLifePts) {
+  @Override
+public int calculateRecovery(int currentLife, int maxLifePts) {
     if (currentLife <= 0) {
       return 0;
     }

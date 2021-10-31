@@ -1,7 +1,6 @@
 package lifeform;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -9,7 +8,6 @@ import org.junit.Test;
 import exceptions.RecoveryRateException;
 import exceptions.WeaponException;
 import gameplay.SimpleTimer;
-import recovery.RecoveryBehavior;
 import recovery.RecoveryLinear;
 import recovery.RecoveryNone;
 
@@ -163,7 +161,7 @@ public class TestAlien {
     st.timeChanged();
     assertEquals(4, allen.getCurrentLifePoints());
   }
-  
+
   @Ignore
   public void test1() throws RecoveryRateException {
     Alien allen = new Alien("Allen", 10, new RecoveryLinear(2), -2);

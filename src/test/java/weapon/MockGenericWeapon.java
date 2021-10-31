@@ -12,6 +12,7 @@ public class MockGenericWeapon extends GenericWeapon {
 		shotsLeft = rateOfFire;
 	}
 
+
 	@Override
 	public int fire(int distance) throws WeaponException {
 		if (distance < 0) {
@@ -30,6 +31,7 @@ public class MockGenericWeapon extends GenericWeapon {
 			return 0;
 		}
 	}
+
 
 	@Override
 	public String toString() {

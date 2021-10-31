@@ -3,7 +3,6 @@ package lifeform;
 import exceptions.RecoveryRateException;
 import gameplay.TimerObserver;
 import recovery.RecoveryBehavior;
-import recovery.RecoveryNone;
 
 public class Alien extends LifeForm implements TimerObserver {
   int maxLifePoints;
@@ -23,7 +22,7 @@ public class Alien extends LifeForm implements TimerObserver {
 
   /**
    * constuctor for alien
-   * 
+   *
    * @param name
    * @param maxHp
    * @param behavior
@@ -57,8 +56,8 @@ public class Alien extends LifeForm implements TimerObserver {
       points = xd.calculateRecovery(points, maxLifePoints);
     }
   }
-
-  @Override
+  
+@Override
   public void updateTime(int time) {
     if (time % recoveryRate == 0) {
       recover();

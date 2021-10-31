@@ -16,13 +16,14 @@ public class SimpleTimer extends Thread implements Timer {
     this.sleep = sleep;
   }
 
-  @Override
+@Override
   public void removerTimeObserver(TimerObserver o) {
     theObservers.remove(o);
 
   }
 
-  public void addTimeObserver(TimerObserver o) {
+  @Override
+public void addTimeObserver(TimerObserver o) {
     theObservers.add(o);
 
   }
@@ -30,7 +31,8 @@ public class SimpleTimer extends Thread implements Timer {
   /**
    * changes the time
    */
-  public void timeChanged() {
+  @Override
+public void timeChanged() {
     round++;
     // notify
     theObservers.forEach(o -> o.updateTime(round));
@@ -58,7 +60,7 @@ public class SimpleTimer extends Thread implements Timer {
         Thread.sleep(sleep);
         timeChanged();
       } catch (InterruptedException e) {
-        ;
+
       }
     }
   }

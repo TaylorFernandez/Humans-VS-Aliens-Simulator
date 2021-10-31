@@ -5,7 +5,7 @@ import exceptions.WeaponException;
 import gameplay.TimerObserver;
 
 public class ChainGun extends GenericWeapon implements TimerObserver, Weapon {
-  
+
   /**
    * creates a ChainGun
    */
@@ -18,7 +18,8 @@ public class ChainGun extends GenericWeapon implements TimerObserver, Weapon {
     currentAmmo = maxAmmo;
   }
 
-  @Override
+
+@Override
   public int fire(int distance) throws WeaponException {
     if (distance < 0) {
       throw new WeaponException("Negative Distance");
@@ -26,7 +27,7 @@ public class ChainGun extends GenericWeapon implements TimerObserver, Weapon {
     if (shotsLeft <= 0 || currentAmmo <= 0) {
       return 0;
     }
-    double temp = (double) baseDamage * ((double) distance / (double) maxRange);
+    double temp = baseDamage * ((double) distance / (double) maxRange);
     int damage = (int) Math.floor(temp);
     currentAmmo--;
     shotsLeft--;
@@ -37,7 +38,8 @@ public class ChainGun extends GenericWeapon implements TimerObserver, Weapon {
     }
   }
 
-  @Override
+  
+@Override
   public String toString() {
     return "ChainGun";
   }

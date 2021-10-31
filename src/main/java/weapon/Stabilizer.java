@@ -2,13 +2,12 @@ package weapon;
 
 import exceptions.AttachmentException;
 import exceptions.WeaponException;
-import gameplay.TimerObserver;
 
 public class Stabilizer extends Attachment {
 
   /**
    * creates a new stabilizer
-   * 
+   *
    * @param base
    */
   public Stabilizer(Weapon base) throws AttachmentException {
@@ -22,7 +21,8 @@ public class Stabilizer extends Attachment {
    * This method reloads the weapon if the shots left are 0 This method also gives
    * the weapon bonus damage per shot taken
    */
-  @Override
+
+@Override
   public int fire(int distance) throws WeaponException {
     if (distance < 0) {
       throw new WeaponException("Cannot be less than 0");
@@ -41,7 +41,8 @@ public class Stabilizer extends Attachment {
     return newDamage;
   }
 
-  @Override
+
+@Override
   public String toString() {
     return base.toString() + " +Stabilizer";
   }

@@ -1,14 +1,11 @@
 package environment;
 
-import java.util.ArrayList;
-
-import exceptions.EnvironmentException;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
 /**
  * A Cell that can hold a LifeForm
- * 
+ *
  * @author lh2565
  *
  */
@@ -41,7 +38,7 @@ public class Cell {
 
   /**
    * gets the first weapon in the ArrayList
-   * 
+   *
    * @returns firstWeapon
    */
   public Weapon getWeapon1() {
@@ -50,7 +47,7 @@ public class Cell {
 
   /**
    * gets the second weapon in the ArrayList
-   * 
+   *
    * @return second Weapon
    */
 
@@ -60,7 +57,7 @@ public class Cell {
 
   /**
    * gets the number of weapons in the cell
-   * 
+   *
    * @return number of Weapons
    */
 
@@ -77,7 +74,7 @@ public class Cell {
 
   /**
    * removes weapon.
-   * 
+   *
    * @return removed weapon.
    */
   public Weapon removeWeapon(Weapon w) {
@@ -94,7 +91,7 @@ public class Cell {
   /**
    * Tries to add the LifeForm to the Cell. Will not add if a LifeFrom is already
    * present.
-   * 
+   *
    * @param entity
    * @return true if the LifeForm was added to the Cell, false otherwise
    */

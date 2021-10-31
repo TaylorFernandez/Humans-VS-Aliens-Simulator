@@ -16,7 +16,8 @@ public class Pistol extends GenericWeapon implements TimerObserver, Weapon {
     currentAmmo = maxAmmo;
   }
 
-  @Override
+
+@Override
   public int fire(int distance) throws WeaponException {
 
     if (distance < 0) {
@@ -29,20 +30,21 @@ public class Pistol extends GenericWeapon implements TimerObserver, Weapon {
     }
 
     if (distance <= maxRange) {
-      double temp = (double) baseDamage * (((double) maxRange  
-                         - (double) distance + 10) / (double) maxRange);
+      double temp = baseDamage * (((double) maxRange
+                         - (double) distance + 10) / maxRange);
       currentAmmo--;
       shotsLeft--;
       return (int) Math.floor(temp);
     } else {
       currentAmmo--;
       shotsLeft--;
-      return 0;  
-      
+      return 0;
+
     }
   }
 
-  public String toString() {
+  @Override
+public String toString() {
     return "Pistol";
   }
 }

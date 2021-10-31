@@ -23,10 +23,11 @@ public class PlasmaCannon extends GenericWeapon implements TimerObserver, Weapon
    * method that calculated damage dealt to a LifeForm. Calculates damage. Damage
    * decreases as currentAmmo decreases. returns 0 when distance is greater than
    * maxRange and throws an exception when there is a negative distance
-   * 
+   *
    * @param distance - distance between the shooter and target
    */
-  @Override
+ 
+@Override
   public int fire(int distance) throws WeaponException {
     if (distance < 0) {
       throw new WeaponException("Negative Shooting Distance");
@@ -37,7 +38,7 @@ public class PlasmaCannon extends GenericWeapon implements TimerObserver, Weapon
     }
 
     if (distance <= maxRange) {
-      double temp = (double) baseDamage * ((double) currentAmmo / (double) maxAmmo);
+      double temp = baseDamage * ((double) currentAmmo / (double) maxAmmo);
       shotsLeft--;
       currentAmmo--;
       int damage = (int) Math.floor(temp);
@@ -52,7 +53,8 @@ public class PlasmaCannon extends GenericWeapon implements TimerObserver, Weapon
   /**
    * returns the weapon and its attachments as a string
    */
-  @Override
+
+@Override
   public String toString() {
     return "PlasmaCannon";
   }

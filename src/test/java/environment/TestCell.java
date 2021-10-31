@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+
 import org.junit.Test;
+
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
 import weapon.ChainGun;
@@ -14,7 +16,7 @@ import weapon.Weapon;
 
 /**
  * The test cases for the Cell class
- * 
+ *
  * @author lh2565
  *
  */
@@ -67,28 +69,28 @@ public class TestCell {
     assertFalse(success);
     assertEquals(bob, cell.getLifeForm());
   }
-  
+
   @Test
   public void testWeaponFunction(){
     Cell c1 = new Cell();
-    
+
     Weapon w1 = new PlasmaCannon();
-    
+
     Weapon w2 = new ChainGun();
-    
+
     Weapon w3 = new Pistol();
-    
+
     assertTrue(c1.addWeapon(w1));
     assertEquals(c1.getWeaponsCount(), 1);
-    
-    
+
+
     assertTrue(c1.addWeapon(w2));
     assertEquals(c1.getWeaponsCount(), 2);
-    
+
     assertFalse(c1.addWeapon(w3));
-    
+
     c1.removeWeapon(w1);
     assertEquals(c1.getWeaponsCount(), 1);
-    
+
   }
 }

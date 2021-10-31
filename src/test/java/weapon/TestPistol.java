@@ -14,7 +14,7 @@ import exceptions.WeaponException;
  */
 public class TestPistol {
 
-	
+
 	/**
 	 * tests the ability to create a pistol
 	 */
@@ -22,7 +22,7 @@ public class TestPistol {
 	public void testInitialization() {
 		Pistol p = new Pistol();
 	}
-	
+
 	/**
 	 * tests the damage of a pistol at a distance of 5
 	 * @throws WeaponException
@@ -34,7 +34,7 @@ public class TestPistol {
 		assertEquals(11, damage);
 	}
 	/**
-	 * Test the damage a pistol can do when attacking 
+	 * Test the damage a pistol can do when attacking
 	 * at a range beyond its max range
 	 * @throws WeaponException
 	 * should be 0
@@ -56,9 +56,9 @@ public class TestPistol {
 		assertEquals(0, damage);
 		assertEquals(0, p.getShotsLeft());
 	}
-	
-	//i can't test current ammo all the way to zero because 
-	//shots left reaches zero first and returns zero 
+
+	//i can't test current ammo all the way to zero because
+	//shots left reaches zero first and returns zero
 	@Test
 	public void testNoCurrentAmmo() throws WeaponException {
 		Pistol p = new Pistol();
@@ -66,9 +66,9 @@ public class TestPistol {
 		int damage = p.fire(5);
 		assertEquals(0, damage);
 	}
-	
+
 	/**
-	 * Test that the exception is thrown with 
+	 * Test that the exception is thrown with
 	 * a negative attack range
 	 * @throws WeaponException
 	 */
@@ -77,7 +77,7 @@ public class TestPistol {
 		Pistol p = new Pistol();
 		int damage = p.fire(-10);
 	}
-	
+
 	@Test
 	public void testUpdateAmmo() throws WeaponException {
 		Pistol p = new Pistol();
