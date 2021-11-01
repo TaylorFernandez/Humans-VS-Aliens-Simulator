@@ -22,7 +22,12 @@ public class GameUI extends ImageCreator implements ActionListener {
   JLabel bottom;
   Environment environ;
   boolean[][] wasLifeForm;
-  ImageIcon humanWithPistol = new ImageIcon("assets/HumanWithPistol.png");
+  JLabel lifeformType;
+  JLabel lifeformWeapons;
+  JLabel lifeform;
+ 
+  ImageIcon highlighted = createHighlighted();
+  ImageIcon human = new ImageIcon("assets/Human/Human.png");
 
   /**
    * Main Constructor for the game UI
@@ -34,17 +39,29 @@ public class GameUI extends ImageCreator implements ActionListener {
   public GameUI(int row, int col, Environment env) {
     environ = env;
     JPanel rightPanel = new JPanel(new GridLayout(row, col));
-    JPanel leftPanel = new JPanel(new GridLayout(row, col));
+    JPanel leftPanel = new JPanel();
+    JPanel top = new JPanel();
     wasLifeForm = new boolean[row][col];
-
+    
+    JLabel legend = new JLabel();
+    legend.setIcon(new ImageIcon("assets/UI Elements/Legend.png"));
     leftPanel.setBackground(Color.GRAY);
 
     rightPanel.setBackground(new Color(65, 102, 0));
     rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
+    lifeformType = new JLabel("testForm");
+    lifeformWeapons = new JLabel("testGun");
+    lifeform = new JLabel();
+    lifeform.setIcon(human);
+    top.add("North", lifeform);
+    top.add("Center", lifeformType);
+    top.add("East",lifeformWeapons);
+
+    top.setLayout(new GridLayout(3,2));
+    
     buttonArray = new JButton[row][col];
 
-    bottom = new JLabel("NotPressed");
 
     for (int i = 0; i < buttonArray.length; i++) {
       for (int j = 0; j < buttonArray.length; j++) {
@@ -55,14 +72,14 @@ public class GameUI extends ImageCreator implements ActionListener {
         rightPanel.add(buttonArray[i][j]);
       }
     }
+    
     drawElements(buttonArray, env);
     frame.add("East", rightPanel);
    
-    move = new JButton("move");
-    move.addActionListener(this);
-    leftPanel.add("North", move);
+    leftPanel.add(legend);
     frame.add("West", leftPanel);
-
+    frame.add("North",top);
+    
     frame.pack();
     frame.setVisible(true);
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -75,7 +92,7 @@ public class GameUI extends ImageCreator implements ActionListener {
     for (int i = 0; i < buttonArray.length; i++) {
       for (int j = 0; j < buttonArray[i].length; j++) {
         if (event.getSource() == buttonArray[i][j]) {
-          highlight(buttonArray[i][j], i, j);
+          highlight( i, j);
         }
       }
     }
@@ -89,8 +106,12 @@ public class GameUI extends ImageCreator implements ActionListener {
    * @param col    - column of button pressed
    */
   
- public void highlight(JButton button, int row, int col) {
-   
+ public void highlight(int i, int j) {
+   if(buttonArray[i][j].getIcon() != highlighted) {
+     buttonArray[i][j].setIcon(highlighted);
+   }else if(buttonArray[i][j].getIcon() == highlighted) {
+     drawCell(i, j, environ, buttonArray[i][j]);
+   }
  }
 
 
