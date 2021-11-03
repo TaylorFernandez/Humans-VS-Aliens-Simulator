@@ -11,6 +11,8 @@ import java.awt.GridBagConstraints;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Image;
 import java.awt.Graphics;
 import java.awt.Color;
@@ -24,7 +26,7 @@ public class GameUI extends ImageCreator implements ActionListener {
   JLabel legend;
   JLabel bottom;
   Environment environ;
-  boolean[][] wasLifeForm;
+  List<JButton> highlightedButtons = new ArrayList<JButton>();
   JLabel lifeformType;
   JLabel lifeformWeapon1;
   JLabel lifeformWeapon2;
@@ -45,7 +47,7 @@ public class GameUI extends ImageCreator implements ActionListener {
     JPanel rightPanel = new JPanel(new GridLayout(row, col));
     JPanel leftPanel = new JPanel();
     JPanel top = new JPanel(new GridBagLayout());
-    wasLifeForm = new boolean[row][col];
+    
     GridBagConstraints c = new GridBagConstraints();
     
     JLabel legend = new JLabel();
@@ -122,18 +124,27 @@ public class GameUI extends ImageCreator implements ActionListener {
  public void highlight(int i, int j) {
    if(buttonArray[i][j].getIcon() != highlighted) {
      buttonArray[i][j].setIcon(highlighted);
+     highlightedButtons.add(buttonArray[i][j]);
+     if(highlightedButtons.size() == 2) {
+       drawCell(i, j, environ, highlightedButtons.get(0));
+       highlightedButtons.remove(0);
+     }
      if(environ.getCell(i, j).getLifeForm() != null) {
        lifeformType.setText(environ.getCell(i,j).getLifeForm().getType());
-     }if(!environ.getCell(i, j).getLifeForm().getWeaponType().equals(" ")) {
-       lifeformWeapon1.setText(environ.getCell(i, j).getLifeForm().getWeaponType());
+       if(environ.getCell(i, j).getLifeForm().getType().equals("Human")) {
+         lifeform.setIcon(human);
+       }else {
+         lifeform.setIcon(new ImageIcon("assets/Alien/Alien.png"));
+       }
+       if(!environ.getCell(i, j).getLifeForm().getWeaponType().equals(" ")) {
+         lifeformWeapon1.setText(environ.getCell(i, j).getLifeForm().getWeaponType());
+       }
      }
    }else if(buttonArray[i][j].getIcon() == highlighted) {
-     drawCell(i, j, environ, buttonArray[i][j]);
-     lifeformType.setText(" ");
-     lifeformWeapon1.setText(" ");
+       drawCell(i, j, environ, buttonArray[i][j]);
+       lifeform.setIcon(new ImageIcon("assets/Environment/Environment.png"));
+       lifeformType.setText(" ");
+       lifeformWeapon1.setText(" ");
    }
- }
- 
- 
-
+  }
 }
