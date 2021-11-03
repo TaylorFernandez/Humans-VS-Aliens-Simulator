@@ -39,6 +39,10 @@ public class Human extends LifeForm {
     return armor;
   }
 
+  public String getType() {
+    return "Human";
+  }
+  
 @Override
   public void takeHit(int damage) {
     int i = 0;

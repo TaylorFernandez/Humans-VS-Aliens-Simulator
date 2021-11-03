@@ -57,6 +57,10 @@ public class Alien extends LifeForm implements TimerObserver {
     }
   }
   
+  public String getType() {
+    return "Alien";
+  }
+  
 @Override
   public void updateTime(int time) {
     if (time % recoveryRate == 0) {

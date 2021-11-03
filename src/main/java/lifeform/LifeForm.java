@@ -159,4 +159,14 @@ public abstract class LifeForm {
     }
     return true;
   }
+  
+  public String getWeaponType() {
+    if(weapon != null) {
+      return weapon.toString();
+    }
+    
+    return "";
+  }
+
+  public abstract String getType();
 }

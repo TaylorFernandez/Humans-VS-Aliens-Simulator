@@ -2,9 +2,12 @@ package gameUI;
 
 import javax.swing.*;
 
+
 import environment.Environment;
 import lifeform.Human;
 
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
@@ -23,7 +26,8 @@ public class GameUI extends ImageCreator implements ActionListener {
   Environment environ;
   boolean[][] wasLifeForm;
   JLabel lifeformType;
-  JLabel lifeformWeapons;
+  JLabel lifeformWeapon1;
+  JLabel lifeformWeapon2;
   JLabel lifeform;
  
   ImageIcon highlighted = createHighlighted();
@@ -40,8 +44,9 @@ public class GameUI extends ImageCreator implements ActionListener {
     environ = env;
     JPanel rightPanel = new JPanel(new GridLayout(row, col));
     JPanel leftPanel = new JPanel();
-    JPanel top = new JPanel();
+    JPanel top = new JPanel(new GridBagLayout());
     wasLifeForm = new boolean[row][col];
+    GridBagConstraints c = new GridBagConstraints();
     
     JLabel legend = new JLabel();
     legend.setIcon(new ImageIcon("assets/UI Elements/Legend.png"));
@@ -50,15 +55,23 @@ public class GameUI extends ImageCreator implements ActionListener {
     rightPanel.setBackground(new Color(65, 102, 0));
     rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-    lifeformType = new JLabel("testForm");
-    lifeformWeapons = new JLabel("testGun");
+    
+    
     lifeform = new JLabel();
     lifeform.setIcon(human);
-    top.add("North", lifeform);
-    top.add("Center", lifeformType);
-    top.add("East",lifeformWeapons);
-
-    top.setLayout(new GridLayout(3,2));
+    c.gridx = 0;
+    c.gridy = 0;
+    top.add(lifeform, c);
+    
+    lifeformType = new JLabel(" ");
+    c.gridx = 0;
+    c.gridy = 1;
+    top.add(lifeformType, c);
+    
+    lifeformWeapon1 = new JLabel(" ");
+    c.gridx = 0;
+    c.gridy = 2;
+    top.add(lifeformWeapon1, c);
     
     buttonArray = new JButton[row][col];
 
@@ -109,10 +122,18 @@ public class GameUI extends ImageCreator implements ActionListener {
  public void highlight(int i, int j) {
    if(buttonArray[i][j].getIcon() != highlighted) {
      buttonArray[i][j].setIcon(highlighted);
+     if(environ.getCell(i, j).getLifeForm() != null) {
+       lifeformType.setText(environ.getCell(i,j).getLifeForm().getType());
+     }if(!environ.getCell(i, j).getLifeForm().getWeaponType().equals(" ")) {
+       lifeformWeapon1.setText(environ.getCell(i, j).getLifeForm().getWeaponType());
+     }
    }else if(buttonArray[i][j].getIcon() == highlighted) {
      drawCell(i, j, environ, buttonArray[i][j]);
+     lifeformType.setText(" ");
+     lifeformWeapon1.setText(" ");
    }
  }
-
+ 
+ 
 
 }
