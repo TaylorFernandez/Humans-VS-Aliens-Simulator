@@ -21,16 +21,18 @@ import java.awt.event.ActionEvent;
 
 public class GameUI extends ImageCreator implements ActionListener {
   JFrame frame = new JFrame("Humans VS Aliens");
-  JButton[][] buttonArray;
+  gameCell[][] buttonArray;
   JButton move;
   JLabel legend;
   JLabel bottom;
   Environment environ;
-  List<JButton> highlightedButtons = new ArrayList<JButton>();
+  List<gameCell> highlightedButtons = new ArrayList<gameCell>();
   JLabel lifeformType;
   JLabel lifeformWeapon1;
   JLabel lifeformWeapon2;
   JLabel lifeform;
+  
+  int oldRow, oldCol, newRow, newCol;
  
   ImageIcon highlighted = createHighlighted();
   ImageIcon human = new ImageIcon("assets/Human/Human.png");
@@ -60,7 +62,7 @@ public class GameUI extends ImageCreator implements ActionListener {
     
     
     lifeform = new JLabel();
-    lifeform.setIcon(human);
+    lifeform.setIcon(new ImageIcon("assets/Environment/Environment.png"));
     c.gridx = 0;
     c.gridy = 0;
     top.add(lifeform, c);
@@ -75,12 +77,12 @@ public class GameUI extends ImageCreator implements ActionListener {
     c.gridy = 2;
     top.add(lifeformWeapon1, c);
     
-    buttonArray = new JButton[row][col];
+    buttonArray = new gameCell[row][col];
 
 
     for (int i = 0; i < buttonArray.length; i++) {
       for (int j = 0; j < buttonArray.length; j++) {
-        buttonArray[i][j] = new JButton();
+        buttonArray[i][j] = new gameCell(i,j);
         buttonArray[i][j].addActionListener(this);
         buttonArray[i][j].setIcon(new ImageIcon("assets/Environment/Environment.png"));
         buttonArray[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -125,8 +127,9 @@ public class GameUI extends ImageCreator implements ActionListener {
    if(buttonArray[i][j].getIcon() != highlighted) {
      buttonArray[i][j].setIcon(highlighted);
      highlightedButtons.add(buttonArray[i][j]);
+     
      if(highlightedButtons.size() == 2) {
-       drawCell(i, j, environ, highlightedButtons.get(0));
+       drawCell(highlightedButtons.get(0).getRow(), highlightedButtons.get(0).getCol(), environ, highlightedButtons.get(0));
        highlightedButtons.remove(0);
      }
      if(environ.getCell(i, j).getLifeForm() != null) {
@@ -146,5 +149,30 @@ public class GameUI extends ImageCreator implements ActionListener {
        lifeformType.setText(" ");
        lifeformWeapon1.setText(" ");
    }
+  }
+}
+
+class gameCell extends JButton {
+  public int row;
+  public int col;
+  public gameCell(int r, int c) {
+    super();
+    row = r;
+    col = c;
+  }
+  
+  public int getRow() {
+    return row;
+  }
+  public int getCol() {
+    return col;
+  }
+  
+  public void setRow(int r) {
+    row = r;
+  }
+  
+  public void setcol(int c) {
+    col = c;
   }
 }
