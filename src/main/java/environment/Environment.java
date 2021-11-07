@@ -33,9 +33,11 @@ public class Environment {
       }
     }
   }
+
   public Cell getCell(int row, int col) {
     return cells[row][col];
   }
+
   /**
    * gets the weapons from a specific cell
    *
@@ -184,5 +186,66 @@ public class Environment {
    */
   public void removeLifeForm(int rows, int cols) {
     cells[rows][cols].removeLifeForm();
+  }
+
+  /**
+   * @author Yong Hang Lin
+   * 
+   * @param row
+   * @param col
+   * @return
+   */
+  public boolean move(int row, int col) {
+    LifeForm lifeform = cells[row][col].getLifeForm();
+    int dir = lifeform.getDirection();
+    int speed = lifeform.getMaxSpeed();
+
+    if (lifeform != null && speed > 0) {
+      switch (dir) {
+      case 0: // Moving North
+        for (int i = speed; i > 0; i--) {
+          if ((row - i) >= 0 && cells[row - i][col].getLifeForm() == null) {
+            cells[row][col].removeLifeForm();
+            cells[row - i][col].addLifeForm(lifeform);
+            lifeform.setLocation(row - i, col);
+            return true;
+          }
+        }
+        break;
+      case 1: // Moving East
+        for (int i = speed; i > 0; i--) {
+          if ((col + i) < numCol && cells[row][col + i].getLifeForm() == null) {
+            cells[row][col].removeLifeForm();
+            cells[row][col + i].addLifeForm(lifeform);
+            lifeform.setLocation(row, col + i);
+            return true;
+          }
+        }
+        break;
+      case 2: // Moving South
+        for (int i = speed; i > 0; i--) {
+          if ((row + i) < numRow && cells[row + i][col].getLifeForm() == null) {
+            cells[row][col].removeLifeForm();
+            cells[row + i][col].addLifeForm(lifeform);
+            lifeform.setLocation(row + i, col);
+            return true;
+          }
+        }
+        break;
+      case 3: // Moving West
+        for (int i = speed; i > 0; i--) {
+          if ((col - i) >= 0 && cells[row][col - i].getLifeForm() == null) {
+            cells[row][col].removeLifeForm();
+            cells[row][col - i].addLifeForm(lifeform);
+            lifeform.setLocation(row, col - i);
+            return true;
+          }
+        }
+        break;
+      default:
+        break;
+      }
+    }
+    return false;
   }
 }

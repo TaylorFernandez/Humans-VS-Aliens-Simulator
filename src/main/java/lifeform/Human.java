@@ -13,6 +13,7 @@ public class Human extends LifeForm {
   public Human(String n, int p, int a) {
     super(n, p, 5);
     armor = a;
+    maxSpeed = 3;
   }
 
   /**

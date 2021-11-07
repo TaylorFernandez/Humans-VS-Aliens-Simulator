@@ -10,10 +10,11 @@ public abstract class LifeForm {
   protected Weapon weapon;
   int row;
   int col;
+  int currentDirection = 0;
+  int maxSpeed = 0;
 
   /**
    * LifeForms
-   *
    * @param n name of life form
    * @param p points for life form constructor to create the lifeform with a name
    *          and amount of lifepoints.
@@ -21,6 +22,19 @@ public abstract class LifeForm {
   public LifeForm(String n, int p) {
     name = n;
     points = p;
+  }
+  
+  /**
+   * constructor for lifeForm
+   * @param n
+   * @param p
+   * @param attack
+   */
+
+  public LifeForm(String n, int p, int attack) {
+    name = n;
+    points = p;
+    this.attack = attack;
   }
 
   /**
@@ -45,19 +59,6 @@ public abstract class LifeForm {
   public int getRow() {
     return row;
   }
-  /**
-   * constructor for lifeForm
-   *
-   * @param n
-   * @param p
-   * @param attack
-   */
-
-  public LifeForm(String n, int p, int attack) {
-    name = n;
-    points = p;
-    this.attack = attack;
-  }
 
   /**
    *
@@ -67,6 +68,28 @@ public abstract class LifeForm {
     return name;
   }
 
+  /**
+   * @return direction
+   */
+  public int getDirection() {
+    return currentDirection;
+  }
+  
+  public int getMaxSpeed() {
+    return maxSpeed;
+  }
+  
+  /**
+   * @return 0-3 directions
+   */
+  public boolean setDirection(int direction) {
+    if(direction > -1 && direction < 4) {
+      currentDirection = direction;
+      return true;
+    }
+    return false;
+  }
+  
   /**
    *
    * @return the points
