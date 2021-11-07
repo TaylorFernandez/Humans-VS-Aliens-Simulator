@@ -31,6 +31,7 @@ public class GameUI extends ImageCreator implements ActionListener {
   JLabel lifeformWeapon1;
   JLabel lifeformWeapon2;
   JLabel lifeform;
+  JButton test;
   
   int oldRow, oldCol, newRow, newCol;
  
@@ -59,7 +60,8 @@ public class GameUI extends ImageCreator implements ActionListener {
     rightPanel.setBackground(new Color(65, 102, 0));
     rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-    
+    test = new JButton("testMove");
+    test.addActionListener(this);
     
     lifeform = new JLabel();
     lifeform.setIcon(new ImageIcon("assets/Environment/Environment.png"));
@@ -150,6 +152,17 @@ public class GameUI extends ImageCreator implements ActionListener {
        lifeformWeapon1.setText(" ");
    }
   }
+ 
+ public void moveLifeForm(int row, int col) {
+   for(int i = 0; i < buttonArray.length; i++) {
+     for(int j = 0; j < buttonArray[i].length; j++) {
+       if(buttonArray[i][j].getIcon() == highlighted) {
+         drawCell(i,j, environ, buttonArray[i][j]);
+       }
+     }
+   }
+   drawCell(row, col, environ, buttonArray[row][col]);
+ }
 }
 
 class gameCell extends JButton {
