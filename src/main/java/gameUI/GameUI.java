@@ -50,6 +50,7 @@ public class GameUI extends ImageCreator implements ActionListener {
     JPanel rightPanel = new JPanel(new GridLayout(row, col));
     JPanel leftPanel = new JPanel();
     JPanel top = new JPanel(new GridBagLayout());
+    top.setBackground(Color.GRAY);
     
     GridBagConstraints c = new GridBagConstraints();
     
