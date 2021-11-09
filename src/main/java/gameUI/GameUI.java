@@ -26,7 +26,7 @@ public class GameUI extends ImageCreator implements ActionListener {
   JLabel legend;
   JLabel bottom;
   Environment environ;
-  List<gameCell> highlightedButtons = new ArrayList<gameCell>();
+  List<gameCell> highlightedButtons =  new ArrayList<gameCell>();
   JLabel lifeformType;
   JLabel lifeformWeapon1;
   JLabel lifeformWeapon2;
@@ -154,6 +154,7 @@ public class GameUI extends ImageCreator implements ActionListener {
    }
   }
  
+ //allows the gui to update when a lifeform is moves
  public void moveLifeForm(int row, int col) {
    for(int i = 0; i < buttonArray.length; i++) {
      for(int j = 0; j < buttonArray[i].length; j++) {
@@ -166,6 +167,7 @@ public class GameUI extends ImageCreator implements ActionListener {
  }
 }
 
+//Button that stores where it is on the gameboard
 class gameCell extends JButton {
   public int row;
   public int col;
@@ -174,18 +176,34 @@ class gameCell extends JButton {
     row = r;
     col = c;
   }
-  
+  /**
+   * gets the row a button is in
+   * @return row - row of the button
+   */
   public int getRow() {
     return row;
   }
+  
+  /**
+   * gets the column a button is in
+   * @return col - column of the button
+   */
   public int getCol() {
     return col;
   }
   
+  /**
+   * sets the row of a button
+   * @param r - row of the button
+   */
   public void setRow(int r) {
     row = r;
   }
   
+  /**
+   * sets the column a button is in
+   * @param c - column of the button
+   */
   public void setcol(int c) {
     col = c;
   }
