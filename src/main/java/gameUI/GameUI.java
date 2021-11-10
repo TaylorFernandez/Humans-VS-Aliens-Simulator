@@ -35,7 +35,6 @@ public class GameUI extends ImageCreator implements ActionListener {
   
   int oldRow, oldCol, newRow, newCol;
  
-  ImageIcon highlighted = createHighlighted();
   ImageIcon human = new ImageIcon("assets/Human/Human.png");
 
   /**
@@ -61,8 +60,6 @@ public class GameUI extends ImageCreator implements ActionListener {
     rightPanel.setBackground(new Color(65, 102, 0));
     rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
-    test = new JButton("testMove");
-    test.addActionListener(this);
     
     lifeform = new JLabel();
     lifeform.setIcon(new ImageIcon("assets/Environment/Environment.png"));
@@ -87,7 +84,6 @@ public class GameUI extends ImageCreator implements ActionListener {
       for (int j = 0; j < buttonArray.length; j++) {
         buttonArray[i][j] = new gameCell(i,j);
         buttonArray[i][j].addActionListener(this);
-        buttonArray[i][j].setIcon(new ImageIcon("assets/Environment/Environment.png"));
         buttonArray[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
         rightPanel.add(buttonArray[i][j]);
       }
@@ -109,13 +105,9 @@ public class GameUI extends ImageCreator implements ActionListener {
    * function for when LifeForm has to move
    */
   public void actionPerformed(ActionEvent event) {
-    for (int i = 0; i < buttonArray.length; i++) {
-      for (int j = 0; j < buttonArray[i].length; j++) {
-        if (event.getSource() == buttonArray[i][j]) {
-          highlight( i, j);
-        }
-      }
-    }
+    gameCell button = (gameCell) event.getSource();
+    
+    highlight(button);
   }
 
   /**
@@ -125,42 +117,34 @@ public class GameUI extends ImageCreator implements ActionListener {
    * @param row    - row of button pressed
    * @param col    - column of button pressed
    */
-  
- public void highlight(int i, int j) {
-   if(buttonArray[i][j].getIcon() != highlighted) {
-     buttonArray[i][j].setIcon(highlighted);
-     highlightedButtons.add(buttonArray[i][j]);
-     
-     if(highlightedButtons.size() == 2) {
-       drawCell(highlightedButtons.get(0).getRow(), highlightedButtons.get(0).getCol(), environ, highlightedButtons.get(0));
-       highlightedButtons.remove(0);
-     }
-     if(environ.getCell(i, j).getLifeForm() != null) {
-       lifeformType.setText(environ.getCell(i,j).getLifeForm().getType());
-       if(environ.getCell(i, j).getLifeForm().getType().equals("Human")) {
-         lifeform.setIcon(human);
-       }else {
-         lifeform.setIcon(new ImageIcon("assets/Alien/Alien.png"));
-       }
-       if(!environ.getCell(i, j).getLifeForm().getWeaponType().equals(" ")) {
-         lifeformWeapon1.setText(environ.getCell(i, j).getLifeForm().getWeaponType());
-       }
-     }
-   }else if(buttonArray[i][j].getIcon() == highlighted) {
-       drawCell(i, j, environ, buttonArray[i][j]);
-       lifeform.setIcon(new ImageIcon("assets/Environment/Environment.png"));
-       lifeformType.setText(" ");
-       lifeformWeapon1.setText(" ");
+ public void highlight(gameCell cell) {
+   if(cell.isHighlighted == false) {
+     cell.setHighlighted(true);
+     highlightedButtons.add(cell);
+ 
+     cell.setIcon(highlightPlayer());
+   }else if(cell.isHighlighted() == true && highlightedButtons.size() < 2) {
+     cell.setHighlighted(false);
+     highlightedButtons.remove(cell);
+     drawCell(cell.getRow(), cell.getCol(), environ, cell);
    }
-  }
+
+   if(highlightedButtons.size() == 2) {
+     drawCell(highlightedButtons.get(0).getRow(), highlightedButtons.get(0).getCol(), environ, highlightedButtons.get(0));
+     highlightedButtons.get(0).setHighlighted(false);
+     highlightedButtons.remove(0);
+   }
+   
+   
+  
+}
+
  
  //allows the gui to update when a lifeform is moves
  public void moveLifeForm(int row, int col) {
    for(int i = 0; i < buttonArray.length; i++) {
      for(int j = 0; j < buttonArray[i].length; j++) {
-       if(buttonArray[i][j].getIcon() == highlighted) {
-         drawCell(i,j, environ, buttonArray[i][j]);
-       }
+       
      }
    }
    drawCell(row, col, environ, buttonArray[row][col]);
@@ -171,6 +155,7 @@ public class GameUI extends ImageCreator implements ActionListener {
 class gameCell extends JButton {
   public int row;
   public int col;
+  public boolean isHighlighted = false;
   public gameCell(int r, int c) {
     super();
     row = r;
@@ -206,5 +191,13 @@ class gameCell extends JButton {
    */
   public void setcol(int c) {
     col = c;
+  }
+  
+  public boolean isHighlighted() {
+    return isHighlighted;
+  }
+  
+  public void setHighlighted(boolean setBool) {
+    isHighlighted = setBool;
   }
 }

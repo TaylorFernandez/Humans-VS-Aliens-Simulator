@@ -17,6 +17,7 @@ public class testGameUI {
    Weapon w1 = new Pistol();
    Weapon w2 = new ChainGun();
    Weapon w3 = new Scope(new PlasmaCannon());
+   Weapon w4 = new PlasmaCannon();
    
    Human human = new Human("Bob", 100, 4);
    Alien alien = new Alien("Jim", 100);
@@ -28,7 +29,7 @@ public class testGameUI {
    
    env.addWeapon(w1, 1, 0);
    env.addWeapon(w2, 1, 1);
-   env.addWeapon(w3, 1, 2);
+   env.addWeapon(w4, 1, 2);
    env.addWeapon(w1, 1, 3);
    env.addWeapon(w2, 1, 3);
    
