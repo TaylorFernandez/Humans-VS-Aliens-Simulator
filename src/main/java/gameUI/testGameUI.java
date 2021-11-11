@@ -47,6 +47,7 @@ public class testGameUI {
    env.addWeapon(w2, 1, 3);
    
    GameUI ui = new GameUI(env.getNumRows(), env.getNumCols(), env);
+   Invoker inv = new Invoker();
        
 
   }

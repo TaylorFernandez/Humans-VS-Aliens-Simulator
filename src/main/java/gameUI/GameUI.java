@@ -4,6 +4,7 @@ import javax.swing.*;
 
 
 import environment.Environment;
+import lifeform.Alien;
 import lifeform.Human;
 
 import java.awt.GridBagLayout;
@@ -30,7 +31,6 @@ public class GameUI extends ImageCreator implements ActionListener {
   List<gameCell> predictedCells = new ArrayList<gameCell>();
   JLabel lifeformType;
   JLabel lifeformWeapon1;
-  JLabel lifeformWeapon2;
   JLabel lifeform;
   JButton test;
   
@@ -80,7 +80,7 @@ public class GameUI extends ImageCreator implements ActionListener {
     
     buttonArray = new gameCell[row][col];
 
-
+    //creates a grid of buttons
     for (int i = 0; i < buttonArray.length; i++) {
       for (int j = 0; j < buttonArray.length; j++) {
         buttonArray[i][j] = new gameCell(i,j);
@@ -121,24 +121,46 @@ public class GameUI extends ImageCreator implements ActionListener {
    * @param col    - column of button pressed
    */
  public void highlight(gameCell cell) {
+   //highlights the cell if "cell" is not already highlighted
    if(cell.isHighlighted == false) {
      cell.setHighlighted(true);
      highlightedButtons.add(cell);
      movePrediction(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getMaxSpeed(), environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getDirection(), cell);
      cell.setIcon(highlightPlayer());
+     lifeformType.setText(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getType());
+     lifeformWeapon1.setText(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getWeaponType());
+     if(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getWeaponType().equals("")) {
+       lifeformWeapon1.setText("LifeForm does not have a weapon!");
+     }
+     //unhighlights the cell if the cell is already highlighted
    }else if(cell.isHighlighted() == true && highlightedButtons.size() < 2) {
      cell.setHighlighted(false);
+     lifeformType.setText("No cell selected!");
+     lifeformWeapon1.setText("No cell selected!");
+     lifeform.setIcon(new ImageIcon("assets/Environment/Environment.png"));
      highlightedButtons.remove(cell);
      drawCell(cell.getRow(), cell.getCol(), environ, cell);
    }
-
+   
+   //draws the lifeform sprite to the selected cell view
+   if(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getClass() == Alien.class) {
+     lifeform.setIcon(new ImageIcon("assets/Selected LifeForm/Alien.png"));
+   }else if(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getClass() == Human.class){
+     lifeform.setIcon(new ImageIcon("assets/Human/Human.png"));
+   }
+   
+   //makes sure two cells cant be highlighted at once
    if(highlightedButtons.size() == 2) {
      drawCell(highlightedButtons.get(0).getRow(), highlightedButtons.get(0).getCol(), environ, highlightedButtons.get(0));
      highlightedButtons.get(0).setHighlighted(false);
      highlightedButtons.remove(0);
    }
    
-   
+   //unhighlights the predicted move if the button is unselected
+   if(highlightedButtons.size() == 0) {
+     drawCell(predictedCells.get(0).getRow(), predictedCells.get(0).getCol(), environ, predictedCells.get(0));
+     predictedCells.remove(0);
+   }
   
 }
 
