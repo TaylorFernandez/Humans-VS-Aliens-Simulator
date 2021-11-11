@@ -27,6 +27,7 @@ public class GameUI extends ImageCreator implements ActionListener {
   JLabel bottom;
   Environment environ;
   List<gameCell> highlightedButtons =  new ArrayList<gameCell>();
+  List<gameCell> predictedCells = new ArrayList<gameCell>();
   JLabel lifeformType;
   JLabel lifeformWeapon1;
   JLabel lifeformWeapon2;
@@ -107,7 +108,9 @@ public class GameUI extends ImageCreator implements ActionListener {
   public void actionPerformed(ActionEvent event) {
     gameCell button = (gameCell) event.getSource();
     
-    highlight(button);
+    if(environ.getCell(button.getRow(), button.getCol()).getLifeForm() != null) {
+      highlight(button);
+    }
   }
 
   /**
@@ -121,7 +124,7 @@ public class GameUI extends ImageCreator implements ActionListener {
    if(cell.isHighlighted == false) {
      cell.setHighlighted(true);
      highlightedButtons.add(cell);
- 
+     movePrediction(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getMaxSpeed(), environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getDirection(), cell);
      cell.setIcon(highlightPlayer());
    }else if(cell.isHighlighted() == true && highlightedButtons.size() < 2) {
      cell.setHighlighted(false);
@@ -141,16 +144,51 @@ public class GameUI extends ImageCreator implements ActionListener {
 
  
  //allows the gui to update when a lifeform is moves
- public void moveLifeForm(int row, int col) {
-   for(int i = 0; i < buttonArray.length; i++) {
-     for(int j = 0; j < buttonArray[i].length; j++) {
-       
+ public void movePrediction(int distance, int dir, gameCell cell) {
+   int newDist = distance;
+   int row = cell.getRow();
+   int col = cell.getCol();
+  
+   //north prediction
+   if(dir == 0) {
+     while(row - newDist < 0 || environ.getCell(row - newDist, col).getLifeForm() != null) {
+       newDist--;
      }
+     predictedCells.add(buttonArray[row - newDist][col]);
+     buttonArray[row - newDist][col].setIcon(highlightPrediction());
    }
-   drawCell(row, col, environ, buttonArray[row][col]);
+   //east prediction
+   if(dir == 1) {
+     while(col + newDist >= buttonArray[0].length || environ.getCell(row, col + newDist).getLifeForm() != null) {
+       newDist--;
+     }
+     predictedCells.add(buttonArray[row][col + newDist]);
+     buttonArray[row][col + newDist].setIcon(highlightPrediction());
+   }
+   //south prediction
+   if(dir == 2) {
+     while(row + newDist >= buttonArray.length || environ.getCell(row + newDist, col).getLifeForm() != null){
+       newDist--;
+     }
+     predictedCells.add(buttonArray[row + newDist][col]);
+     buttonArray[row + newDist][col].setIcon(highlightPrediction());
+   }
+   
+   //west prediction
+   if(dir == 3) {
+     while(col - newDist < 0 || environ.getCell(row, col - newDist).getLifeForm() != null) {
+       newDist--;
+     }
+     predictedCells.add(buttonArray[row][col - newDist]);
+     buttonArray[row][col - newDist].setIcon(highlightPrediction());
+   }
+   
+   if(predictedCells.size() == 2) {
+     drawCell(predictedCells.get(0).getRow(), predictedCells.get(0).getCol(), environ, predictedCells.get(0));
+     predictedCells.remove(0);
+   }
  }
 }
-
 //Button that stores where it is on the gameboard
 class gameCell extends JButton {
   public int row;
@@ -200,4 +238,4 @@ class gameCell extends JButton {
   public void setHighlighted(boolean setBool) {
     isHighlighted = setBool;
   }
-}
+ }

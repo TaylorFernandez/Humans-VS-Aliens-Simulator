@@ -21,6 +21,19 @@ public class testGameUI {
    
    Human human = new Human("Bob", 100, 4);
    Alien alien = new Alien("Jim", 100);
+   
+   Alien alien2 = new Alien ("Mike", 100);
+   alien2.setDirection(2);
+   
+   Human human2 = new Human("jimmy", 100, 4);
+   human2.setDirection(1);
+   
+   Human human3 = new Human("idk anymore", 100, 5);
+   human3.setDirection(3);
+   
+   env.addLifeForm(human3, 4, 4);
+   env.addLifeForm(human2, 1, 4);
+   env.addLifeForm(alien2, 4,2);
    env.addLifeForm(human, 1,3);
    env.addLifeForm(alien, 1,2);
    

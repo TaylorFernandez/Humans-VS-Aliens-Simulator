@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JButton;
+import javax.swing.plaf.basic.BasicGraphicsUtils;
 
 import environment.Environment;
 import lifeform.Alien;
@@ -139,6 +140,20 @@ public class ImageCreator {
     Graphics draw = newImage.getGraphics();
     draw.setColor(new Color(255,255,0));
     draw.fillRect(0,0,50,50);
+    
+    return new ImageIcon(newImage);
+  }
+  
+  public ImageIcon highlightPrediction() {
+    BufferedImage newImage  = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+    
+    Graphics draw = newImage.getGraphics();
+    
+    draw.setColor(new Color(255,255,0));
+    draw.fillRect(0,0,50,50);
+    
+    draw.setColor(new Color(255, 255, 0));
+    draw.fillOval(20,20,10,10);
     
     return new ImageIcon(newImage);
   }
