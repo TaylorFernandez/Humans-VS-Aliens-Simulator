@@ -13,12 +13,19 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import environment.Environment;
+import lifeform.LifeForm;
+
 public class Invoker extends JFrame implements ActionListener
 {
+  CommandInterface cmd;
 	JButton north, south, east, west, move;
+  LifeForm lifeform;
+  Environment env;
 
 	public Invoker()
-	{
+	{ 
+	  
 		setLayout(new BorderLayout());
 		setLocation(500, 300);
 		setSize(320, 195);
@@ -74,11 +81,12 @@ public class Invoker extends JFrame implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-
 		if (e.getSource() == north)
 		{
-			next = 1;
+			next = 1; 
+			cmd = new moveUp(env, lifeform);
 			move.setText("Move!");
+		
 		}
 		if (e.getSource() == south)
 		{
@@ -99,6 +107,7 @@ public class Invoker extends JFrame implements ActionListener
 		{
 			if (next == 1)
 			{
+			  cmd.execute();
 				System.out.println("North");
 			}
 			if (next == 2)

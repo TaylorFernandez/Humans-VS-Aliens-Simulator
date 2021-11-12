@@ -1,12 +1,10 @@
 package gameUI;
 
 import javax.swing.ImageIcon;
-
 import java.awt.image.BufferedImage;
 import java.awt.Color;
 import java.awt.Graphics;
 import javax.swing.JButton;
-import javax.swing.plaf.basic.BasicGraphicsUtils;
 
 import environment.Environment;
 import lifeform.Alien;
@@ -16,8 +14,6 @@ import weapon.Pistol;
 import weapon.PlasmaCannon;
 
 public class ImageCreator {
-  BufferedImage image  = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
-  Graphics drawer = image.getGraphics();
 
   public void drawElements(JButton[][] buttons, Environment environ) {
     JButton[][] buttonArray = buttons;
@@ -29,90 +25,97 @@ public class ImageCreator {
   }
   
   public void drawCell(int i, int j, Environment environ, JButton button) {
-    BufferedImage image  = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+    if(environ.getCell(i, j).getLifeForm() == null && environ.getCell(i, j).getWeaponsCount() == 0) {
+      button.setIcon(new ImageIcon("assets/Environment/Environment.png"));
+    }
+    if (environ.getCell(i, j).getLifeForm() != null) {
+
+      if (environ.getCell(i, j).getLifeForm().getClass() == Human.class) {
+        if (environ.getCell(i, j).getWeaponsCount() == 0) {
+          button.setIcon(new ImageIcon("assets/Human/Human.png"));
+        }
+
+        if (environ.getCell(i, j).getWeaponsCount() == 1) {
+          if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class) {
+            button.setIcon(new ImageIcon("assets/Human/HumanWithPistol.png"));
+          } else if (environ.getCell(i, j).getWeapon1().getClass() == PlasmaCannon.class) {
+            button.setIcon(new ImageIcon("assets/Human/HumanWithPlasma.png"));
+          } else {
+            button.setIcon(new ImageIcon("assets/Human/HumanWithChain.png"));
+          }
+        } else if(environ.getCell(i, j).getWeaponsCount() == 2){
+          if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class
+              && environ.getCell(i,j).getWeapon2().getClass() == ChainGun.class) {
+            button.setIcon(new ImageIcon("assets/Human/HumanWithPistolAndChain.png"));
+          } else if (environ.getCell(i, j).getWeapon1().getClass() == PlasmaCannon.class
+              && environ.getCell(i, i).getWeapon2().getClass() == ChainGun.class) {
+            button.setIcon(new ImageIcon("assets/Human/HumanWithPlasmaAndChain.png"));
+          } else {
+            button.setIcon(new ImageIcon("assets/Human/HumanWithPistolAndPlasma.png"));
+          }
+        }
+      } else if (environ.getCell(i, j).getLifeForm().getClass() == Alien.class) {
+        if (environ.getCell(i, j).getWeaponsCount() == 0) {
+          button.setIcon(new ImageIcon("assets/Alien/Alien.png"));
+        }
+
+        if (environ.getCell(i, j).getWeaponsCount() == 1) {
+          if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class) {
+            button.setIcon(new ImageIcon("assets/Alien/AlienWithPistol.png"));
+          } else if (environ.getCell(i, j).getWeapon1().getClass() == ChainGun.class) {
+            button.setIcon(new ImageIcon("assets/Alien/AlienWithChain.png"));
+          } else {
+            button.setIcon(new ImageIcon("assets/Alien/AlienWithPlasma.png"));
+          }
+        } else {
+          if (environ.getCell(i, j).getWeaponsCount() == 2) {
+            if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class
+                && environ.getCell(i,j).getWeapon2().getClass() == ChainGun.class) {
+              button.setIcon(new ImageIcon("assets/Alien/AlienWithPistolAndChain.png"));
+            } else if (environ.getCell(i, j).getWeapon1().getClass() == PlasmaCannon.class
+                && environ.getCell(i, i).getWeapon2().getClass() == ChainGun.class) {
+              button.setIcon(new ImageIcon("assets/Alien/AlienWithPlasmaAndChain.png"));
+            } else {
+              button.setIcon(new ImageIcon("assets/Alien/AlienWithPistolAndPlasma.png"));
+            }
+          }
+        }
+      }
+    } else {
+      if (environ.getCell(i, j).getWeaponsCount() == 1) {
+        if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class) {
+          button.setIcon(new ImageIcon("assets/Environment/Pistol.png"));
+        } else if (environ.getCell(i, j).getWeapon1().getClass() == ChainGun.class) {
+          button.setIcon(new ImageIcon("assets/Environment/ChainGun.png"));
+        } else {
+          button.setIcon(new ImageIcon("assets/Environment/PlasmaCannon.png"));
+        }
+      } else {
+        if (environ.getCell(i, j).getWeaponsCount() == 2) {
+          if (environ.getCell(i, j).getWeapon1().getClass() == Pistol.class
+              && environ.getCell(i,j).getWeapon2().getClass() == ChainGun.class) {
+            button.setIcon(new ImageIcon("assets/Environment/PistolAndChain.png"));
+          } else if (environ.getCell(i, j).getWeapon1().getClass() == PlasmaCannon.class
+              && environ.getCell(i, i).getWeapon2().getClass() == ChainGun.class) {
+            button.setIcon(new ImageIcon("assets/Environment/PlasmaAndChain.png"));
+          } else {
+            button.setIcon(new ImageIcon("assets/Environment/PistolAndPlasma.png"));
+          }
+
+        }
+      }
+    }
+  }
+  
+  public ImageIcon createHighlighted() {
+    BufferedImage image = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
     Graphics drawer = image.getGraphics();
     
-    //creates the environment of the square
-    drawer.setColor(new Color(65 ,102,0));
+    drawer.setColor(new Color(255,255,0));
     drawer.fillRect(0,0,50,50);
     
-    //sets the lifeform in the grid
-    if(environ.getCell(i, j).getLifeForm() != null) {
-      if(environ.getCell(i,j).getLifeForm().getClass() == Human.class) {
-        drawer.setColor(new Color(0,255,0));
-        drawer.fillOval(20,20,10,10);
-      }else {
-        drawer.setColor(new Color(200,240,100));
-        drawer.fillOval(20,20,10,10);
-      }
-    }
+    return new ImageIcon(image);
     
-    //sets the first weapon on the groujnd
-    if(environ.getCell(i,j).getWeaponsCount() != 0) {
-      if(environ.getCell(i, j).getWeapon1().getClass() == PlasmaCannon.class) {
-        drawer.setColor(new Color(0,0,255));
-        drawer.fillRect(40,40,10,10);
-      }else if(environ.getCell(i, j).getWeapon1().getClass() == ChainGun.class) {
-        drawer.setColor(new Color(255,255,0));
-        drawer.fillRect(0,40,10,10);
-      }else if(environ.getCell(i, j).getWeapon1().getClass() == Pistol.class) {
-        //Pistol
-        drawer.setColor(new Color(255,0,0));
-        drawer.fillRect(40,0,10,10);
-      }
-    }
     
-    //sets the second weapon on the ground
-    if(environ.getCell(i, j).getWeapon2() != null) {
-      if(environ.getCell(i, j).getWeapon2().getClass() == PlasmaCannon.class) {
-        drawer.setColor(new Color(0,0,255));
-        drawer.fillRect(40,40,10,10);
-      }else if(environ.getCell(i, j).getWeapon2().getClass() == ChainGun.class) {
-        drawer.setColor(new Color(255,255,0));
-        drawer.fillRect(0,40,10,10);
-      }else if(environ.getCell(i, j).getWeapon2().getClass() == Pistol.class){
-        //Pistol
-        drawer.setColor(new Color(255,0,0));
-        drawer.fillRect(40,0,10,10);
-      }
-    }
-    
-    //puts the direction the lifeform is facing on the ground
-    if(environ.getCell(i, j).getLifeForm() != null) {
-      switch(environ.getCell(i, j).getLifeForm().getDirection()) {
-      case 0 : drawer.setColor(new Color(255,0,0)); drawer.fillRect(20,10,10,1); break;
-      case 1 : drawer.setColor(new Color(255,0,0)); drawer.fillRect(40,20,1,10); break;
-      case 2 : drawer.setColor(new Color(255,0,0)); drawer.fillRect(20,40,10,1); break;
-      case 3 : drawer.setColor(new Color(255,0,0)); drawer.fillRect(10,20,1,10);break;
-      }
-    }
-    
-    button.setIcon(new ImageIcon(image));
-  }
-  
- 
-  
-  public ImageIcon highlightPlayer() {
-    BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
-    
-    Graphics draw = newImage.getGraphics();
-    draw.setColor(new Color(255,255,0));
-    draw.fillRect(0,0,50,50);
-    
-    return new ImageIcon(newImage);
-  }
-  
-  public ImageIcon highlightPrediction() {
-    BufferedImage newImage  = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
-    
-    Graphics draw = newImage.getGraphics();
-    
-    draw.setColor(new Color(255,255,0));
-    draw.fillRect(0,0,50,50);
-    
-    draw.setColor(new Color(255, 255, 0));
-    draw.fillOval(20,20,10,10);
-    
-    return new ImageIcon(newImage);
   }
 }
