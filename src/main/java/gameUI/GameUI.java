@@ -144,7 +144,7 @@ public class GameUI extends ImageCreator implements ActionListener {
    
    //draws the lifeform sprite to the selected cell view
    if(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getClass() == Alien.class) {
-     lifeform.setIcon(new ImageIcon("assets/Selected LifeForm/Alien.png"));
+     lifeform.setIcon(new ImageIcon("assets/GameIcons/Alien.png"));
    }else if(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getClass() == Human.class){
      lifeform.setIcon(new ImageIcon("assets/Human/Human.png"));
    }
