@@ -13,7 +13,7 @@ import weapon.Weapon;
 public class testGameUI {
 
   public static void main(String[] args) throws AttachmentException {
-   Environment env = Environment.getEnvironment(6,6);
+   Environment env = Environment.getEnvironment(10,10);
    Weapon w1 = new Pistol();
    Weapon w2 = new ChainGun();
    Weapon w3 = new Scope(new PlasmaCannon());
