@@ -125,6 +125,7 @@ public class GameUI extends ImageCreator implements ActionListener {
    //highlights the cell if "cell" is not already highlighted
    if(cell.isHighlighted == false) {
      cell.setHighlighted(true);
+     environ.changeSelectedCell(cell.getRow(), cell.getCol());
      highlightedButtons.add(cell);
      movePrediction(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getMaxSpeed(), environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getDirection(), cell);
      cell.setIcon(highlightPlayer());
