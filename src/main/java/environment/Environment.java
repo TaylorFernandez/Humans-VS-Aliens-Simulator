@@ -196,10 +196,8 @@ public class Environment {
   }
 
   public void changeSelectedCell(int row, int col) {
-    if (row < numRow && col < numCol) {
-      selectedRow = row;
-      selectedCol = col; 
-    }
+    selectedRow = row;
+    selectedCol = col;
   }
   
   public int getSelectedCol() {
