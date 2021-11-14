@@ -71,6 +71,7 @@ public class Cell {
     }
     return count;
   }
+  
 
   /**
    * removes weapon.

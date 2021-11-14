@@ -91,6 +91,12 @@ public class Environment {
     return cells[row][col].removeWeapon(weapon);
   }
 
+  public boolean DropWeapon(LifeForm form, GameUI ui) {
+    Weapon temp = form.dropWeapon();
+    boolean worked = addWeapon(temp, form.getRow(), form.getCol());
+    ui.drawCell(form.getRow(), form.getCol(), this, ui.getHighlighted());
+    return worked;
+  }
   /**
    * gets the distance between two points
    *

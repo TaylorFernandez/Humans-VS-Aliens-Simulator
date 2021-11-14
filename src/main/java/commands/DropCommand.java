@@ -18,8 +18,6 @@ public class DropCommand implements Commands{
       
       LifeForm form = environment.getCell(cell.getRow(), cell.getCol()).getLifeForm();
       
-      form.dropWeapon();
-      
-      ui.drawCell(cell.getRow(), cell.getCol(), environment, cell);
+      environment.DropWeapon(form, ui);
     }
 }
