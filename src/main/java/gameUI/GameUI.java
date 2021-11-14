@@ -109,6 +109,7 @@ public class GameUI extends ImageCreator implements ActionListener {
     gameCell button = (gameCell) event.getSource();
     
     if(environ.getCell(button.getRow(), button.getCol()).getLifeForm() != null) {
+      environ.changeSelectedCell(button.getRow(), button.getCol());
       highlight(button);
     }
   }

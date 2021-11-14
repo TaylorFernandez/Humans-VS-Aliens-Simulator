@@ -1,21 +1,22 @@
 package environment;
 
 import exceptions.EnvironmentException;
+import gameUI.GameUI;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
 /**
  * an environment that holds everything
- *
  * @author lh2565
- *
  */
-
 public class Environment {
   Cell[][] cells;
   private static Environment env;
   int numRow;
   int numCol;
+  GameUI game;
+  int selectedCol = -1;
+  int selectedRow = -1;
 
   /**
    * constuctor
@@ -188,6 +189,21 @@ public class Environment {
     cells[rows][cols].removeLifeForm();
   }
 
+  public void changeSelectedCell(int row, int col) {
+    if (row < numRow && col < numCol) {
+      selectedRow = row;
+      selectedCol = col; 
+    }
+  }
+  
+  public int getSelectedCol() {
+    return selectedCol;
+  }
+  
+  public int getSelectedRow() {
+    return selectedRow;
+  }
+  
   /**
    * @author Yong Hang Lin
    * 

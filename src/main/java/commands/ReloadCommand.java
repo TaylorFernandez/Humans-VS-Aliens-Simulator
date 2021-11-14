@@ -7,8 +7,7 @@ public class ReloadCommand implements Commands {
 		private Environment environment;
 		
 		public ReloadCommand(Environment e) {
-				environment = e;
-				
+				environment = e;	
 		}
 		
 		public void execute() {
@@ -18,7 +17,6 @@ public class ReloadCommand implements Commands {
 						Weapon weapon = environment.getLifeForm(row, col).dropWeapon();
 						weapon.reload();
 						environment.getLifeForm(row, col).pickUpWeapon(weapon);
-						environment.updateBoard(row, col);
 				}
 		}
 }
