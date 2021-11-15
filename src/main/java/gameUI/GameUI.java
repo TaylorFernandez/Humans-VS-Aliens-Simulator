@@ -167,8 +167,26 @@ public class GameUI extends ImageCreator implements ActionListener {
 }
 
  public void drawCell(int row, int col) {
+   int formRow;
+   int formCol;
+   int predictedRow;
+   int predictedCol;
    gameCell cell = buttonArray[row][col];
    drawCell(row, col, environ, cell);
+   if(highlightedButtons.size() > 0 ) {
+     formRow = highlightedButtons.get(0).getRow();
+     formCol = highlightedButtons.get(0).getCol();
+     
+     if(formRow == row && formCol == col) {
+       highlightedButtons.get(0).setHighlighted(false);
+       highlightedButtons.remove(0);
+       
+       predictedRow = predictedCells.get(0).getRow();
+       predictedCol = predictedCells.get(0).getCol();
+       predictedCells.remove(0);
+       drawCell(predictedRow, predictedCol);
+     }
+   }
  }
  
  //allows the gui to update when a lifeform is moves

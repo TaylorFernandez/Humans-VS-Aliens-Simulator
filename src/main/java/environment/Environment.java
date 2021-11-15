@@ -14,7 +14,7 @@ public class Environment {
   private static Environment env;
   int numRow;
   int numCol;
-  GameUI game;
+  GameUI ui;
   int selectedCol = -1;
   int selectedRow = -1;
 
@@ -35,6 +35,10 @@ public class Environment {
     }
   }
 
+  public void setUI(GameUI ui) {
+    this.ui = ui;
+  }
+  
   public Cell getCell(int row, int col) {
     return cells[row][col];
   }
@@ -227,6 +231,8 @@ public class Environment {
           if ((row - i) >= 0 && cells[row - i][col].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row - i][col].addLifeForm(lifeform);
+            ui.drawCell(row - i,col);
+            ui.drawCell(row, col);
             lifeform.setLocation(row - i, col);
             return true;
           }
@@ -237,6 +243,8 @@ public class Environment {
           if ((col + i) < numCol && cells[row][col + i].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row][col + i].addLifeForm(lifeform);
+            ui.drawCell(row, col + i);
+            ui.drawCell(row, col);
             lifeform.setLocation(row, col + i);
             return true;
           }
@@ -247,6 +255,8 @@ public class Environment {
           if ((row + i) < numRow && cells[row + i][col].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row + i][col].addLifeForm(lifeform);
+            ui.drawCell(row + i, col);
+            ui.drawCell(row, col);
             lifeform.setLocation(row + i, col);
             return true;
           }
@@ -257,6 +267,8 @@ public class Environment {
           if ((col - i) >= 0 && cells[row][col - i].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row][col - i].addLifeForm(lifeform);
+            ui.drawCell(row, col - i);
+            ui.drawCell(row, col);
             lifeform.setLocation(row, col - i);
             return true;
           }
