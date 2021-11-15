@@ -191,10 +191,11 @@ public class GameUI extends ImageCreator implements ActionListener {
  
  //allows the gui to update when a lifeform is moves
  public void movePrediction(int distance, int dir, gameCell cell) {
+   
    int newDist = distance;
    int row = cell.getRow();
    int col = cell.getCol();
-  
+   
    //north prediction
    if(dir == 0) {
      while(row - newDist < 0 || environ.getCell(row - newDist, col).getLifeForm() != null) {

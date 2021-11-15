@@ -2,9 +2,12 @@ package gameUI;
 
 import javax.swing.ImageIcon;
 
+
 import java.awt.image.BufferedImage;
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import javax.swing.JButton;
 import javax.swing.plaf.basic.BasicGraphicsUtils;
 
@@ -29,11 +32,11 @@ public class ImageCreator {
   }
   
   public void drawCell(int i, int j, Environment environ, JButton button) {
-    BufferedImage image  = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+    BufferedImage image  = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
     Graphics drawer = image.getGraphics();
     
     //creates the environment of the square
-    drawer.setColor(new Color(65 ,102,0));
+    drawer.setColor(new Color(60,102,0));
     drawer.fillRect(0,0,50,50);
     
     //sets the lifeform in the grid
@@ -93,11 +96,16 @@ public class ImageCreator {
  
   
   public ImageIcon highlightPlayer() {
-    BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+    BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
+    AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC);
     
-    Graphics draw = newImage.getGraphics();
+    Graphics2D draw = newImage.createGraphics();
+    draw.setComposite(ac);
     draw.setColor(new Color(255,255,0));
     draw.fillRect(0,0,50,50);
+    
+    float opacity = 0.5f;
+    newImage.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
     
     return new ImageIcon(newImage);
   }

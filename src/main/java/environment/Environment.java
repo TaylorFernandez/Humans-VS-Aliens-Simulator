@@ -212,6 +212,9 @@ public class Environment {
     return selectedRow;
   }
   
+  public GameUI getGameUI() {
+    return ui;
+  }
   /**
    * @author Yong Hang Lin
    * 

@@ -13,7 +13,6 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import commands.AttackCommand;
 import commands.Commands;
 import commands.FaceEastCommand;
 import commands.FaceNorthCommand;
@@ -31,7 +30,7 @@ public class Invoker extends JFrame implements ActionListener {
 	Environment env;
 	Commands moveCommand;
 	Commands faceDirection;
-	Commands attackCommand;
+	GameUI ui;
 
 	public Invoker(Environment e) {
 		env = e;
@@ -96,6 +95,9 @@ public class Invoker extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
+	public void setGameUI(GameUI ui) {
+	  this.ui = ui;
+	}
 	public ImageIcon createImage() {
 		BufferedImage exampleImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
 		Graphics drawer = exampleImage.getGraphics();
@@ -118,19 +120,6 @@ public class Invoker extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-	  
-	  if (e.getSource() == attack) {
-	    attackCommand = new AttackCommand(env);
-	    try {
-        attackCommand.execute();
-      } catch (WeaponException e1) {
-        // TODO Auto-generated catch block
-        e1.printStackTrace();
-      } catch (EnvironmentException e1) {
-        // TODO Auto-generated catch block
-        e1.printStackTrace();
-      }
-	  }
 
 		if (e.getSource() == north) {
 			faceDirection = new FaceNorthCommand(env);
