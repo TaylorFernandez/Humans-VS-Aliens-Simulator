@@ -29,7 +29,7 @@ public class AttackCommand implements Commands {
       if (dir == 1) {
         if (environment.getLifeForm(row, col + 1) != null) {
 
-          environment.getLifeForm(row, col).attack(environment.getLifeForm(row + 1, col));
+          environment.getLifeForm(row, col).attack(environment.getLifeForm(row, col + 1));
           System.out.println("attack performed");
         }
 
