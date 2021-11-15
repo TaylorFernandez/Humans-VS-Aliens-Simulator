@@ -14,22 +14,27 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import commands.Commands;
+import commands.FaceEastCommand;
+import commands.FaceNorthCommand;
+import commands.FaceSouthCommand;
+import commands.FaceWestCommand;
 import commands.MoveCommand;
 import environment.Environment;
 import exceptions.EnvironmentException;
 import exceptions.WeaponException;
 import lifeform.LifeForm;
 
-public class Invoker extends JFrame implements ActionListener
-{
+public class Invoker extends JFrame implements ActionListener {
 	JButton north, south, east, west, move;
 	Commands c;
 	Environment env;
-	Commands moveCommand = new MoveCommand(env);
+	Commands moveCommand;
+	Commands faceDirection;
 
-	public Invoker(Environment e)
-	{
+	public Invoker(Environment e) {
 		env = e;
+		moveCommand = new MoveCommand(env);
+
 		setLayout(new BorderLayout());
 		setLocation(500, 300);
 		setSize(320, 195);
@@ -65,8 +70,7 @@ public class Invoker extends JFrame implements ActionListener
 		setVisible(true);
 	}
 
-	public ImageIcon createImage()
-	{
+	public ImageIcon createImage() {
 		BufferedImage exampleImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
 		Graphics drawer = exampleImage.getGraphics();
 
@@ -79,7 +83,7 @@ public class Invoker extends JFrame implements ActionListener
 		return new ImageIcon(exampleImage);
 
 	}
-	
+
 	public void setCommand(Commands cmd) {
 		c = cmd;
 	}
@@ -87,35 +91,61 @@ public class Invoker extends JFrame implements ActionListener
 	int next = 0;
 
 	@Override
-	public void actionPerformed(ActionEvent e)
-	{
-		
+	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource() == north)
-		{
-			next = 1;
+		if (e.getSource() == north) {
+			faceDirection = new FaceNorthCommand(env);
+			try {
+				faceDirection.execute();
+			} catch (WeaponException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (EnvironmentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			move.setText("Move!");
 		}
-		if (e.getSource() == south)
-		{
-			next = 2;
+		if (e.getSource() == south) {
+			faceDirection = new FaceSouthCommand(env);
+			try {
+				faceDirection.execute();
+			} catch (WeaponException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (EnvironmentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			move.setText("Move!");
 		}
-		if (e.getSource() == east)
-		{
-			next = 3;
+		if (e.getSource() == east) {
+			faceDirection = new FaceEastCommand(env);
+			try {
+				faceDirection.execute();
+			} catch (WeaponException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (EnvironmentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			move.setText("Move!");
 		}
-		if (e.getSource() == west)
-		{
-			next = 4;
+		if (e.getSource() == west) {
+			faceDirection = new FaceWestCommand(env);
+			try {
+				faceDirection.execute();
+			} catch (WeaponException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (EnvironmentException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			move.setText("Move!");
 		}
-		if (e.getSource() == move)
-		{
-			if (next == 1)
-			{
-				System.out.println("North");
+		if (e.getSource() == move) {
 				try {
 					moveCommand.execute();
 				} catch (WeaponException e1) {
@@ -125,21 +155,9 @@ public class Invoker extends JFrame implements ActionListener
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+			if (e.getSource() == null) {
+			move.setText("Select a direction"); 
 			}
-			if (next == 2)
-			{
-				System.out.println("South");
-			}
-			if (next == 3)
-			{
-				System.out.println("East");
-			}
-			if (next == 4)
-			{
-				System.out.println("West");
-			}
-			next = 0;
-			move.setText("Select a direction");
 		}
 
 	}

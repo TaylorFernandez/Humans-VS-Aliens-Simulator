@@ -2,7 +2,7 @@ package commands;
 
 import environment.Environment;
 
-public class FaceEastCommand {
+public class FaceEastCommand implements Commands {
   private Environment environment;
 
   public FaceEastCommand(Environment e) {
