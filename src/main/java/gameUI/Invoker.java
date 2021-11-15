@@ -25,7 +25,7 @@ import exceptions.WeaponException;
 import lifeform.LifeForm;
 
 public class Invoker extends JFrame implements ActionListener {
-	JButton north, south, east, west, move;
+	JButton north, south, east, west, move, reload, pickup, drop, attack;
 	Commands c;
 	Environment env;
 	Commands moveCommand;
@@ -34,39 +34,63 @@ public class Invoker extends JFrame implements ActionListener {
 	public Invoker(Environment e) {
 		env = e;
 		moveCommand = new MoveCommand(env);
-
+		
+		setTitle("DIE");
 		setLayout(new BorderLayout());
 		setLocation(500, 300);
-		setSize(320, 195);
-		JPanel centerPanel = new JPanel(new GridLayout(2, 3));
-		add("Center", centerPanel);
-
+		setSize(333, 195);
+		JPanel centerPanel = new JPanel(new BorderLayout());
+		JPanel rightPanel = new JPanel(new GridLayout(2, 2));
+		add("West", centerPanel);
+		add("East", rightPanel);
+		
 		north = new JButton("North");
 		north.addActionListener(this);
 		north.setSize(200, 100);
-		add(north, BorderLayout.NORTH);
+		centerPanel.add(north, BorderLayout.NORTH);
 
 		south = new JButton("South");
 		south.addActionListener(this);
 		south.setSize(200, 100);
-		add(south, BorderLayout.SOUTH);
+		centerPanel.add(south, BorderLayout.SOUTH);
 
 		west = new JButton("West");
 		west.addActionListener(this);
 		west.setSize(500, 500);
-		add(west, BorderLayout.WEST);
+		centerPanel.add(west, BorderLayout.WEST);
 
 		east = new JButton("East");
 		east.addActionListener(this);
 		east.setSize(200, 100);
-		add(east, BorderLayout.EAST);
+		centerPanel.add(east, BorderLayout.EAST);
 
 		move = new JButton("Select a direction");
 		move.addActionListener(this);
 		move.setSize(200, 100);
-		add(move, BorderLayout.CENTER);
+		centerPanel.add(move, BorderLayout.CENTER);
 
-		// pack();
+		
+		drop = new JButton("Drop");
+		drop.addActionListener(this);
+		drop.setSize(200, 100);
+		rightPanel.add(drop);
+		
+		reload = new JButton("Reload");
+		reload.addActionListener(this);
+		reload.setSize(200, 100);
+		rightPanel.add(reload);
+		
+		pickup = new JButton("Pick Up");
+		pickup.addActionListener(this);
+		pickup.setSize(200, 100);
+		rightPanel.add(pickup);
+		
+		attack = new JButton("Attack");
+		attack.addActionListener(this);
+		attack.setSize(200, 100);
+		rightPanel.add(attack);
+		
+		pack();
 		setVisible(true);
 	}
 
