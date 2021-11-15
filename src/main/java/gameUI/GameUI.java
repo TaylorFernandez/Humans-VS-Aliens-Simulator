@@ -166,6 +166,10 @@ public class GameUI extends ImageCreator implements ActionListener {
   
 }
 
+ public void drawCell(int row, int col) {
+   gameCell cell = buttonArray[row][col];
+   drawCell(row, col, environ, cell);
+ }
  
  //allows the gui to update when a lifeform is moves
  public void movePrediction(int distance, int dir, gameCell cell) {
