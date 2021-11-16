@@ -193,4 +193,5 @@ public abstract class LifeForm {
   }
 
   public abstract String getType();
+  
 }

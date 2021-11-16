@@ -23,6 +23,7 @@ public class AttackCommand implements Commands {
 						double x = environment.getDistance(row, col, i, col);
 						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(i, col), (int) x);
+							environment.checkDead(row, col);
 							break;
 
 						}
@@ -35,6 +36,7 @@ public class AttackCommand implements Commands {
 						double x = environment.getDistance(row, col, row, i);
 						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(row, i), (int) x);
+							environment.checkDead(row, col);
 							break;
 
 						}
@@ -47,6 +49,7 @@ public class AttackCommand implements Commands {
 						double x = environment.getDistance(row, col, i, col);
 						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(i, col), (int) x);
+							environment.checkDead(row, col);
 							break;
 
 						}
@@ -60,6 +63,7 @@ public class AttackCommand implements Commands {
 						double x = environment.getDistance(row, col, row, i);
 						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(row, i), (int) x);
+							environment.checkDead(row, col);
 							break;
 
 						}

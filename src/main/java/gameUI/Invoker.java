@@ -108,7 +108,7 @@ public class Invoker extends JFrame implements ActionListener {
 
 	public void setGameUI(GameUI ui) {
 	  this.ui = ui;
-	   dropCommand = new DropCommand(env, ui);
+	   dropCommand = new DropCommand(env);
 	}
 	public ImageIcon createImage() {
 		BufferedImage exampleImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
