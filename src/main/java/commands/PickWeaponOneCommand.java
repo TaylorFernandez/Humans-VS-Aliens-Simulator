@@ -1,9 +1,11 @@
 package commands;
 
 import environment.Environment;
+import gameUI.GameUI;
+import lifeform.LifeForm;
 import weapon.Weapon;
 
-public class PickWeaponOneCommand {
+public class PickWeaponOneCommand implements Commands {
   private Environment environment;
 
   public PickWeaponOneCommand(Environment e) {
@@ -13,7 +15,11 @@ public class PickWeaponOneCommand {
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
-    if (environment.getLifeForm(row, col) != null) {
+    LifeForm form = environment.getLifeForm(row, col);
+    GameUI ui = environment.getGameUI();
+    
+    System.out.print("Weapon1");
+    if (environment.getLifeForm(row, col) != null && environment.getWeapons(row, col).length == 1) {
       Weapon[] weapons = environment.getWeapons(row, col);
       Weapon pickUp = weapons[0];
       if (pickUp != null) {
@@ -21,6 +27,8 @@ public class PickWeaponOneCommand {
         environment.getLifeForm(row, col).pickUpWeapon(pickUp);
         environment.removeWeapon(pickUp, row, col);
         environment.addWeapon(old, row, col);
+        ui.drawCell(form.getRow(), form.getCol());
+        ui.drawUIText(form);
       }
     }
   }

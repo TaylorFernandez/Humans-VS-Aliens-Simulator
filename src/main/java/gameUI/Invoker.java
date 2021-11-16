@@ -1,6 +1,7 @@
 package gameUI;
 
 import java.awt.BorderLayout;
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
@@ -12,6 +13,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JOptionPane;
 
 import commands.Commands;
 import commands.DropCommand;
@@ -20,6 +22,8 @@ import commands.FaceNorthCommand;
 import commands.FaceSouthCommand;
 import commands.FaceWestCommand;
 import commands.MoveCommand;
+import commands.PickWeaponOneCommand;
+import commands.PickWeaponTwoCommand;
 import environment.Environment;
 import exceptions.EnvironmentException;
 import exceptions.WeaponException;
@@ -32,13 +36,17 @@ public class Invoker extends JFrame implements ActionListener {
 	Commands moveCommand;
 	Commands faceDirection;
 	Commands dropCommand;
+	Commands Weapon1;
+	Commands Weapon2;
 	GameUI ui;
 
 	public Invoker(Environment e) {
 		env = e;
 		moveCommand = new MoveCommand(env);
+		Weapon1 = new PickWeaponOneCommand(env);
+		Weapon2 = new PickWeaponTwoCommand(env);
 
-		
+
 		setTitle("DIE");
 		setLayout(new BorderLayout());
 		setLocation(500, 300);
@@ -202,6 +210,32 @@ public class Invoker extends JFrame implements ActionListener {
 		
 
 	}
+	if(e.getSource() == pickup) {
+	   createDialogueBox(this);
+	}
 
 }
+	
+	public void createDialogueBox(JFrame frame) {
+	  JOptionPane choice = new JOptionPane("Choose Weapon..");
+	  Object[] options = {"Weapon 2", "Weapon 1", "Cancel"};
+	  int optionPicked = choice.showOptionDialog(frame, "Which weapon do you want to pickup?", "Weapon Choice", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+	  System.out.print(optionPicked);
+	  
+	  if(optionPicked == 1) {
+	    try {
+        Weapon1.execute();
+      } catch (WeaponException | EnvironmentException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+	  }else if(optionPicked == 0) {
+	    try {
+        Weapon2.execute();
+      } catch (WeaponException | EnvironmentException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+	  }
+	}
 }

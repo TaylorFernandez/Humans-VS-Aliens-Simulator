@@ -18,6 +18,7 @@ public class Environment {
   GameUI ui;
   int selectedCol = -1;
   int selectedRow = -1;
+  Weapon[] w = new Weapon[2];
 
   /**
    * constuctor
@@ -51,12 +52,11 @@ public class Environment {
    */
 
   public Weapon[] getWeapons(int row, int col) {
-    Weapon[] w = new Weapon[2];
-    if (w.length == 1) {
+    if (w.length == 0) {
       w[0] = cells[row][col].getWeapon1();
     }
 
-    if (w.length == 2) {
+    if (w.length == 1) {
       w[0] = cells[row][col].getWeapon1();
       w[1] = cells[row][col].getWeapon2();
     }
