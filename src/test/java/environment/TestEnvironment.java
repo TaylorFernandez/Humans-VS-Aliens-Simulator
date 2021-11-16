@@ -108,4 +108,5 @@ public void testDistanceDifferentBoth() throws EnvironmentException {
   assertEquals(10.0, env1.getDistance(form2, form1), 0.01);
 }
 
+
 }

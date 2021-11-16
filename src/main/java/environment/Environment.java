@@ -104,7 +104,7 @@ public class Environment {
     if(form != null && form.hasWeapon()) {
       Weapon temp = form.dropWeapon();
       addWeapon(temp, form.getRow(), form.getCol());
-      ui.drawCell(form.getRow(), form.getCol());
+      updateUI(form.getRow(), form.getCol());
       return true;
     }
     return false;
@@ -243,8 +243,8 @@ public class Environment {
           if ((row - i) >= 0 && cells[row - i][col].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row - i][col].addLifeForm(lifeform);
-            ui.drawCell(row - i,col);
-            ui.drawCell(row, col);
+            updateUI(row - i,col);
+            updateUI(row, col);
             lifeform.setLocation(row - i, col);
             return true;
           }
@@ -255,8 +255,8 @@ public class Environment {
           if ((col + i) < numCol && cells[row][col + i].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row][col + i].addLifeForm(lifeform);
-            ui.drawCell(row, col + i);
-            ui.drawCell(row, col);
+            updateUI(row, col + i);
+            updateUI(row, col);
             lifeform.setLocation(row, col + i);
             return true;
           }
@@ -267,8 +267,8 @@ public class Environment {
           if ((row + i) < numRow && cells[row + i][col].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row + i][col].addLifeForm(lifeform);
-            ui.drawCell(row + i, col);
-            ui.drawCell(row, col);
+            updateUI(row + i, col);
+            updateUI(row, col);
             lifeform.setLocation(row + i, col);
             return true;
           }
@@ -279,8 +279,8 @@ public class Environment {
           if ((col - i) >= 0 && cells[row][col - i].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row][col - i].addLifeForm(lifeform);
-            ui.drawCell(row, col - i);
-            ui.drawCell(row, col);
+            updateUI(row, col - i);
+            updateUI(row, col);
             lifeform.setLocation(row, col - i);
             return true;
           }
@@ -291,5 +291,21 @@ public class Environment {
       }
     }
     return false;
+  }
+  
+  //updates the GameUI at a specific icon
+  public void updateUI(int row, int col) {
+    if(ui == null) {
+      ui.drawCell(row, col);
+    }
+
+  }
+  
+  //updates GameUI with text
+  public void updateUIWithText(int row, int col) {
+    if(ui == null) {
+      ui.drawCell(row, col);
+      ui.drawUIText(cells[row][col].getLifeForm());
+    }
   }
 }
