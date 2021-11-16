@@ -23,28 +23,31 @@ public class AttackCommand implements Commands {
 						double x = environment.getDistance(row, col, i, col);
 						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(i, col), (int) x);
+							break;
 
 						}
 					}
 				}
 			}
 			if (dir == 1) {
-				for (int i = col + 1; i < environment.getNumCols(); i++) {
+				for (int i = col + 1; i <= environment.getNumCols(); i++) {
 					if (environment.getLifeForm(row, i) != null) {
 						double x = environment.getDistance(row, col, row, i);
 						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(row, i), (int) x);
+							break;
 
 						}
 					}
 				}
 			}
 			if (dir == 2) {
-				for (int i = row + 1; i < environment.getNumRows(); i++) {
+				for (int i = row + 1; i <= environment.getNumRows(); i++) {
 					if (environment.getLifeForm(i, col) != null) {
 						double x = environment.getDistance(row, col, i, col);
 						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(i, col), (int) x);
+							break;
 
 						}
 					}
@@ -52,11 +55,12 @@ public class AttackCommand implements Commands {
 			}
 
 			if (dir == 3) {
-				for (int i = col - 1; i > 0; i++) {
+				for (int i = col - 1; i >= 0; i++) {
 					if (environment.getLifeForm(row, i) != null) {
 						double x = environment.getDistance(row, col, row, i);
 						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(row, i), (int) x);
+							break;
 
 						}
 					}
