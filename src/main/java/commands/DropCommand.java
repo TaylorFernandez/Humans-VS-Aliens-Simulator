@@ -14,10 +14,14 @@ public class DropCommand implements Commands{
     }
         
     public void execute() {
-      gameCell cell = ui.getHighlighted();
-      
-      LifeForm form = environment.getCell(cell.getRow(), cell.getCol()).getLifeForm();
-      
-      environment.DropWeapon(form, ui);
+      if(ui.getHighlighted() != null) {
+        gameCell cell = ui.getHighlighted();
+        LifeForm form = environment.getCell(cell.getRow(), cell.getCol()).getLifeForm();
+        if(form.hasWeapon() == true) {
+          environment.DropWeapon(form,  ui);
+          ui.drawCell(form.getRow(), form.getCol());
+          ui.drawUIText(form);
+        }
+      }
     }
 }

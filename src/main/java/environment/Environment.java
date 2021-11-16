@@ -97,10 +97,13 @@ public class Environment {
   }
 
   public boolean DropWeapon(LifeForm form, GameUI ui) {
-    Weapon temp = form.dropWeapon();
-    boolean worked = addWeapon(temp, form.getRow(), form.getCol());
-    ui.drawCell(form.getRow(), form.getCol(), this, ui.getHighlighted());
-    return worked;
+    if(form != null && form.hasWeapon()) {
+      Weapon temp = form.dropWeapon();
+      addWeapon(temp, form.getRow(), form.getCol());
+      ui.drawCell(form.getRow(), form.getCol());
+      return true;
+    }
+    return false;
   }
   /**
    * gets the distance between two points

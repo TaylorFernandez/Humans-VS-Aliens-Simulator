@@ -6,6 +6,7 @@ import javax.swing.*;
 import environment.Environment;
 import lifeform.Alien;
 import lifeform.Human;
+import lifeform.LifeForm;
 
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
@@ -117,6 +118,10 @@ public class GameUI extends ImageCreator implements ActionListener {
     }
   }
 
+  public void drawUIText(LifeForm form) {
+    lifeformType.setText(form.getType());
+    lifeformWeapon1.setText(form.getWeaponType());
+  }
 
   /**
    * highlights the LifeForm currently selected
@@ -145,6 +150,7 @@ public class GameUI extends ImageCreator implements ActionListener {
      lifeformType.setText("No cell selected!");
      lifeformWeapon1.setText("No cell selected!");
      lifeform.setIcon(new ImageIcon("assets/Environment/Environment.png"));
+     
      highlightedButtons.remove(cell);
      cell.setBorder(BorderFactory.createLineBorder(Color.BLACK));
    }
@@ -251,7 +257,7 @@ public class GameUI extends ImageCreator implements ActionListener {
 // }
  
  public gameCell getHighlighted() {
-   if(highlightedButtons.size() == 0) {
+   if(highlightedButtons.size() != 0) {
      return highlightedButtons.get(0);
    }
    

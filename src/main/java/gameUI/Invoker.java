@@ -37,6 +37,7 @@ public class Invoker extends JFrame implements ActionListener {
 	public Invoker(Environment e) {
 		env = e;
 		moveCommand = new MoveCommand(env);
+
 		
 		setTitle("DIE");
 		setLayout(new BorderLayout());
@@ -99,6 +100,7 @@ public class Invoker extends JFrame implements ActionListener {
 
 	public void setGameUI(GameUI ui) {
 	  this.ui = ui;
+	   dropCommand = new DropCommand(env, ui);
 	}
 	public ImageIcon createImage() {
 		BufferedImage exampleImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
@@ -188,8 +190,8 @@ public class Invoker extends JFrame implements ActionListener {
 			if (e.getSource() == null) {
 			move.setText("Select a direction"); 
 			}
+		}
 		if(e.getSource() == drop) {
-		  dropCommand = new DropCommand(env, ui);
 		  
 		  try {
         dropCommand.execute();
@@ -197,9 +199,9 @@ public class Invoker extends JFrame implements ActionListener {
         // TODO Auto-generated catch block
         e1.printStackTrace();
       }
-		}
-		}
+		
 
 	}
 
+}
 }
