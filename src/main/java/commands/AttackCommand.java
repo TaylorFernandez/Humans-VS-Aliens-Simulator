@@ -49,6 +49,7 @@ public class AttackCommand implements Commands {
 						if (environment.getLifeForm(row, col).getWeapon().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(i, col), (int) x);
 							environment.checkDead(row, col);
+							System.out.print(environment.getLifeForm(i, col).getCurrentLifePoints());
 							break;
 
 						}

@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JOptionPane;
 
+import commands.AttackCommand;
 import commands.Commands;
 import commands.DropCommand;
 import commands.FaceEastCommand;
@@ -38,6 +39,7 @@ public class Invoker extends JFrame implements ActionListener {
 	Commands dropCommand;
 	Commands Weapon1;
 	Commands Weapon2;
+	Commands Attack;
 	GameUI ui;
 
 	public Invoker(Environment e) {
@@ -45,6 +47,7 @@ public class Invoker extends JFrame implements ActionListener {
 		moveCommand = new MoveCommand(env);
 		Weapon1 = new PickWeaponOneCommand(env);
 		Weapon2 = new PickWeaponTwoCommand(env);
+		Attack = new AttackCommand(env);
 
 
 		setTitle("DIE");
@@ -212,6 +215,15 @@ public class Invoker extends JFrame implements ActionListener {
 	}
 	if(e.getSource() == pickup) {
 	   createDialogueBox(this);
+	}
+	
+	if(e.getSource() == attack) {
+	  try {
+      Attack.execute();
+    } catch (WeaponException | EnvironmentException e1) {
+      // TODO Auto-generated catch block
+      e1.printStackTrace();
+    }
 	}
 
 }
