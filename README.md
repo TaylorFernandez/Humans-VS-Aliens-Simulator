@@ -1,7 +1,6 @@
+# Lab 6 Description
 
-# Lab 5 Description
-
-Please write a brief description here.
+Add a face to our code, create a UI that allows the user to see a gameboard full of humans, aliens an Weapons! The lifeforms on the board are able to navigate via the user use the remote control, conisting of: directional movement/looking buttons, along with attack, reload, drop weapon, and pick up weapon.
 
 # Team Contract
 
@@ -42,8 +41,17 @@ Answer: Other members will decide how much of the grade the member should miss b
 |Cell Test | Tommy Prusak | 10/27/2021 | 10/26//2021 - Added new tests for Cell |
 |LifeForm Test | Tommy Prusak | 10/27/2021 | 10/26//2021 - Added new tests for LifeForm |
 |Environment Test | Tommy Prusak | 10/27/2021 | 10/26//2021 - Added new tests for Environment |
-
-
+|---|---|---|---|
+| Gameboard | Taylor Fernandez | 11/17/2021 | 11/3/2021 - Began working on Gameboard UI |
+| Gameboard | Taylor Fernandez | 11/17/2021 | 11/6/2021 - Gameboard progress made, visual gameboard and ability to highlight lifeforms |
+| Invoker | Luke Henry | 11/17/2021 | 11/8/2021 - Template Invoker UI built |
+| Movements | Yong Hang Lin | 11/17/2021 | 11/9/2021 - Began working on turns and movements |
+| Invoker | Tommy Prusak | 11/17/2021 | 11/11/2021 - Got ready to add commands into invoker |
+| Gameboard | Taylor Fernandez | 11/17/2021 | 11/12/2021 - Proceeded with Gameboard development |
+| Commands | Tommy Prusak | 11/17/2021 | 11/12/2021 - Wrote a command |
+| Gameboard | Yong Hang Lin | 11/17/2021 | 11/12/2021 - Got cool sprites for gameboard |
+| Commands | Evan Paules | 11/17/2021 | 11/13/2021 - Wrote a command |
+| Invoker | Luke Henry & Tommy Prusak | 11/17/2021 | 11/8/2021 - Added commands to Invoker |
 
 # Team Meeting Log
 
@@ -56,6 +64,8 @@ of class.
 | 2 | 5PM - 5:30PM, 10/10/2021 | Discord | All Members | Discuss splitting up work|
 | 3 | 2PM - 3PM | In class | All Members | Discuss splitting up work|
 | 4 | 1PM - 2PM | In class | All Members | Discuss wrapping up Lab 4 | 
-| 5 | 6PM - 8:30PM, 11/14/2021 | Discord | All Members | Discuss Lab 6 issues and worked through it together |
+| 5 | 2:50PM - 3PM, 11/10/2021 | MCT158 | All Members | Talking out a couple small bugs and how we will handle them | 
+| 6 | 6PM - 8:30PM, 11/14/2021 | Discord | All Members | Discuss Lab 6 issues and worked through it together |
+| 7 | 4PM - 6PM, 11/16/2021 | Discord | Tommy, Yong, Luke, Taylor | Hammering out final bugs |
 
 
