@@ -48,6 +48,7 @@ public class testGameUI {
    
    GameUI ui = new GameUI(env.getNumRows(), env.getNumCols(), env);
    env.setUI(ui);
+   
    Invoker inv = new Invoker(env);
    inv.setGameUI(ui);
        

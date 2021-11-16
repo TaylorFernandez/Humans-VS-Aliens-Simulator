@@ -17,7 +17,9 @@ public class FaceEastCommand implements Commands {
     
     if (environment.getLifeForm(row, col) != null) {
       environment.getLifeForm(row, col).setDirection(1);
-      ui.drawCell(row, col);
+      if(ui != null) {
+        ui.drawCell(row, col);
+      }
     }
   }
 }

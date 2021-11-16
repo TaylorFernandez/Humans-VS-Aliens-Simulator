@@ -20,7 +20,10 @@ public class FaceNorthCommand implements Commands {
     
     if (environment.getLifeForm(row, col) != null) {
       environment.getLifeForm(row, col).setDirection(0);
-      ui.drawCell(row, col);
+      if(ui != null) {
+        ui.drawCell(row, col);
+        
+      }
     }
   }
 }
