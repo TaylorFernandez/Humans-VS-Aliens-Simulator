@@ -41,6 +41,10 @@ public class Environment {
     this.ui = ui;
   }
   
+  public gameCell getGameCell(int row, int col) {
+    return ui.getCell(row, col);
+  }
+  
   public Cell getCell(int row, int col) {
     return cells[row][col];
   }
@@ -219,10 +223,7 @@ public class Environment {
   public GameUI getGameUI() {
     return ui;
   }
-  
-  public gameCell getGameCell(int row, int col) {
-    return ui.getCell(row, col);
-  }
+
   /**
    * @author Yong Hang Lin
    * 

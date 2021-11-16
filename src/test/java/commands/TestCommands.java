@@ -9,6 +9,7 @@ import exceptions.AttachmentException;
 import exceptions.EnvironmentException;
 import exceptions.WeaponException;
 import gameUI.GameUI;
+import lifeform.Human;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
 import weapon.MockGenericWeapon;
@@ -101,6 +102,22 @@ public class TestCommands {
 		// good
 	}
 
+	@Test
+  public void testMove() {
+    Environment environment = Environment.getEnvironment(10, 10);
+    Human lf = new Human("Dan", 100, 10);
+    environment.addLifeForm(lf, 4, 4);
+    environment.changeSelectedCell(4, 4);
+    MoveCommand move = new MoveCommand(environment);
+    move.execute();
+    assertEquals(lf, environment.getLifeForm(1, 4));
+    environment.changeSelectedCell(1, 4);
+    lf.setDirection(3);
+    move.execute();
+    assertEquals(lf, environment.getLifeForm(1, 1));
+    environment.changeSelectedCell(1, 1);
+  }
+	
 	@Test
 	public void testReload() throws WeaponException, EnvironmentException {
 		Environment environment = Environment.getEnvironment(10, 10);
