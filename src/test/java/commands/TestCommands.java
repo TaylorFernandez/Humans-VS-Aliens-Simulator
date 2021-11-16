@@ -23,12 +23,13 @@ public class TestCommands {
     LifeForm lf2 = new MockLifeForm("John", 40);
     environment.addLifeForm(lf, 1, 2);
     environment.addLifeForm(lf2, 1, 3);
-    PowerBooster gun = new PowerBooster(new Pistol());
+    Pistol gun =new Pistol();
     lf.pickUpWeapon(gun);
-    lf.setDirection(2);
+    environment.addWeapon(gun, 1, 2);
+    lf.setDirection(1);
+    environment.changeSelectedCell(1, 2);
     AttackCommand a = new AttackCommand(environment);
     a.execute();
-//    lf.attack(lf2, (int) environment.getDistance(lf, lf2));
     assertEquals(22, lf2.getCurrentLifePoints());
   }
   
