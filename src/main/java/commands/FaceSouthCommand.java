@@ -1,6 +1,7 @@
 package commands;
 
 import environment.Environment;
+import gameUI.GameUI;
 
 public class FaceSouthCommand implements Commands {
   private Environment environment;
@@ -12,8 +13,11 @@ public class FaceSouthCommand implements Commands {
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
+    GameUI ui = environment.getGameUI();
+    
     if (environment.getLifeForm(row, col) != null) {
       environment.getLifeForm(row, col).setDirection(2);
+      ui.drawCell(row, col);
     }
   }
 }

@@ -85,6 +85,7 @@ public abstract class LifeForm {
   public boolean setDirection(int direction) {
     if(direction > -1 && direction < 4) {
       currentDirection = direction;
+      
       return true;
     }
     return false;

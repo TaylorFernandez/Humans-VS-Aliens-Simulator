@@ -28,7 +28,7 @@ public class GameUI extends ImageCreator implements ActionListener {
   JLabel bottom;
   Environment environ;
   List<gameCell> highlightedButtons =  new ArrayList<gameCell>();
-  List<gameCell> predictedCells = new ArrayList<gameCell>();
+  //List<gameCell> predictedCells = new ArrayList<gameCell>();
   JLabel lifeformType;
   JLabel lifeformWeapon1;
   JLabel lifeform;
@@ -48,15 +48,18 @@ public class GameUI extends ImageCreator implements ActionListener {
   public GameUI(int row, int col, Environment env) {
     environ = env;
     JPanel rightPanel = new JPanel(new GridLayout(row, col));
-    JPanel leftPanel = new JPanel();
+    JPanel leftPanel = new JPanel(new GridBagLayout());
+    makeLegend(leftPanel);
     JPanel top = new JPanel(new GridBagLayout());
+    //JPanel legendSample
+    
     top.setBackground(Color.GRAY);
     
     GridBagConstraints c = new GridBagConstraints();
     
-    JLabel legend = new JLabel();
-    legend.setIcon(new ImageIcon("assets/UI Elements/Legend.png"));
-    leftPanel.setBackground(Color.GRAY);
+//    JLabel legend = new JLabel();
+//    legend.setIcon(new ImageIcon("assets/UI Elements/Legend.png"));
+//    leftPanel.setBackground(Color.GRAY);
 
     rightPanel.setBackground(new Color(65, 102, 0));
     rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -93,7 +96,7 @@ public class GameUI extends ImageCreator implements ActionListener {
     drawElements(buttonArray, env);
     frame.add("East", rightPanel);
    
-    leftPanel.add(legend);
+    //leftPanel.add(legend);
     frame.add("West", leftPanel);
     frame.add("North",top);
     
@@ -114,6 +117,7 @@ public class GameUI extends ImageCreator implements ActionListener {
     }
   }
 
+
   /**
    * highlights the LifeForm currently selected
    * 
@@ -127,10 +131,11 @@ public class GameUI extends ImageCreator implements ActionListener {
      cell.setHighlighted(true);
      environ.changeSelectedCell(cell.getRow(), cell.getCol());
      highlightedButtons.add(cell);
-     movePrediction(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getMaxSpeed(), environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getDirection(), cell);
-     cell.setIcon(highlightPlayer());
+     //movePrediction(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getMaxSpeed(), environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getDirection(), cell);
+     cell.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
      lifeformType.setText(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getType());
      lifeformWeapon1.setText(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getWeaponType());
+     
      if(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getWeaponType().equals("")) {
        lifeformWeapon1.setText("LifeForm does not have a weapon!");
      }
@@ -141,7 +146,7 @@ public class GameUI extends ImageCreator implements ActionListener {
      lifeformWeapon1.setText("No cell selected!");
      lifeform.setIcon(new ImageIcon("assets/Environment/Environment.png"));
      highlightedButtons.remove(cell);
-     drawCell(cell.getRow(), cell.getCol(), environ, cell);
+     cell.setBorder(BorderFactory.createLineBorder(Color.BLACK));
    }
    
    //draws the lifeform sprite to the selected cell view
@@ -151,90 +156,99 @@ public class GameUI extends ImageCreator implements ActionListener {
      lifeform.setIcon(new ImageIcon("assets/Human/Human.png"));
    }
    
+   checkMultipleHighlights();
+   
+   //unhighlights the predicted move if the button is unselected
+//   if(highlightedButtons.size() == 0) {
+//     predictedCells.get(0).setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//     predictedCells.remove(0);
+//   }
+  
+}
+ 
+ 
+ public void checkMultipleHighlights() {
    //makes sure two cells cant be highlighted at once
    if(highlightedButtons.size() == 2) {
      drawCell(highlightedButtons.get(0).getRow(), highlightedButtons.get(0).getCol(), environ, highlightedButtons.get(0));
      highlightedButtons.get(0).setHighlighted(false);
      highlightedButtons.remove(0);
    }
-   
-   //unhighlights the predicted move if the button is unselected
-   if(highlightedButtons.size() == 0) {
-     drawCell(predictedCells.get(0).getRow(), predictedCells.get(0).getCol(), environ, predictedCells.get(0));
-     predictedCells.remove(0);
-   }
-  
-}
+ }
+ public gameCell getCell(int row, int col) {
+   return buttonArray[row][col];
+ }
 
  public void drawCell(int row, int col) {
-   int formRow;
-   int formCol;
-   int predictedRow;
-   int predictedCol;
+//   int formRow;
+//   int formCol;
+//   int predictedRow;
+//   int predictedCol;
    gameCell cell = buttonArray[row][col];
    drawCell(row, col, environ, cell);
-   if(highlightedButtons.size() > 0 ) {
-     formRow = highlightedButtons.get(0).getRow();
-     formCol = highlightedButtons.get(0).getCol();
+//   if(highlightedButtons.size() > 0 ) {
+//     formRow = highlightedButtons.get(0).getRow();
+//     formCol = highlightedButtons.get(0).getCol();
      
-     if(formRow == row && formCol == col) {
-       highlightedButtons.get(0).setHighlighted(false);
-       highlightedButtons.remove(0);
+//     if(formRow == row && formCol == col) {
+//       highlightedButtons.get(0).setHighlighted(false);
+//       highlightedButtons.remove(0);
        
-       predictedRow = predictedCells.get(0).getRow();
-       predictedCol = predictedCells.get(0).getCol();
-       predictedCells.remove(0);
-       drawCell(predictedRow, predictedCol);
-     }
+//       predictedRow = predictedCells.get(0).getRow();
+//       predictedCol = predictedCells.get(0).getCol();
+//       predictedCells.remove(0);
+//       drawCell(predictedRow, predictedCol);
+     //}
    }
- }
+// }
  
  //allows the gui to update when a lifeform is moves
- public void movePrediction(int distance, int dir, gameCell cell) {
-   
-   int newDist = distance;
-   int row = cell.getRow();
-   int col = cell.getCol();
-   
-   //north prediction
-   if(dir == 0) {
-     while(row - newDist < 0 || environ.getCell(row - newDist, col).getLifeForm() != null) {
-       newDist--;
-     }
-     predictedCells.add(buttonArray[row - newDist][col]);
-     buttonArray[row - newDist][col].setIcon(highlightPrediction());
-   }
-   //east prediction
-   if(dir == 1) {
-     while(col + newDist >= buttonArray[0].length || environ.getCell(row, col + newDist).getLifeForm() != null) {
-       newDist--;
-     }
-     predictedCells.add(buttonArray[row][col + newDist]);
-     buttonArray[row][col + newDist].setIcon(highlightPrediction());
-   }
-   //south prediction
-   if(dir == 2) {
-     while(row + newDist >= buttonArray.length || environ.getCell(row + newDist, col).getLifeForm() != null){
-       newDist--;
-     }
-     predictedCells.add(buttonArray[row + newDist][col]);
-     buttonArray[row + newDist][col].setIcon(highlightPrediction());
-   }
-   
-   //west prediction
-   if(dir == 3) {
-     while(col - newDist < 0 || environ.getCell(row, col - newDist).getLifeForm() != null) {
-       newDist--;
-     }
-     predictedCells.add(buttonArray[row][col - newDist]);
-     buttonArray[row][col - newDist].setIcon(highlightPrediction());
-   }
-   
-   if(predictedCells.size() == 2) {
-     drawCell(predictedCells.get(0).getRow(), predictedCells.get(0).getCol(), environ, predictedCells.get(0));
-     predictedCells.remove(0);
-   }
- }
+// public void movePrediction(int distance, int dir, gameCell cell) {
+//   
+//   int newDist = distance;
+//   int row = cell.getRow();
+//   int col = cell.getCol();
+//   
+//   //north prediction
+//   if(dir == 0) {
+//     while(row - newDist < 0 || environ.getCell(row - newDist, col).getLifeForm() != null) {
+//       newDist--;
+//     }
+//     predictedCells.add(buttonArray[row - newDist][col]);
+//     buttonArray[row - newDist][col].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+//   }
+//   //east prediction
+//   if(dir == 1) {
+//     while(col + newDist >= buttonArray[0].length || environ.getCell(row, col + newDist).getLifeForm() != null) {
+//       newDist--;
+//     }
+//     predictedCells.add(buttonArray[row][col + newDist]);
+//     buttonArray[row][col + newDist].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+//   }
+//   //south prediction
+//   if(dir == 2) {
+//     while(row + newDist >= buttonArray.length || environ.getCell(row + newDist, col).getLifeForm() != null){
+//       newDist--;
+//     }
+//     predictedCells.add(buttonArray[row + newDist][col]);
+//     buttonArray[row + newDist][col].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+//   }
+//   
+//   //west prediction
+//   if(dir == 3) {
+//     while(col - newDist < 0 || environ.getCell(row, col - newDist).getLifeForm() != null) {
+//       newDist--;
+//     }
+//     predictedCells.add(buttonArray[row][col - newDist]);
+//     buttonArray[row][col - newDist].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
+//   
+//   //logic for changing highlights when a lifeform is rotated
+//   if(predictedCells.size() == 2) {
+//     predictedCells.get(0).setBorder(BorderFactory.createLineBorder(Color.BLACK));
+//     predictedCells.remove(0);
+//   }
+//   }
+// }
  
  public gameCell getHighlighted() {
    if(highlightedButtons.size() == 0) {
@@ -242,6 +256,48 @@ public class GameUI extends ImageCreator implements ActionListener {
    }
    
    return null;
+ }
+ 
+ public void makeLegend(JPanel test) {
+   GridBagConstraints c = new GridBagConstraints();
+ 
+   test.setBackground(Color.GRAY);
+   
+   JLabel LegendText = new JLabel("Legend");
+   c.gridx = 0;
+   c.gridy = 0;
+   test.add(LegendText, c);
+   
+   JLabel empty = new JLabel(createEnvironment());
+   c.gridx = 0;
+   c.gridy = 1;
+   test.add(empty, c);
+   
+   JLabel human = new JLabel(createHuman());
+   c.gridx = 0;
+   c.gridy = 2;
+   test.add(human,c);
+   
+   JLabel alien = new JLabel(createAlien());
+   c.gridx = 0;
+   c.gridy = 3;
+   test.add(alien,c);
+   
+   JLabel chainGun = new JLabel(createChainGun());
+   c.gridx = 0;
+   c.gridy = 4;
+   test.add(chainGun,c);
+   
+   JLabel plasmaCannon = new JLabel(createPlasmaCannon());
+   c.gridx = 0;
+   c.gridy = 5;
+   test.add(plasmaCannon, c);
+   
+   JLabel pistol = new JLabel(createPistol());
+   c.gridx = 0;
+   c.gridy = 6;
+   test.add(pistol, c);
+
  }
 }
 //Button that stores where it is on the gameboard

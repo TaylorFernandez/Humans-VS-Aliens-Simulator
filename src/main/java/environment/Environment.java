@@ -2,6 +2,7 @@ package environment;
 
 import exceptions.EnvironmentException;
 import gameUI.GameUI;
+import gameUI.gameCell;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
@@ -214,6 +215,10 @@ public class Environment {
   
   public GameUI getGameUI() {
     return ui;
+  }
+  
+  public gameCell getGameCell(int row, int col) {
+    return ui.getCell(row, col);
   }
   /**
    * @author Yong Hang Lin

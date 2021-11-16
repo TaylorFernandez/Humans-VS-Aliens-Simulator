@@ -96,17 +96,11 @@ public class ImageCreator {
  
   
   public ImageIcon highlightPlayer() {
-    BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_INT_ARGB);
-    AlphaComposite ac = AlphaComposite.getInstance(AlphaComposite.SRC);
+    BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
     
-    Graphics2D draw = newImage.createGraphics();
-    draw.setComposite(ac);
+    Graphics draw = newImage.getGraphics();
     draw.setColor(new Color(255,255,0));
-    draw.fillRect(0,0,50,50);
-    
-    float opacity = 0.5f;
-    newImage.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER, opacity));
-    
+    draw.fillRect(0,0,50,50);    
     return new ImageIcon(newImage);
   }
   
@@ -120,6 +114,80 @@ public class ImageCreator {
     
     draw.setColor(new Color(255, 255, 0));
     draw.fillOval(20,20,10,10);
+    
+    return new ImageIcon(newImage);
+  }
+  
+  public ImageIcon createEnvironment() {
+      BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+      
+      Graphics draw = newImage.getGraphics();
+      draw.setColor(new Color(60,102,0));
+      draw.fillRect(0,0,50,50);    
+      return new ImageIcon(newImage);
+  }
+  
+  public ImageIcon createHuman() {
+    BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+    
+    Graphics draw = newImage.getGraphics();
+    draw.setColor(new Color(60,102,0));
+    draw.fillRect(0,0,50,50);    
+    
+    drawer.setColor(new Color(0,255,0));
+    drawer.fillOval(20,20,10,10);
+    
+    return new ImageIcon(newImage);
+  }
+  
+  public ImageIcon createAlien() {
+    BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+    
+    Graphics draw = newImage.getGraphics();
+    draw.setColor(new Color(60,102,0));
+    draw.fillRect(0,0,50,50);    
+    
+    drawer.setColor(new Color(200,240,100));
+    drawer.fillOval(20,20,10,10);
+    
+    return new ImageIcon(newImage);
+  }
+  
+  public ImageIcon createPistol() {
+    BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+    
+    Graphics draw = newImage.getGraphics();
+    draw.setColor(new Color(60,102,0));
+    draw.fillRect(0,0,50,50);    
+    
+    drawer.setColor(new Color(255,0,0));
+    drawer.fillRect(40,0,10,10);
+    
+    return new ImageIcon(newImage);
+  }
+  
+  public ImageIcon createChainGun() {
+    BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+    
+    Graphics draw = newImage.getGraphics();
+    draw.setColor(new Color(60,102,0));
+    draw.fillRect(0,0,50,50);    
+    
+    drawer.setColor(new Color(255,255,0));
+    drawer.fillRect(0,40,10,10);
+    
+    return new ImageIcon(newImage);
+  }
+  
+  public ImageIcon createPlasmaCannon() {
+    BufferedImage newImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
+    
+    Graphics draw = newImage.getGraphics();
+    draw.setColor(new Color(60,102,0));
+    draw.fillRect(0,0,50,50);    
+    
+    drawer.setColor(new Color(0,0,255));
+    drawer.fillRect(40,40,10,10);
     
     return new ImageIcon(newImage);
   }
