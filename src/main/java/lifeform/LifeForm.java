@@ -1,6 +1,7 @@
 package lifeform;
 
 import exceptions.WeaponException;
+import weapon.GenericWeapon;
 import weapon.Weapon;
 
 public abstract class LifeForm {
@@ -190,6 +191,10 @@ public abstract class LifeForm {
     }
     
     return "";
+  }
+  
+  public Weapon getWeapon() {
+	  return weapon;
   }
 
   public abstract String getType();
