@@ -16,45 +16,53 @@ public class AttackCommand implements Commands {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
     int dir = environment.getLifeForm(row, col).getDirection();
-    if (environment.getLifeForm(row, col) != null) {
+    if (environment.getLifeForm(row, col) != null && environment.getLifeForm(row, col).hasWeapon()) {
       if (dir == 0) {
-        if (environment.getLifeForm(row - 1, col) != null) {
+        for (int i = row; i > 0; i--) {
+          if (environment.getLifeForm(i - 1, col) != null) {
+            double x = environment.getDistance(row, col, i, col);
+            if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
+              environment.getLifeForm(row, col).attack(environment.getLifeForm(i, col), (int) x);
 
-          environment.getLifeForm(row, col).attack(environment.getLifeForm(row - 1, col));
-          System.out.println("attack performed");
-        } else {
-          System.out.println("Nothing there to attack");
+            }
+          }
         }
       }
       if (dir == 1) {
-        if (environment.getLifeForm(row, col + 1) != null) {
+        for (int i = col; i < environment.getNumCols(); i++) {
+          if (environment.getLifeForm(row, i + 1) != null) {
+            double x = environment.getDistance(row, col, row, i);
+            if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
+              environment.getLifeForm(row, col).attack(environment.getLifeForm(row, i), (int) x);
 
-          environment.getLifeForm(row, col).attack(environment.getLifeForm(row, col + 1));
-          System.out.println("attack performed");
-        }
-
-        else {
-          System.out.println("Nothing there to attack");
-        }
-      }
-      if (dir == 2) {
-        if (environment.getLifeForm(row + 1, col) != null) {
-
-          environment.getLifeForm(row, col).attack(environment.getLifeForm(row + 1, col));
-          System.out.println("attack performed");
-        } else {
-          System.out.println("Nothing there to attack");
+            }
+          }
         }
       }
       if (dir == 3) {
-        if (environment.getLifeForm(row, col - 1) != null) {
+        for (int i = row; i < environment.getNumRows(); i++) {
+          if (environment.getLifeForm(i + 1, col) != null) {
+            double x = environment.getDistance(row, col, i, col);
+            if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
+              environment.getLifeForm(row, col).attack(environment.getLifeForm(i, col), (int) x);
 
-          environment.getLifeForm(row, col).attack(environment.getLifeForm(row, col - 1));
-          System.out.println("attack performed");
-        } else {
-          System.out.println("Nothing there to attack");
+            }
+          }
         }
       }
+
+      if (dir == 2) {
+        for (int i = col; i > 0; i++) {
+          if (environment.getLifeForm(row, i - 1) != null) {
+            double x = environment.getDistance(row, col, row, i);
+            if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
+              environment.getLifeForm(row, col).attack(environment.getLifeForm(row, i), (int) x);
+
+            }
+          }
+        }
+      }
+
     }
 
   }
