@@ -1,5 +1,4 @@
 
-
 # Lab 5 Description
 
 Please write a brief description here.
@@ -57,5 +56,6 @@ of class.
 | 2 | 5PM - 5:30PM, 10/10/2021 | Discord | All Members | Discuss splitting up work|
 | 3 | 2PM - 3PM | In class | All Members | Discuss splitting up work|
 | 4 | 1PM - 2PM | In class | All Members | Discuss wrapping up Lab 4 | 
+| 5 | 6PM - 8:30PM, 11/14/2021 | Discord | All Members | Discuss Lab 6 issues and worked through it together |
 
 
