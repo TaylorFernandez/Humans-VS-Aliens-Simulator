@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import commands.Commands;
+import commands.DropCommand;
 import commands.FaceEastCommand;
 import commands.FaceNorthCommand;
 import commands.FaceSouthCommand;
@@ -30,6 +31,7 @@ public class Invoker extends JFrame implements ActionListener {
 	Environment env;
 	Commands moveCommand;
 	Commands faceDirection;
+	Commands dropCommand;
 	GameUI ui;
 
 	public Invoker(Environment e) {
@@ -186,6 +188,16 @@ public class Invoker extends JFrame implements ActionListener {
 			if (e.getSource() == null) {
 			move.setText("Select a direction"); 
 			}
+		if(e.getSource() == drop) {
+		  dropCommand = new DropCommand(env, ui);
+		  
+		  try {
+        dropCommand.execute();
+      } catch (WeaponException | EnvironmentException e1) {
+        // TODO Auto-generated catch block
+        e1.printStackTrace();
+      }
+		}
 		}
 
 	}

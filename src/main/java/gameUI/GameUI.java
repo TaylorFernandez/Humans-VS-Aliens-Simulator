@@ -169,8 +169,8 @@ public class GameUI extends ImageCreator implements ActionListener {
  
  public void checkMultipleHighlights() {
    //makes sure two cells cant be highlighted at once
-   if(highlightedButtons.size() == 2) {
-     drawCell(highlightedButtons.get(0).getRow(), highlightedButtons.get(0).getCol(), environ, highlightedButtons.get(0));
+   if(highlightedButtons.size() > 1) {
+     buttonArray[highlightedButtons.get(0).getRow()][highlightedButtons.get(0).getCol()].setBorder(BorderFactory.createLineBorder(Color.BLACK));
      highlightedButtons.get(0).setHighlighted(false);
      highlightedButtons.remove(0);
    }
