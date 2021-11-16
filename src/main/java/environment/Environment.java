@@ -42,7 +42,10 @@ public class Environment {
   }
   
   public gameCell getGameCell(int row, int col) {
-    return ui.getCell(row, col);
+    if(ui != null) {
+      return ui.getCell(row, col);
+    }
+    return null;
   }
   
   public Cell getCell(int row, int col) {
