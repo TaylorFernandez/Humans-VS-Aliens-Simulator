@@ -54,6 +54,7 @@ Answer: Other members will decide how much of the grade the member should miss b
 | Gameboard | Yong Hang Lin | 11/17/2021 | 11/12/2021 - Got cool sprites for gameboard |
 | Commands | Evan Paules | 11/17/2021 | 11/13/2021 - Wrote a command |
 | Invoker | Luke Henry & Tommy Prusak | 11/17/2021 | 11/8/2021 - Added commands to Invoker |
+| README | Luke Henry | 11/17/2021 | 11/16/2021 - Updated README |
 
 # Team Meeting Log
 
