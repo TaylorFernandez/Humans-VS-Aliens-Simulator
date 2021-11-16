@@ -3,7 +3,7 @@
 Add a face to our code, create a UI that allows the user to see a gameboard full of humans, aliens an Weapons! The lifeforms on the board are able to navigate via the user use the remote control, conisting of: directional movement/looking buttons, along with attack, reload, drop weapon, and pick up weapon.
 
 # Lab 6 UML 
-![Lab 6 UML](Lab6UML.png)
+![Lab 6 UML](Images/Lab6UML.png)
 # Team Contract
 
 Team Contract
