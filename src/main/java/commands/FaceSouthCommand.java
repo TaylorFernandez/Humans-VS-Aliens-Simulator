@@ -10,6 +10,9 @@ public class FaceSouthCommand implements Commands {
     environment = e;
   }
 
+  /*
+   * excecutes the face south command
+   */
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();

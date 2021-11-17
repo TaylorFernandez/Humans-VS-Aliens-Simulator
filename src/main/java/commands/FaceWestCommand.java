@@ -10,6 +10,9 @@ public class FaceWestCommand implements Commands {
     environment = e;
   }
 
+  /*
+   * excecutes the face west command
+   */
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();

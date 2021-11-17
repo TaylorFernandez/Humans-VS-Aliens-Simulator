@@ -11,7 +11,9 @@ public class FaceNorthCommand implements Commands {
   public FaceNorthCommand(Environment e) {
     environment = e;
   }
-
+  /*
+   * excecutes the face north command
+   */
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();

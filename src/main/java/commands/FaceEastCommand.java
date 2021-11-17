@@ -10,6 +10,9 @@ public class FaceEastCommand implements Commands {
     environment = e;
   }
 
+  /*
+   * excecutes the face east command
+   */
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();

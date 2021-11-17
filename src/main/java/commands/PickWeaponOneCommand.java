@@ -12,6 +12,9 @@ public class PickWeaponOneCommand implements Commands {
     environment = e;
   }
 
+  /*
+   * excecutes the pick up weapon 1 command
+   */
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
