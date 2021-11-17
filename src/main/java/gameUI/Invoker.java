@@ -137,7 +137,7 @@ public class Invoker extends JFrame implements ActionListener {
 	int next = 0;
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void actionPerformed(ActionEvent e) {  
 
 		if (e.getSource() == north) {
 			faceDirection = new FaceNorthCommand(env);

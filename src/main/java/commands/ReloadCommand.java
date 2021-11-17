@@ -21,4 +21,4 @@ public class ReloadCommand implements Commands {
 						System.out.println("After Reload: " + environment.getLifeForm(row, col).getWeapon().getCurrentAmmo());
 				}
 		}
-}
+} 
