@@ -123,6 +123,21 @@ public class TestLifeForm {
 	  assertEquals(-4, form.getRow());
 	  assertEquals(-5, form.getCol());
   }
+  
+  //Lab 6 tests
+  
+  @Test
+  public void defaultDirection() {
+	  MockLifeForm form = new MockLifeForm("Bob", 100, 3);
+	  assertEquals(0, form.getDirection());
+  }
+  
+  @Test
+  public void changeDirection() {
+	  MockLifeForm form = new MockLifeForm("Bob", 100, 3);
+	  form.setDirection(1);
+	  assertEquals(1, form.getDirection());
+  }
 
 
 }
