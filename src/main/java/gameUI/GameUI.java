@@ -120,7 +120,11 @@ public class GameUI extends ImageCreator implements ActionListener {
 
   public void drawUIText(LifeForm form) {
     lifeformType.setText(form.getType());
-    lifeformWeapon1.setText(form.getWeaponType());
+    if(form.hasWeapon()!= false) {
+      lifeformWeapon1.setText(form.getWeaponType());
+    }else {
+      lifeformWeapon1.setText(" ");
+    }
   }
 
   /**

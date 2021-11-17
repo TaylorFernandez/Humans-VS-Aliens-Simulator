@@ -51,7 +51,7 @@ public class ImageCreator {
     }
     
     //sets the first weapon on the groujnd
-    if(environ.getCell(i,j).getWeaponsCount() != 0) {
+    if(environ.getCell(i,j).getWeaponsCount() != 0 && environ.getCell(i, j).getWeapon1() != null) {
       if(environ.getCell(i, j).getWeapon1().getClass() == PlasmaCannon.class) {
         drawer.setColor(new Color(0,0,255));
         drawer.fillRect(40,40,10,10);

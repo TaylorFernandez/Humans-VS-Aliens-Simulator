@@ -29,9 +29,8 @@ public class PickWeaponOneCommand implements Commands {
         environment.addWeapon(old, row, col);
         
       }else if(pickUp != null && form.hasWeapon() == false){
-        Weapon w = environment.getCell(row,col).getWeapon1();
-        environment.getLifeForm(row, col).pickUpWeapon(w);
-        environment.removeWeapon(w, row, col);
+        environment.getLifeForm(row, col).pickUpWeapon(pickUp);
+        environment.removeWeapon(pickUp, row, col);
       }
     }
     

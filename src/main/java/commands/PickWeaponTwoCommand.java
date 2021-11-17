@@ -20,15 +20,18 @@ public class PickWeaponTwoCommand implements Commands {
     
     System.out.print("Weapon 2");
     if (environment.getLifeForm(row, col) != null && environment.getWeapons(row, col).length == 2) {
-      Weapon[] weapons = environment.getWeapons(row, col);
-      Weapon pickUp = weapons[1];
+      Weapon pickUp = environment.getCell(row, col).getWeapon2();
+      
       if (pickUp != null) {
         Weapon old = environment.getLifeForm(row, col).dropWeapon();
         environment.getLifeForm(row, col).pickUpWeapon(pickUp);
         environment.removeWeapon(pickUp, row, col);
         environment.addWeapon(old, row, col);
-        ui.drawCell(form.getRow(), form.getCol());
-        ui.drawUIText(form);
+        
+        if(ui != null) {
+          ui.drawCell(form.getRow(), form.getCol());
+          ui.drawUIText(form);
+        }
       }
     }
   }

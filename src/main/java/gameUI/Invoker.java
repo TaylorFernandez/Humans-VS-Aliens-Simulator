@@ -251,18 +251,19 @@ public class Invoker extends JFrame implements ActionListener {
 	  
 	  Object[] options = new Object[3];
 	  if(env.getCell(row, col).getWeapon1() != null) {
-	    options[0] = env.getCell(row, col).getWeapon1().toString();
-	  }else {
-	    options[0] = "Empty";
-	  }
-	  
-	  if(env.getCell(row, col).getWeapon2() != null) {
-	    options[1] = env.getCell(row, col).getWeapon2().toString();
+	    options[1] = env.getCell(row, col).getWeapon1().toString();
 	  }else {
 	    options[1] = "Empty";
 	  }
 	  
+	  if(env.getCell(row, col).getWeapon2() != null) {
+	    options[0] = env.getCell(row, col).getWeapon2().toString();
+	  }else {
+	    options[0] = "Empty";
+	  }
+	  
 	  options[2] = "Cancel";
+	  
 	  int optionPicked = choice.showOptionDialog(frame, "Which weapon do you want to pickup?", "Weapon Choice", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 	  System.out.print(optionPicked);
 	  
