@@ -264,7 +264,7 @@ public class Invoker extends JFrame implements ActionListener {
 	  
 	  options[2] = "Cancel";
 	  
-	  int optionPicked = choice.showOptionDialog(frame, "Which weapon do you want to pickup?", "Weapon Choice", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
+	  int optionPicked = choice.showOptionDialog(frame, "Which weapon do you want to pickup?", "Weapon Choice", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("assets/UI Elements/banana.jpg"), options, options[0]);
 	  System.out.print(optionPicked);
 	  
 	  if(optionPicked == 1) {
