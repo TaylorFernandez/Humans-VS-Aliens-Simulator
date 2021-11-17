@@ -1,6 +1,9 @@
 package commands;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
@@ -12,9 +15,11 @@ import gameUI.GameUI;
 import lifeform.Human;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;
+import weapon.ChainGun;
 import weapon.MockGenericWeapon;
 import weapon.Pistol;
 import weapon.PowerBooster;
+import weapon.Weapon;
 
 public class TestCommands {
 
@@ -175,6 +180,54 @@ public class TestCommands {
 		lf4.setDirection(3);
 		assertEquals(3, lf4.getDirection());
 	}
+	
+	@Test
+  public void testDropWeapon() {
+    Environment environment = Environment.getEnvironment(10, 10);
+    LifeForm bob = new MockLifeForm("Bobby", 100, 10);
+    Pistol pistol = new Pistol();
+    
+    bob.pickUpWeapon(pistol);
+    environment.addLifeForm(bob, 4, 1);
+    environment.changeSelectedCell(4, 1);
+    
+    assertEquals(pistol, bob.dropWeapon());
+  }
+	
+	@Test
+  public void testPickUpWeapon() {
+    Environment environment = Environment.getEnvironment(10, 10);
+    LifeForm bob = new MockLifeForm("Bobby", 100, 10);
+    environment.addLifeForm(bob, 4, 1);
+    environment.changeSelectedCell(4, 1);
+    
+    Pistol pistol = new Pistol();
+    ChainGun chainGun = new ChainGun();
+    environment.addWeapon(pistol, 4, 1);
+    environment.addWeapon(chainGun, 4, 1);
+    
+    Weapon[] weapons = environment.getWeapons(4, 1);
+    
+    //pick up pistol
+    PickWeaponOneCommand pickUp1 = new PickWeaponOneCommand(environment);
+    pickUp1.execute();
+    
+    //pick up chainGun
+    PickWeaponTwoCommand pickUp2 = new PickWeaponTwoCommand(environment);
+    pickUp2.execute();
+
+    assertTrue(bob.hasWeapon());
+    assertNull(weapons);
+    assertEquals(chainGun, bob.dropWeapon());
+    
+    //No weapons will be picked up
+    LifeForm monkey = new MockLifeForm("tommy", 100, 10);
+    environment.addLifeForm(monkey, 5, 5);
+    environment.changeSelectedCell(5, 5);
+    assertFalse(monkey.hasWeapon());
+    pickUp2.execute();
+    assertFalse(monkey.hasWeapon());
+  }
 	
 //	@Test
 //	public void testDropWithSpace() {
