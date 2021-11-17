@@ -25,6 +25,7 @@ import commands.FaceWestCommand;
 import commands.MoveCommand;
 import commands.PickWeaponOneCommand;
 import commands.PickWeaponTwoCommand;
+import commands.ReloadCommand;
 import environment.Environment;
 import exceptions.EnvironmentException;
 import exceptions.WeaponException;
@@ -40,6 +41,7 @@ public class Invoker extends JFrame implements ActionListener {
 	Commands Weapon1;
 	Commands Weapon2;
 	Commands Attack;
+	Commands Reload;
 	GameUI ui;
 
 	public Invoker(Environment e) {
@@ -48,6 +50,7 @@ public class Invoker extends JFrame implements ActionListener {
 		Weapon1 = new PickWeaponOneCommand(env);
 		Weapon2 = new PickWeaponTwoCommand(env);
 		Attack = new AttackCommand(env);
+		Reload = new ReloadCommand(env);
 
 
 		setTitle("DIE");
@@ -224,7 +227,20 @@ public class Invoker extends JFrame implements ActionListener {
       // TODO Auto-generated catch block
       e1.printStackTrace();
     }
+	  
 	}
+	
+	  if (e.getSource() == reload) {
+		  try {
+			Reload.execute();
+		} catch (WeaponException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (EnvironmentException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	  }
 
 }
 	
