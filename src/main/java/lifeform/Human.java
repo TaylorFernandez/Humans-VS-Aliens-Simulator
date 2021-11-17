@@ -43,8 +43,8 @@ public class Human extends LifeForm {
   public String getType() {
     return "Human";
   }
-  
-@Override
+
+  @Override
   public void takeHit(int damage) {
     int i = 0;
     int temp = damage;

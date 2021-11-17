@@ -7,7 +7,7 @@ import weapon.Weapon;
 
 public class PickWeaponTwoCommand implements Commands {
   private Environment environment;
-  
+
   public PickWeaponTwoCommand(Environment e) {
     environment = e;
   }
@@ -17,18 +17,18 @@ public class PickWeaponTwoCommand implements Commands {
     int col = environment.getSelectedCol();
     LifeForm form = environment.getCell(row, col).getLifeForm();
     GameUI ui = environment.getGameUI();
-    
+
     System.out.print("Weapon 2");
     if (environment.getLifeForm(row, col) != null && environment.getWeapons(row, col).length == 2) {
       Weapon pickUp = environment.getCell(row, col).getWeapon2();
-      
+
       if (pickUp != null) {
         Weapon old = environment.getLifeForm(row, col).dropWeapon();
         environment.getLifeForm(row, col).pickUpWeapon(pickUp);
         environment.removeWeapon(pickUp, row, col);
         environment.addWeapon(old, row, col);
-        
-        if(ui != null) {
+
+        if (ui != null) {
           ui.drawCell(form.getRow(), form.getCol());
           ui.drawUIText(form);
           ui.printStats(environment.getGameCell(row, col));

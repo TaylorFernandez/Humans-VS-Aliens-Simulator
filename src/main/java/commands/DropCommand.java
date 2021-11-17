@@ -5,26 +5,27 @@ import gameUI.GameUI;
 import gameUI.gameCell;
 import lifeform.LifeForm;
 
-public class DropCommand implements Commands{
+public class DropCommand implements Commands {
   protected Environment environment;
-  protected GameUI  ui;
-    public DropCommand(Environment env) {
-      environment = env;
-      ui = env.getGameUI();
-    }
-        
-    public void execute() {
-      if(ui.getHighlighted() != null) {
-        gameCell cell = ui.getHighlighted();
-        LifeForm form = environment.getCell(cell.getRow(), cell.getCol()).getLifeForm();
-        if(form.hasWeapon() == true && environment.getCell(cell.getRow(), cell.getCol()).getWeaponsCount() < 2) {
-          environment.DropWeapon(form,  ui);
-          if(ui != null) {
-            ui.drawCell(form.getRow(), form.getCol());
-            ui.drawUIText(form);
-            ui.printStats(cell);
-          }
+  protected GameUI ui;
+
+  public DropCommand(Environment env) {
+    environment = env;
+    ui = env.getGameUI();
+  }
+
+  public void execute() {
+    if (ui.getHighlighted() != null) {
+      gameCell cell = ui.getHighlighted();
+      LifeForm form = environment.getCell(cell.getRow(), cell.getCol()).getLifeForm();
+      if (form.hasWeapon() == true && environment.getCell(cell.getRow(), cell.getCol()).getWeaponsCount() < 2) {
+        environment.DropWeapon(form, ui);
+        if (ui != null) {
+          ui.drawCell(form.getRow(), form.getCol());
+          ui.drawUIText(form);
+          ui.printStats(cell);
         }
       }
     }
+  }
 }

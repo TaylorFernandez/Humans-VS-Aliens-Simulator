@@ -8,6 +8,7 @@ import weapon.Weapon;
 
 /**
  * an environment that holds everything
+ * 
  * @author lh2565
  */
 public class Environment {
@@ -40,14 +41,14 @@ public class Environment {
   public void setUI(GameUI ui) {
     this.ui = ui;
   }
-  
+
   public gameCell getGameCell(int row, int col) {
-    if(ui != null) {
+    if (ui != null) {
       return ui.getCell(row, col);
     }
     return null;
   }
-  
+
   public Cell getCell(int row, int col) {
     return cells[row][col];
   }
@@ -104,16 +105,17 @@ public class Environment {
   }
 
   public boolean DropWeapon(LifeForm form, GameUI ui) {
-    if(form != null && form.hasWeapon()) {
+    if (form != null && form.hasWeapon()) {
       Weapon temp = form.dropWeapon();
       addWeapon(temp, form.getRow(), form.getCol());
-      if(ui != null) {
+      if (ui != null) {
         ui.drawCell(form.getRow(), form.getCol());
       }
       return true;
     }
     return false;
   }
+
   /**
    * gets the distance between two points
    *
@@ -216,15 +218,15 @@ public class Environment {
     selectedRow = row;
     selectedCol = col;
   }
-  
+
   public int getSelectedCol() {
     return selectedCol;
   }
-  
+
   public int getSelectedRow() {
     return selectedRow;
   }
-  
+
   public GameUI getGameUI() {
     return ui;
   }
@@ -248,7 +250,7 @@ public class Environment {
           if ((row - i) >= 0 && cells[row - i][col].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row - i][col].addLifeForm(lifeform);
-            if(ui != null) {
+            if (ui != null) {
               ui.drawCell(row, col);
               ui.drawCell(row - i, col);
             }
@@ -262,7 +264,7 @@ public class Environment {
           if ((col + i) < numCol && cells[row][col + i].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row][col + i].addLifeForm(lifeform);
-            if(ui != null) {
+            if (ui != null) {
               ui.drawCell(row, col);
               ui.drawCell(row, col + i);
             }
@@ -276,7 +278,7 @@ public class Environment {
           if ((row + i) < numRow && cells[row + i][col].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row + i][col].addLifeForm(lifeform);
-            if(ui != null) {
+            if (ui != null) {
               ui.drawCell(row, col);
               ui.drawCell(row + i, col);
             }
@@ -290,7 +292,7 @@ public class Environment {
           if ((col - i) >= 0 && cells[row][col - i].getLifeForm() == null) {
             cells[row][col].removeLifeForm();
             cells[row][col - i].addLifeForm(lifeform);
-            if(ui != null) {
+            if (ui != null) {
               ui.drawCell(row, col);
               ui.drawCell(row, col - i);
             }
@@ -305,15 +307,14 @@ public class Environment {
     }
     return false;
   }
-  
+
   public void checkDead(int row, int col) {
-   if(cells[row][col].getLifeForm().getCurrentLifePoints()==0) {
-     removeLifeForm(row,col);
-     if(ui != null) {
-       ui.drawCell(row, col);
-     }
-   }
-     
-    
- }
+    if (cells[row][col].getLifeForm().getCurrentLifePoints() == 0) {
+      removeLifeForm(row, col);
+      if (ui != null) {
+        ui.drawCell(row, col);
+      }
+    }
+
+  }
 }
