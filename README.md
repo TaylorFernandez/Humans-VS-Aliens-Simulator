@@ -69,7 +69,9 @@ Answer: Other members will decide how much of the grade the member should miss b
 | Sprites | Yong Hang Lin | 11/17/2021 | 11/16/2021 - Created more fun sprites |
 | Gameboard | Luke Henry | 11/17/2021 | 11/16/2021 - Worked to print ammo and health of a cell |
 | Gameboard | Taylor Fernandez | 11/17/2021 | 11/12/2021 - Final touches with highlighting cells and displaying stats |
-| Lab6 | Luke, Yong, Taylor, Tommy | 11/17/2021 | 11/16/2021 - Spent 5 hours together finishing lab |
+| Lab6 | Luke, Yong, Taylor, Tommy | 11/17/2021 | 11/16/2021 - Spent 9.5 hours together finishing lab |
+| Checkstyle | Luke, Yong, Taylor, Tommy | 11/17/2021 | 11/16/2021 - Worked Checkstyle errors |
+| Checkstyle | Luke, Tommy | 11/17/2021 | 11/16/2021 - Finished Checkstyle @1:33AM |
 
 # Team Meeting Log
 
@@ -84,6 +86,7 @@ of class.
 | 4 | 1PM - 2PM | In class | All Members | Discuss wrapping up Lab 4 | 
 | 5 | 2:50PM - 3PM, 11/10/2021 | MCT158 | All Members | Talking out a couple small bugs and how we will handle them | 
 | 6 | 6PM - 8:30PM, 11/14/2021 | Discord | All Members | Discuss Lab 6 issues and worked through it together |
-| 7 | 4PM - 9:30PM, 11/16/2021 | Discord | Tommy, Yong, Luke, Taylor | Hammering out final bugs |
+| 7 | 4PM - 11:59PM, 11/16/2021 | Discord | Tommy, Yong, Luke, Taylor | Hammering out final bugs |
+| 8 | 12AM - 1:35AM, 11/16/2021 | Discord | Tommy, Luke | Checkstyle touch up |
 
 
