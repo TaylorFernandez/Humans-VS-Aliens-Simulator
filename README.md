@@ -30,6 +30,15 @@ Answer: Other members will decide how much of the grade the member should miss b
 
 6) How will you track who is responsible for which tasks and the work progress?
 
+#Team roles
+
+| Name | Role | 
+| Taylor Fernandez | A |
+| Yong Hang Lin | B |
+| Luke Henry | C |
+|Tommy Prusak | C |
+| Evan Paules | D |
+
 | Task | Assignee | Deadline | Progress (date) |
 |---|---|---|---|
 | Scope/Stabilizer| Evan Paules | 10/20/2021 | Finished |
