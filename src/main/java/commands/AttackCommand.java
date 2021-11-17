@@ -3,12 +3,15 @@ package commands;
 import environment.Environment;
 import exceptions.EnvironmentException;
 import exceptions.WeaponException;
+import gameUI.GameUI;
 
 public class AttackCommand implements Commands {
 	private Environment environment;
+	GameUI xd;
 
 	public AttackCommand(Environment e) {
 		environment = e;
+		xd = e.getGameUI();
 	}
 
 	@Override
@@ -24,6 +27,7 @@ public class AttackCommand implements Commands {
 						if (environment.getLifeForm(row, col).getWeapon().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(i, col), (int) x);
 							environment.checkDead(row, col);
+							xd.printStats(xd.getCell(row, col));
 							break;
 						} 
 					}
@@ -36,6 +40,7 @@ public class AttackCommand implements Commands {
 						if (environment.getLifeForm(row, col).getWeapon().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(row, i), (int) x);
 							environment.checkDead(row, col);
+							xd.printStats(xd.getCell(row, col));
 							break;
 
 						}
@@ -49,6 +54,7 @@ public class AttackCommand implements Commands {
 						if (environment.getLifeForm(row, col).getWeapon().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(i, col), (int) x);
 							environment.checkDead(row, col);
+							xd.printStats(xd.getCell(row, col));
 							System.out.print(environment.getLifeForm(i, col).getCurrentLifePoints());
 							break;
 
@@ -64,6 +70,7 @@ public class AttackCommand implements Commands {
 						if (environment.getLifeForm(row, col).getWeapon().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(row, i), (int) x);
 							environment.checkDead(row, col);
+							xd.printStats(xd.getCell(row, col));
 							break;
 
 						}

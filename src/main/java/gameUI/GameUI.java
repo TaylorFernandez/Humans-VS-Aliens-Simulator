@@ -34,6 +34,7 @@ public class GameUI extends ImageCreator implements ActionListener {
   JLabel lifeformWeapon1;
   JLabel lifeform;
   JButton test;
+  JLabel health, ammo;
   
   int oldRow, oldCol, newRow, newCol;
  
@@ -81,6 +82,17 @@ public class GameUI extends ImageCreator implements ActionListener {
     c.gridx = 0;
     c.gridy = 2;
     top.add(lifeformWeapon1, c);
+    
+    health = new JLabel(" ");
+    ammo = new JLabel(" ");
+    
+    c.gridx = 1;
+    c.gridy = 1;
+    top.add(health, c);
+    
+    c.gridx = 1;
+    c.gridy = 2;
+    top.add(ammo, c);
     
     buttonArray = new gameCell[row][col];
 
@@ -138,6 +150,7 @@ public class GameUI extends ImageCreator implements ActionListener {
    //highlights the cell if "cell" is not already highlighted
    if(cell.isHighlighted == false) {
      cell.setHighlighted(true);
+     printStats(cell);
      environ.changeSelectedCell(cell.getRow(), cell.getCol());
      highlightedButtons.add(cell);
      //movePrediction(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getMaxSpeed(), environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getDirection(), cell);
@@ -154,6 +167,9 @@ public class GameUI extends ImageCreator implements ActionListener {
      lifeformType.setText("No cell selected!");
      lifeformWeapon1.setText("No cell selected!");
      lifeform.setIcon(new ImageIcon("assets/Environment/Environment.png"));
+     
+     health.setText(" ");
+     ammo.setText(" ");
      
      highlightedButtons.remove(cell);
      cell.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -175,6 +191,15 @@ public class GameUI extends ImageCreator implements ActionListener {
 //   }
   
 }
+public void printStats(gameCell cell) {
+	 
+	 if(cell.isHighlighted() == true) {
+		 health.setText("              Health: " + String.valueOf(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getCurrentLifePoints()));
+		 if(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().hasWeapon() == true) {
+			 ammo.setText("             Ammo: " + String.valueOf(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getWeapon().getCurrentAmmo()));
+		 }
+	 }
+ }
  
  
  public void checkMultipleHighlights() {
@@ -264,9 +289,11 @@ public class GameUI extends ImageCreator implements ActionListener {
    if(highlightedButtons.size() != 0) {
      return highlightedButtons.get(0);
    }
-   
    return null;
  }
+ 
+ //display ammo and health
+ 
  
  public void makeLegend(JPanel test) {
    GridBagConstraints c = new GridBagConstraints();
