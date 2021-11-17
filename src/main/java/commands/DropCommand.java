@@ -11,7 +11,7 @@ public class DropCommand implements Commands {
 
   public DropCommand(Environment env) {
     environment = env;
-    ui = env.getGameUI();
+    ui = env.getGameUi();
   }
   
   /*
@@ -24,7 +24,7 @@ public class DropCommand implements Commands {
     		  cell.getCol()).getLifeForm();
       if (form.hasWeapon() == true && 
     		  environment.getCell(cell.getRow(), cell.getCol()).getWeaponsCount() < 2) {
-        environment.DropWeapon(form, ui);
+        environment.dropWeapon(form, ui);
         if (ui != null) {
           ui.drawCell(form.getRow(), form.getCol());
           ui.drawUIText(form);

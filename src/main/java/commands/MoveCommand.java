@@ -16,14 +16,14 @@ public class MoveCommand implements Commands {
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
-    GameUI ui = environment.getGameUI();
+    GameUI ui = environment.getGameUi();
     if (ui != null) {
       cell = environment.getGameCell(row, col);
     }
 
     if (environment.getLifeForm(row, col) != null) {
       if (ui != null) {
-        environment.getGameUI().highlight(cell);
+        environment.getGameUi().highlight(cell);
       }
 
       int x = environment.getCell(row, col).getLifeForm().getDirection();

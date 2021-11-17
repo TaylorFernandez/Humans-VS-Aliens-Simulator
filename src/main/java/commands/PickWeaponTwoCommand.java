@@ -19,7 +19,7 @@ public class PickWeaponTwoCommand implements Commands {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
     LifeForm form = environment.getCell(row, col).getLifeForm();
-    GameUI ui = environment.getGameUI();
+    GameUI ui = environment.getGameUi();
 
     System.out.print("Weapon 2");
     if (environment.getLifeForm(row, col) != null && environment.getWeapons(row, col).length == 2) {

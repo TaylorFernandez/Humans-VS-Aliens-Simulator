@@ -17,7 +17,7 @@ public class FaceNorthCommand implements Commands {
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
-    GameUI ui = environment.getGameUI();
+    GameUI ui = environment.getGameUi();
 
     if (environment.getLifeForm(row, col) != null) {
       environment.getLifeForm(row, col).setDirection(0);

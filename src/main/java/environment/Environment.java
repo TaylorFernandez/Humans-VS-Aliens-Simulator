@@ -19,7 +19,7 @@ public class Environment {
   GameUI ui;
   int selectedCol = -1;
   int selectedRow = -1;
-  Weapon[] w = new Weapon[2];
+  Weapon[] weapon = new Weapon[2];
 
   /**
    * constuctor
@@ -38,10 +38,16 @@ public class Environment {
     }
   }
 
-  public void setUI(GameUI ui) {
+  public void setUi(GameUI ui) {
     this.ui = ui;
   }
 
+  /**
+   * gets Game Cell
+   * 
+   * @author lh2565
+   */
+  
   public gameCell getGameCell(int row, int col) {
     if (ui != null) {
       return ui.getCell(row, col);
@@ -60,16 +66,16 @@ public class Environment {
    */
 
   public Weapon[] getWeapons(int row, int col) {
-    if (w.length == 0) {
-      w[0] = cells[row][col].getWeapon1();
+    if (weapon.length == 0) {
+      weapon[0] = cells[row][col].getWeapon1();
     }
 
-    if (w.length == 1) {
-      w[0] = cells[row][col].getWeapon1();
-      w[1] = cells[row][col].getWeapon2();
+    if (weapon.length == 1) {
+      weapon[0] = cells[row][col].getWeapon1();
+      weapon[1] = cells[row][col].getWeapon2();
     }
 
-    return w;
+    return weapon;
   }
 
   public int getNumRows() {
@@ -99,12 +105,16 @@ public class Environment {
   public boolean addWeapon(Weapon w, int row, int col) {
     return cells[row][col].addWeapon(w);
   }
-
+  
   public Weapon removeWeapon(Weapon weapon, int row, int col) {
     return cells[row][col].removeWeapon(weapon);
   }
 
-  public boolean DropWeapon(LifeForm form, GameUI ui) {
+  /**
+   *drops weapon
+   */  
+  
+  public boolean dropWeapon(LifeForm form, GameUI ui) {
     if (form != null && form.hasWeapon()) {
       Weapon temp = form.dropWeapon();
       addWeapon(temp, form.getRow(), form.getCol());
@@ -227,7 +237,7 @@ public class Environment {
     return selectedRow;
   }
 
-  public GameUI getGameUI() {
+  public GameUI getGameUi() {
     return ui;
   }
 
@@ -245,69 +255,74 @@ public class Environment {
 
     if (lifeform != null && speed > 0) {
       switch (dir) {
-      case 0: // Moving North
-        for (int i = speed; i > 0; i--) {
-          if ((row - i) >= 0 && cells[row - i][col].getLifeForm() == null) {
-            cells[row][col].removeLifeForm();
-            cells[row - i][col].addLifeForm(lifeform);
-            if (ui != null) {
-              ui.drawCell(row, col);
-              ui.drawCell(row - i, col);
+        case 0: // Moving North
+          for (int i = speed; i > 0; i--) {
+            if ((row - i) >= 0 && cells[row - i][col].getLifeForm() == null) {
+              cells[row][col].removeLifeForm();
+              cells[row - i][col].addLifeForm(lifeform);
+              if (ui != null) {
+                ui.drawCell(row, col);
+                ui.drawCell(row - i, col);
+              }
+              lifeform.setLocation(row - i, col);
+              return true;
             }
-            lifeform.setLocation(row - i, col);
-            return true;
           }
-        }
-        break;
-      case 1: // Moving East
-        for (int i = speed; i > 0; i--) {
-          if ((col + i) < numCol && cells[row][col + i].getLifeForm() == null) {
-            cells[row][col].removeLifeForm();
-            cells[row][col + i].addLifeForm(lifeform);
-            if (ui != null) {
-              ui.drawCell(row, col);
-              ui.drawCell(row, col + i);
+          break;
+        case 1: // Moving East
+          for (int i = speed; i > 0; i--) {
+            if ((col + i) < numCol && cells[row][col + i].getLifeForm() == null) {
+              cells[row][col].removeLifeForm();
+              cells[row][col + i].addLifeForm(lifeform);
+              if (ui != null) {
+                ui.drawCell(row, col);
+                ui.drawCell(row, col + i);
+              }
+              lifeform.setLocation(row, col + i);
+              return true;
             }
-            lifeform.setLocation(row, col + i);
-            return true;
           }
-        }
-        break;
-      case 2: // Moving South
-        for (int i = speed; i > 0; i--) {
-          if ((row + i) < numRow && cells[row + i][col].getLifeForm() == null) {
-            cells[row][col].removeLifeForm();
-            cells[row + i][col].addLifeForm(lifeform);
-            if (ui != null) {
-              ui.drawCell(row, col);
-              ui.drawCell(row + i, col);
+          break;
+        case 2: // Moving South
+          for (int i = speed; i > 0; i--) {
+            if ((row + i) < numRow && cells[row + i][col].getLifeForm() == null) {
+              cells[row][col].removeLifeForm();
+              cells[row + i][col].addLifeForm(lifeform);
+              if (ui != null) {
+                ui.drawCell(row, col);
+                ui.drawCell(row + i, col);
+              }
+              lifeform.setLocation(row + i, col);
+              return true;
             }
-            lifeform.setLocation(row + i, col);
-            return true;
           }
-        }
-        break;
-      case 3: // Moving West
-        for (int i = speed; i > 0; i--) {
-          if ((col - i) >= 0 && cells[row][col - i].getLifeForm() == null) {
-            cells[row][col].removeLifeForm();
-            cells[row][col - i].addLifeForm(lifeform);
-            if (ui != null) {
-              ui.drawCell(row, col);
-              ui.drawCell(row, col - i);
+          break;
+        case 3: // Moving West
+          for (int i = speed; i > 0; i--) {
+            if ((col - i) >= 0 && cells[row][col - i].getLifeForm() == null) {
+              cells[row][col].removeLifeForm();
+              cells[row][col - i].addLifeForm(lifeform);
+              if (ui != null) {
+                ui.drawCell(row, col);
+                ui.drawCell(row, col - i);
+              }
+              lifeform.setLocation(row, col - i);
+              return true;
             }
-            lifeform.setLocation(row, col - i);
-            return true;
           }
-        }
-        break;
-      default:
-        break;
+          break;
+        default:
+          break;
       }
     }
     return false;
   }
 
+  /**
+   * checks if dead
+   *
+   */
+  
   public void checkDead(int row, int col) {
     if (cells[row][col].getLifeForm().getCurrentLifePoints() == 0) {
       removeLifeForm(row, col);

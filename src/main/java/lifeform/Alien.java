@@ -10,12 +10,26 @@ public class Alien extends LifeForm implements TimerObserver {
   int currentLifePoints;
   RecoveryBehavior xd;
 
+  /**
+   * 
+   * @param name
+   * @param maxHp
+   */
+  
   public Alien(String name, int maxHp) {
     super(name, maxHp, 10);
     maxLifePoints = maxHp;
     maxSpeed = 2;
   }
 
+  /**
+   * 
+   * @param name
+   * @param maxHp
+   * @param behavior
+   * @throws RecoveryRateException
+   */
+  
   public Alien(String name, int maxHp, RecoveryBehavior behavior) throws RecoveryRateException {
     this(name, maxHp);
     xd = behavior;
@@ -31,7 +45,8 @@ public class Alien extends LifeForm implements TimerObserver {
    * @param recoveryRate
    * @throws RecoveryRateException
    */
-  public Alien(String name, int maxHp, RecoveryBehavior behavior, int recoveryRate) throws RecoveryRateException {
+  public Alien(String name, int maxHp, RecoveryBehavior behavior, 
+      int recoveryRate) throws RecoveryRateException {
     this(name, maxHp);
     xd = behavior;
     maxSpeed = 3;

@@ -10,7 +10,7 @@ public class ReloadCommand implements Commands {
 
   public ReloadCommand(Environment e) {
     environment = e;
-    xd = e.getGameUI();
+    xd = e.getGameUi();
   }
 
   /*

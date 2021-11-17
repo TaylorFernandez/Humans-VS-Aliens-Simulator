@@ -11,7 +11,7 @@ public class AttackCommand implements Commands {
 
   public AttackCommand(Environment e) {
     environment = e;
-    xd = e.getGameUI();
+    xd = e.getGameUi();
   }
 
   @Override

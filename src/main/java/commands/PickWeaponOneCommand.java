@@ -19,7 +19,7 @@ public class PickWeaponOneCommand implements Commands {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
     LifeForm form = environment.getLifeForm(row, col);
-    GameUI ui = environment.getGameUI();
+    GameUI ui = environment.getGameUi();
 
     System.out.print("Weapon1");
     if (environment.getLifeForm(row, col) != null) {
