@@ -1,15 +1,20 @@
-package gameUI;
+package game;
 
 import javax.swing.JButton;
 
-public class gameCell extends JButton {
+public class GameCell extends JButton {
 
   private static final long serialVersionUID = 1L;
   public int row;
   public int col;
   public boolean isHighlighted = false;
 
-  public gameCell(int r, int c) {
+  /**
+   * builds the game cell
+   * @param r
+   * @param c
+   */
+  public GameCell(int r, int c) {
     super();
     row = r;
     col = c;

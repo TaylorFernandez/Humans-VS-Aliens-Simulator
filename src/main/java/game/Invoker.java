@@ -1,4 +1,4 @@
-package gameUI;
+package game;
 
 import java.awt.BorderLayout;
 
@@ -32,25 +32,37 @@ import exceptions.WeaponException;
 import lifeform.LifeForm;
 
 public class Invoker extends JFrame implements ActionListener {
-  JButton north, south, east, west, move, reload, pickup, drop, attack;
-  Commands c;
+  JButton north;
+  JButton south;
+  JButton east;
+  JButton west;
+  JButton move;
+  JButton reload;
+  JButton pickup;
+  JButton drop;
+  JButton attack;
+  Commands cee;
   Environment env;
   Commands moveCommand;
   Commands faceDirection;
   Commands dropCommand;
-  Commands Weapon1;
-  Commands Weapon2;
-  Commands Attack;
-  Commands Reload;
-  GameUI ui;
+  Commands weapon2;
+  Commands weaponTwo;
+  Commands attack2;
+  Commands reload2;
+  Game ui;
 
+  /**
+   * builds the remote
+   * @param e
+   */
   public Invoker(Environment e) {
     env = e;
     moveCommand = new MoveCommand(env);
-    Weapon1 = new PickWeaponOneCommand(env);
-    Weapon2 = new PickWeaponTwoCommand(env);
-    Attack = new AttackCommand(env);
-    Reload = new ReloadCommand(env);
+    weapon2 = new PickWeaponOneCommand(env);
+    weaponTwo = new PickWeaponTwoCommand(env);
+    attack2 = new AttackCommand(env);
+    reload2 = new ReloadCommand(env);
 
     setTitle("DIE");
     setLayout(new BorderLayout());
@@ -110,11 +122,19 @@ public class Invoker extends JFrame implements ActionListener {
     setVisible(true);
   }
 
-  public void setGameUI(GameUI ui) {
+  /**
+   * sets the user interface
+   * @param ui
+   */
+  public void setGame(Game ui) {
     this.ui = ui;
     dropCommand = new DropCommand(env);
   }
 
+  /**
+   * creates an image
+   * @return image icon
+   */
   public ImageIcon createImage() {
     BufferedImage exampleImage = new BufferedImage(50, 50, BufferedImage.TYPE_3BYTE_BGR);
     Graphics drawer = exampleImage.getGraphics();
@@ -129,12 +149,19 @@ public class Invoker extends JFrame implements ActionListener {
 
   }
 
+  /**
+   * sets a command
+   * @param cmd
+   */
   public void setCommand(Commands cmd) {
-    c = cmd;
+    cee = cmd;
   }
 
   int next = 0;
 
+  /**
+   * performs an action
+   */
   @Override
   public void actionPerformed(ActionEvent e) {
 
@@ -220,7 +247,7 @@ public class Invoker extends JFrame implements ActionListener {
 
     if (e.getSource() == attack) {
       try {
-        Attack.execute();
+        attack2.execute();
       } catch (WeaponException | EnvironmentException e1) {
         // TODO Auto-generated catch block
         e1.printStackTrace();
@@ -230,7 +257,7 @@ public class Invoker extends JFrame implements ActionListener {
 
     if (e.getSource() == reload) {
       try {
-        Reload.execute();
+        reload2.execute();
       } catch (WeaponException e1) {
         // TODO Auto-generated catch block
         e1.printStackTrace();
@@ -242,8 +269,12 @@ public class Invoker extends JFrame implements ActionListener {
 
   }
 
+  /**
+   * creates dialogue box
+   * @param frame
+   */
   public void createDialogueBox(JFrame frame) {
-    JOptionPane choice = new JOptionPane("Choose Weapon..");
+    
     int row = env.getSelectedRow();
     int col = env.getSelectedCol();
 
@@ -261,22 +292,25 @@ public class Invoker extends JFrame implements ActionListener {
     }
 
     options[2] = "Cancel";
-
-    int optionPicked = choice.showOptionDialog(frame, "Which weapon do you want to pickup?", "Weapon Choice",
-        JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, new ImageIcon("assets/UI Elements/dark.jpg"), options,
+    JOptionPane choice = new JOptionPane("Choose Weapon..");
+    
+    int optionPicked = choice.showOptionDialog(frame, 
+        "Which weapon do you want to pickup?", "Weapon Choice",
+        JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, 
+        new ImageIcon("assets/UI Elements/dark.jpg"), options,
         options[0]);
     System.out.print(optionPicked);
 
     if (optionPicked == 1) {
       try {
-        Weapon1.execute();
+        weapon2.execute();
       } catch (WeaponException | EnvironmentException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();
       }
     } else if (optionPicked == 0) {
       try {
-        Weapon2.execute();
+        weaponTwo.execute();
       } catch (WeaponException | EnvironmentException e) {
         // TODO Auto-generated catch block
         e.printStackTrace();

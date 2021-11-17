@@ -187,6 +187,10 @@ public abstract class LifeForm {
     return true;
   }
 
+  /**
+   * 
+   * @return weapon type
+   */
   public String getWeaponType() {
     if (weapon != null) {
       return weapon.toString();

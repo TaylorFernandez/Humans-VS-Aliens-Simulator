@@ -1,7 +1,7 @@
 package commands;
 
 import environment.Environment;
-import gameUI.GameUI;
+import game.Game;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
@@ -12,14 +12,14 @@ public class PickWeaponTwoCommand implements Commands {
     environment = e;
   }
 
-  /*
+  /**
    * excecutes the pick up weapon 2 command
    */
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
     LifeForm form = environment.getCell(row, col).getLifeForm();
-    GameUI ui = environment.getGameUi();
+    Game ui = environment.getGameUi();
 
     System.out.print("Weapon 2");
     if (environment.getLifeForm(row, col) != null && environment.getWeapons(row, col).length == 2) {
@@ -33,7 +33,7 @@ public class PickWeaponTwoCommand implements Commands {
 
         if (ui != null) {
           ui.drawCell(form.getRow(), form.getCol());
-          ui.drawUIText(form);
+          ui.drawUiText(form);
           ui.printStats(environment.getGameCell(row, col));
         }
       }

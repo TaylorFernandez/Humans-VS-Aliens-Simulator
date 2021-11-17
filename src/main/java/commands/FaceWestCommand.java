@@ -1,7 +1,7 @@
 package commands;
 
 import environment.Environment;
-import gameUI.GameUI;
+import game.Game;
 
 public class FaceWestCommand implements Commands {
   private Environment environment;
@@ -10,13 +10,13 @@ public class FaceWestCommand implements Commands {
     environment = e;
   }
 
-  /*
+  /**
    * excecutes the face west command
    */
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
-    GameUI ui = environment.getGameUi();
+    Game ui = environment.getGameUi();
 
     if (environment.getLifeForm(row, col) != null) {
       environment.getLifeForm(row, col).setDirection(3);

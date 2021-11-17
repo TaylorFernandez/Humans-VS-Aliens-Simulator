@@ -3,11 +3,11 @@ package commands;
 import environment.Environment;
 import exceptions.EnvironmentException;
 import exceptions.WeaponException;
-import gameUI.GameUI;
+import game.Game;
 
 public class AttackCommand implements Commands {
   private Environment environment;
-  GameUI xd;
+  Game xd;
 
   public AttackCommand(Environment e) {
     environment = e;
@@ -19,8 +19,8 @@ public class AttackCommand implements Commands {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
     int dir = environment.getLifeForm(row, col).getDirection();
-    if (environment.getLifeForm(row, col) != null && 
-    		environment.getLifeForm(row, col).hasWeapon()) {
+    if (environment.getLifeForm(row, col) != null 
+        && environment.getLifeForm(row, col).hasWeapon()) {
       if (dir == 0) {
         for (int i = row - 1; i >= 0; i--) {
           if (environment.getLifeForm(i, col) != null) {

@@ -12,7 +12,7 @@ import environment.Environment;
 import exceptions.AttachmentException;
 import exceptions.EnvironmentException;
 import exceptions.WeaponException;
-import gameUI.GameUI;
+import game.Game;
 import lifeform.Human;
 import lifeform.LifeForm;
 import lifeform.MockLifeForm;

@@ -16,7 +16,7 @@ public class SimpleTimer extends Thread implements Timer {
     this.sleep = sleep;
   }
 
-@Override
+  @Override
   public void removerTimeObserver(TimerObserver o) {
     theObservers.remove(o);
 
@@ -60,7 +60,7 @@ public void timeChanged() {
         Thread.sleep(sleep);
         timeChanged();
       } catch (InterruptedException e) {
-
+        System.out.println("Catch");
       }
     }
   }

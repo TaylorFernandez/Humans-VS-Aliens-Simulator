@@ -1,8 +1,7 @@
-package gameUI;
-
-import javax.swing.*;
+package game;
 
 import environment.Environment;
+
 import lifeform.Alien;
 import lifeform.Human;
 import lifeform.LifeForm;
@@ -20,22 +19,33 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class GameUI extends ImageCreator implements ActionListener {
+import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class Game extends ImageCreator implements ActionListener {
   JFrame frame = new JFrame("Humans VS Aliens");
-  gameCell[][] buttonArray;
+  GameCell[][] buttonArray;
   JButton move;
   JLabel legend;
   JLabel bottom;
   Environment environ;
-  List<gameCell> highlightedButtons = new ArrayList<gameCell>();
+  List<GameCell> highlightedButtons = new ArrayList<GameCell>();
   // List<gameCell> predictedCells = new ArrayList<gameCell>();
   JLabel lifeformType;
   JLabel lifeformWeapon1;
   JLabel lifeform;
   JButton test;
-  JLabel health, ammo;
+  JLabel health;
+  JLabel ammo;
 
-  int oldRow, oldCol, newRow, newCol;
+  int oldRow;
+  int oldCol;
+  int newRow;
+  int newCol;
 
   ImageIcon human = new ImageIcon("assets/Human/Human.png");
 
@@ -46,25 +56,28 @@ public class GameUI extends ImageCreator implements ActionListener {
    * @param col - columns in the board
    * @param env - environment being used by the gameUI
    */
-  public GameUI(int row, int col, Environment env) {
+  public Game(int row, int col, Environment env) {
     environ = env;
-    JPanel rightPanel = new JPanel(new GridLayout(row, col));
-    JPanel leftPanel = new JPanel(new GridBagLayout());
+    
+    
 
     JPanel top = new JPanel(new GridBagLayout());
 
     top.setBackground(Color.GRAY);
 
-    GridBagConstraints c = new GridBagConstraints();
+    
 
+    JPanel leftPanel = new JPanel(new GridBagLayout());
     JLabel legend = new JLabel();
     legend.setIcon(new ImageIcon("assets/UI Elements/Legend.png"));
     leftPanel.setBackground(Color.GRAY);
 
+    JPanel rightPanel = new JPanel(new GridLayout(row, col));
     rightPanel.setBackground(new Color(65, 102, 0));
     rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
 
     lifeform = new JLabel();
+    GridBagConstraints c = new GridBagConstraints();
     lifeform.setIcon(new ImageIcon("assets/Environment/Environment.png"));
     c.gridx = 0;
     c.gridy = 0;
@@ -91,12 +104,12 @@ public class GameUI extends ImageCreator implements ActionListener {
     c.gridy = 2;
     top.add(ammo, c);
 
-    buttonArray = new gameCell[row][col];
+    buttonArray = new GameCell[row][col];
 
     // creates a grid of buttons
     for (int i = 0; i < buttonArray.length; i++) {
       for (int j = 0; j < buttonArray.length; j++) {
-        buttonArray[i][j] = new gameCell(i, j);
+        buttonArray[i][j] = new GameCell(i, j);
         buttonArray[i][j].addActionListener(this);
         buttonArray[i][j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
         rightPanel.add(buttonArray[i][j]);
@@ -119,7 +132,7 @@ public class GameUI extends ImageCreator implements ActionListener {
    * function for when LifeForm has to move
    */
   public void actionPerformed(ActionEvent event) {
-    gameCell button = (gameCell) event.getSource();
+    GameCell button = (GameCell) event.getSource();
 
     if (environ.getCell(button.getRow(), button.getCol()).getLifeForm() != null) {
       environ.changeSelectedCell(button.getRow(), button.getCol());
@@ -127,7 +140,11 @@ public class GameUI extends ImageCreator implements ActionListener {
     }
   }
 
-  public void drawUIText(LifeForm form) {
+  /**
+   * draws the UI Text
+   * @param form
+   */
+  public void drawUiText(LifeForm form) {
     lifeformType.setText(form.getType());
     if (form.hasWeapon() != false) {
       lifeformWeapon1.setText(form.getWeaponType());
@@ -137,13 +154,10 @@ public class GameUI extends ImageCreator implements ActionListener {
   }
 
   /**
-   * highlights the LifeForm currently selected
-   * 
-   * @param button - button being pressed
-   * @param row    - row of button pressed
-   * @param col    - column of button pressed
+   * highlights a lifeform
+   * @param cell
    */
-  public void highlight(gameCell cell) {
+  public void highlight(GameCell cell) {
     // highlights the cell if "cell" is not already highlighted
     if (cell.isHighlighted == false) {
       cell.setHighlighted(true);
@@ -155,7 +169,8 @@ public class GameUI extends ImageCreator implements ActionListener {
       // cell.getCol()).getLifeForm().getDirection(), cell);
       cell.setBorder(BorderFactory.createLineBorder(Color.YELLOW));
       lifeformType.setText(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getType());
-      lifeformWeapon1.setText(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getWeaponType());
+      lifeformWeapon1.setText(environ.getCell(cell.getRow(), 
+          cell.getCol()).getLifeForm().getWeaponType());
 
       if (environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getWeaponType().equals("")) {
         lifeformWeapon1.setText("LifeForm does not have a weapon!");
@@ -175,34 +190,40 @@ public class GameUI extends ImageCreator implements ActionListener {
     }
 
     // draws the lifeform sprite to the selected cell view
-    if (environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getClass() == Alien.class) {
+    if (environ.getCell(cell.getRow(), 
+        cell.getCol()).getLifeForm().getClass() == Alien.class) {
       lifeform.setIcon(new ImageIcon("assets/GameIcons/Alien.png"));
-    } else if (environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getClass() == Human.class) {
+    } else if (environ.getCell(cell.getRow(), 
+        cell.getCol()).getLifeForm().getClass() == Human.class) {
       lifeform.setIcon(new ImageIcon("assets/Human/Human.png"));
     }
 
     checkMultipleHighlights();
 
-    // unhighlights the predicted move if the button is unselected
-//   if(highlightedButtons.size() == 0) {
-//     predictedCells.get(0).setBorder(BorderFactory.createLineBorder(Color.BLACK));
-//     predictedCells.remove(0);
-//   }
 
   }
 
-  public void printStats(gameCell cell) {
+  /**
+   * prints the stats
+   * @param cell
+   */
+  public void printStats(GameCell cell) {
 
     if (cell.isHighlighted() == true) {
       health.setText("              Health: "
-          + String.valueOf(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getCurrentLifePoints()));
+          + String.valueOf(environ.getCell(cell.getRow(), 
+              cell.getCol()).getLifeForm().getCurrentLifePoints()));
       if (environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().hasWeapon() == true) {
         ammo.setText("             Ammo: "
-            + String.valueOf(environ.getCell(cell.getRow(), cell.getCol()).getLifeForm().getWeapon().getCurrentAmmo()));
+            + String.valueOf(environ.getCell(cell.getRow(), 
+                cell.getCol()).getLifeForm().getWeapon().getCurrentAmmo()));
       }
     }
   }
 
+  /**
+   * checks multiple highlights
+   */
   public void checkMultipleHighlights() {
     // makes sure two cells cant be highlighted at once
     if (highlightedButtons.size() > 1) {
@@ -213,82 +234,32 @@ public class GameUI extends ImageCreator implements ActionListener {
     }
   }
 
-  public gameCell getCell(int row, int col) {
+  /**
+   * gets the cell
+   * @param row
+   * @param col
+   * @return the cell
+   */
+  public GameCell getCell(int row, int col) {
     return buttonArray[row][col];
   }
 
+  /**
+   * draws the cell
+   * @param row
+   * @param col
+   */
   public void drawCell(int row, int col) {
-//   int formRow;
-//   int formCol;
-//   int predictedRow;
-//   int predictedCol;
-    gameCell cell = buttonArray[row][col];
+
+    GameCell cell = buttonArray[row][col];
     drawCell(row, col, environ, cell);
-//   if(highlightedButtons.size() > 0 ) {
-//     formRow = highlightedButtons.get(0).getRow();
-//     formCol = highlightedButtons.get(0).getCol();
-
-//     if(formRow == row && formCol == col) {
-//       highlightedButtons.get(0).setHighlighted(false);
-//       highlightedButtons.remove(0);
-
-//       predictedRow = predictedCells.get(0).getRow();
-//       predictedCol = predictedCells.get(0).getCol();
-//       predictedCells.remove(0);
-//       drawCell(predictedRow, predictedCol);
-    // }
   }
-// }
 
-  // allows the gui to update when a lifeform is moves
-// public void movePrediction(int distance, int dir, gameCell cell) {
-//   
-//   int newDist = distance;
-//   int row = cell.getRow();
-//   int col = cell.getCol();
-//   
-//   //north prediction
-//   if(dir == 0) {
-//     while(row - newDist < 0 || environ.getCell(row - newDist, col).getLifeForm() != null) {
-//       newDist--;
-//     }
-//     predictedCells.add(buttonArray[row - newDist][col]);
-//     buttonArray[row - newDist][col].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
-//   }
-//   //east prediction
-//   if(dir == 1) {
-//     while(col + newDist >= buttonArray[0].length || environ.getCell(row, col + newDist).getLifeForm() != null) {
-//       newDist--;
-//     }
-//     predictedCells.add(buttonArray[row][col + newDist]);
-//     buttonArray[row][col + newDist].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
-//   }
-//   //south prediction
-//   if(dir == 2) {
-//     while(row + newDist >= buttonArray.length || environ.getCell(row + newDist, col).getLifeForm() != null){
-//       newDist--;
-//     }
-//     predictedCells.add(buttonArray[row + newDist][col]);
-//     buttonArray[row + newDist][col].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
-//   }
-//   
-//   //west prediction
-//   if(dir == 3) {
-//     while(col - newDist < 0 || environ.getCell(row, col - newDist).getLifeForm() != null) {
-//       newDist--;
-//     }
-//     predictedCells.add(buttonArray[row][col - newDist]);
-//     buttonArray[row][col - newDist].setBorder(BorderFactory.createLineBorder(Color.YELLOW));
-//   
-//   //logic for changing highlights when a lifeform is rotated
-//   if(predictedCells.size() == 2) {
-//     predictedCells.get(0).setBorder(BorderFactory.createLineBorder(Color.BLACK));
-//     predictedCells.remove(0);
-//   }
-//   }
-// }
-
-  public gameCell getHighlighted() {
+  /**
+   * get the highlighted cell
+   * @return null
+   */
+  public GameCell getHighlighted() {
     if (highlightedButtons.size() != 0) {
       return highlightedButtons.get(0);
     }
@@ -297,15 +268,19 @@ public class GameUI extends ImageCreator implements ActionListener {
 
   // display ammo and health
 
+  /**
+   * makes legend
+   * @param test
+   */
   public void makeLegend(JPanel test) {
     GridBagConstraints c = new GridBagConstraints();
 
     test.setBackground(Color.GRAY);
 
-    JLabel LegendText = new JLabel("Legend");
+    JLabel legendText = new JLabel("Legend");
     c.gridx = 0;
     c.gridy = 0;
-    test.add(LegendText, c);
+    test.add(legendText, c);
 
     JLabel empty = new JLabel(createEnvironment());
     c.gridx = 0;

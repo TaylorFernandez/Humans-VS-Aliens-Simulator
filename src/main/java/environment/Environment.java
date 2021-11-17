@@ -1,8 +1,8 @@
 package environment;
 
 import exceptions.EnvironmentException;
-import gameUI.GameUI;
-import gameUI.gameCell;
+import game.Game;
+import game.GameCell;
 import lifeform.LifeForm;
 import weapon.Weapon;
 
@@ -16,7 +16,7 @@ public class Environment {
   private static Environment env;
   int numRow;
   int numCol;
-  GameUI ui;
+  Game ui;
   int selectedCol = -1;
   int selectedRow = -1;
   Weapon[] weapon = new Weapon[2];
@@ -38,7 +38,7 @@ public class Environment {
     }
   }
 
-  public void setUi(GameUI ui) {
+  public void setUi(Game ui) {
     this.ui = ui;
   }
 
@@ -48,7 +48,7 @@ public class Environment {
    * @author lh2565
    */
   
-  public gameCell getGameCell(int row, int col) {
+  public GameCell getGameCell(int row, int col) {
     if (ui != null) {
       return ui.getCell(row, col);
     }
@@ -114,7 +114,7 @@ public class Environment {
    *drops weapon
    */  
   
-  public boolean dropWeapon(LifeForm form, GameUI ui) {
+  public boolean dropWeapon(LifeForm form, Game ui) {
     if (form != null && form.hasWeapon()) {
       Weapon temp = form.dropWeapon();
       addWeapon(temp, form.getRow(), form.getCol());
@@ -237,7 +237,7 @@ public class Environment {
     return selectedRow;
   }
 
-  public GameUI getGameUi() {
+  public Game getGameUi() {
     return ui;
   }
 

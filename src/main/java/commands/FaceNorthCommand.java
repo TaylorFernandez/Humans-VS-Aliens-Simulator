@@ -1,8 +1,8 @@
 package commands;
 
 import environment.Environment;
-import gameUI.GameUI;
-import gameUI.gameCell;
+import game.Game;
+import game.GameCell;
 import lifeform.LifeForm;
 
 public class FaceNorthCommand implements Commands {
@@ -11,13 +11,14 @@ public class FaceNorthCommand implements Commands {
   public FaceNorthCommand(Environment e) {
     environment = e;
   }
-  /*
+  
+  /**
    * excecutes the face north command
    */
   public void execute() {
     int row = environment.getSelectedRow();
     int col = environment.getSelectedCol();
-    GameUI ui = environment.getGameUi();
+    Game ui = environment.getGameUi();
 
     if (environment.getLifeForm(row, col) != null) {
       environment.getLifeForm(row, col).setDirection(0);

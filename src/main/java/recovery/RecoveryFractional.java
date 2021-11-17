@@ -7,7 +7,7 @@ public class RecoveryFractional implements RecoveryBehavior {
     this.recoveryAmount = recoveryFraction;
   }
 
-@Override
+  @Override
   public int calculateRecovery(int currentLife, int maxLife) {
     if (currentLife == 0) {
       return 0;
