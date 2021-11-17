@@ -246,7 +246,10 @@ public class Invoker extends JFrame implements ActionListener {
 	
 	public void createDialogueBox(JFrame frame) {
 	  JOptionPane choice = new JOptionPane("Choose Weapon..");
-	  Object[] options = {"Weapon 2", "Weapon 1", "Cancel"};
+	  int row = env.getSelectedRow();
+	  int col = env.getSelectedCol();
+	  
+	  Object[] options = {env.getCell(row, col).getWeapon2().toString(), env.getCell(row, col).getWeapon1().toString(), "Cancel"};
 	  int optionPicked = choice.showOptionDialog(frame, "Which weapon do you want to pickup?", "Weapon Choice", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, options[0]);
 	  System.out.print(optionPicked);
 	  

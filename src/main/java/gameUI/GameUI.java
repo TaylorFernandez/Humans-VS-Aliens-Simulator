@@ -50,17 +50,17 @@ public class GameUI extends ImageCreator implements ActionListener {
     environ = env;
     JPanel rightPanel = new JPanel(new GridLayout(row, col));
     JPanel leftPanel = new JPanel(new GridBagLayout());
-    makeLegend(leftPanel);
+
     JPanel top = new JPanel(new GridBagLayout());
-    //JPanel legendSample
+
     
     top.setBackground(Color.GRAY);
     
     GridBagConstraints c = new GridBagConstraints();
     
-//    JLabel legend = new JLabel();
-//    legend.setIcon(new ImageIcon("assets/UI Elements/Legend.png"));
-//    leftPanel.setBackground(Color.GRAY);
+    JLabel legend = new JLabel();
+    legend.setIcon(new ImageIcon("assets/UI Elements/Legend.png"));
+    leftPanel.setBackground(Color.GRAY);
 
     rightPanel.setBackground(new Color(65, 102, 0));
     rightPanel.setBorder(BorderFactory.createLineBorder(Color.black));
@@ -97,7 +97,7 @@ public class GameUI extends ImageCreator implements ActionListener {
     drawElements(buttonArray, env);
     frame.add("East", rightPanel);
    
-    //leftPanel.add(legend);
+    leftPanel.add(legend);
     frame.add("West", leftPanel);
     frame.add("North",top);
     
