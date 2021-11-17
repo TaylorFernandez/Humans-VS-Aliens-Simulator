@@ -55,6 +55,11 @@ Answer: Other members will decide how much of the grade the member should miss b
 | Commands | Evan Paules | 11/17/2021 | 11/13/2021 - Wrote a command |
 | Invoker | Luke Henry & Tommy Prusak | 11/17/2021 | 11/8/2021 - Added commands to Invoker |
 | README | Luke Henry | 11/17/2021 | 11/16/2021 - Updated README |
+| Commands | Tommy Prusak, Yong Hang Lin | 11/17/2021 | 11/16/2021 - Fixed up all the tests |
+| Sprites | Yong Hang Lin | 11/17/2021 | 11/16/2021 - Created more fun sprites |
+| Gameboard | Luke Henry | 11/17/2021 | 11/16/2021 - Worked to print ammo and health of a cell |
+| Gameboard | Taylor Fernandez | 11/17/2021 | 11/12/2021 - Final touches with highlighting cells and displaying stats |
+| Lab6 | Luke, Yong, Taylor, Tommy | 11/17/2021 | 11/16/2021 - Spent 5 hours together finishing lab |
 
 # Team Meeting Log
 
@@ -69,6 +74,6 @@ of class.
 | 4 | 1PM - 2PM | In class | All Members | Discuss wrapping up Lab 4 | 
 | 5 | 2:50PM - 3PM, 11/10/2021 | MCT158 | All Members | Talking out a couple small bugs and how we will handle them | 
 | 6 | 6PM - 8:30PM, 11/14/2021 | Discord | All Members | Discuss Lab 6 issues and worked through it together |
-| 7 | 4PM - 6PM, 11/16/2021 | Discord | Tommy, Yong, Luke, Taylor | Hammering out final bugs |
+| 7 | 4PM - 9:30PM, 11/16/2021 | Discord | Tommy, Yong, Luke, Taylor | Hammering out final bugs |
 
 
