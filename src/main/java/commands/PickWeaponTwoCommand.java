@@ -31,6 +31,7 @@ public class PickWeaponTwoCommand implements Commands {
         if(ui != null) {
           ui.drawCell(form.getRow(), form.getCol());
           ui.drawUIText(form);
+          ui.printStats(environment.getGameCell(row, col));
         }
       }
     }

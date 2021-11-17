@@ -37,6 +37,7 @@ public class PickWeaponOneCommand implements Commands {
     if(ui != null) {
       ui.drawCell(row, col);
       ui.drawUIText(form);
+      ui.printStats(environment.getGameCell(row, col));
     }
   }
 }
