@@ -8,9 +8,9 @@ import lifeform.LifeForm;
 public class DropCommand implements Commands{
   protected Environment environment;
   protected GameUI  ui;
-    public DropCommand(Environment env, GameUI ui) {
+    public DropCommand(Environment env) {
       environment = env;
-      this.ui = ui;
+      ui = env.getGameUI();
     }
         
     public void execute() {
@@ -19,8 +19,10 @@ public class DropCommand implements Commands{
         LifeForm form = environment.getCell(cell.getRow(), cell.getCol()).getLifeForm();
         if(form.hasWeapon() == true) {
           environment.DropWeapon(form,  ui);
-          ui.drawCell(form.getRow(), form.getCol());
-          ui.drawUIText(form);
+          if(ui != null) {
+            ui.drawCell(form.getRow(), form.getCol());
+            ui.drawUIText(form);
+          }
         }
       }
     }

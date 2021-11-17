@@ -21,11 +21,11 @@ public class AttackCommand implements Commands {
 				for (int i = row - 1; i >= 0; i--) {
 					if (environment.getLifeForm(i, col) != null) {
 						double x = environment.getDistance(row, col, i, col);
-						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
+						if (environment.getLifeForm(row, col).getWeapon().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(i, col), (int) x);
+							environment.checkDead(row, col);
 							break;
-
-						}
+						} 
 					}
 				}
 			}
@@ -33,8 +33,9 @@ public class AttackCommand implements Commands {
 				for (int i = col + 1; i <= environment.getNumCols(); i++) {
 					if (environment.getLifeForm(row, i) != null) {
 						double x = environment.getDistance(row, col, row, i);
-						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
+						if (environment.getLifeForm(row, col).getWeapon().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(row, i), (int) x);
+							environment.checkDead(row, col);
 							break;
 
 						}
@@ -45,8 +46,10 @@ public class AttackCommand implements Commands {
 				for (int i = row + 1; i <= environment.getNumRows(); i++) {
 					if (environment.getLifeForm(i, col) != null) {
 						double x = environment.getDistance(row, col, i, col);
-						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
+						if (environment.getLifeForm(row, col).getWeapon().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(i, col), (int) x);
+							environment.checkDead(row, col);
+							System.out.print(environment.getLifeForm(i, col).getCurrentLifePoints());
 							break;
 
 						}
@@ -58,8 +61,9 @@ public class AttackCommand implements Commands {
 				for (int i = col - 1; i >= 0; i++) {
 					if (environment.getLifeForm(row, i) != null) {
 						double x = environment.getDistance(row, col, row, i);
-						if (environment.getCell(row, col).getWeapon1().getMaxRange() >= x) {
+						if (environment.getLifeForm(row, col).getWeapon().getMaxRange() >= x) {
 							environment.getLifeForm(row, col).attack(environment.getLifeForm(row, i), (int) x);
+							environment.checkDead(row, col);
 							break;
 
 						}

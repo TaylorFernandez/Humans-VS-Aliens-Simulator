@@ -305,5 +305,15 @@ public class Environment {
     }
     return false;
   }
-
+  
+  public void checkDead(int row, int col) {
+   if(cells[row][col].getLifeForm().getCurrentLifePoints()==0) {
+     removeLifeForm(row,col);
+     if(ui != null) {
+       ui.drawCell(row, col);
+     }
+   }
+     
+    
+ }
 }
