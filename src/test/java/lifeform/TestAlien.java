@@ -162,9 +162,18 @@ public class TestAlien {
     assertEquals(4, allen.getCurrentLifePoints());
   }
 
+
   @Ignore
   public void test1() throws RecoveryRateException {
     Alien allen = new Alien("Allen", 10, new RecoveryLinear(2), -2);
     assertEquals("hi", allen.getRecoveryRate());
+  }
+  
+  //Lab 6 Tests
+  @Test 
+  public void testMaxSpeed() {
+    Alien alien = new Alien("drowsy", 10);
+    
+    assertEquals(alien.getMaxSpeed(), 2);
   }
 }

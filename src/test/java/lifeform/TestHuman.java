@@ -76,4 +76,12 @@ public class TestHuman {
     assertEquals(5, luke.getArmorPoints());
     assertEquals(50, luke.getCurrentLifePoints());
   }
+  
+//Lab 6 Tests
+  @Test 
+  public void testMaxSpeed() {
+    Human human = new Human("drowsy", 10, 4);
+    
+    assertEquals(human.getMaxSpeed(), 3);
+  }
 }

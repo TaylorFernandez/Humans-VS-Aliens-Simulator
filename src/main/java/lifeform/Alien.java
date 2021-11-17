@@ -13,7 +13,7 @@ public class Alien extends LifeForm implements TimerObserver {
   public Alien(String name, int maxHp) {
     super(name, maxHp, 10);
     maxLifePoints = maxHp;
-    maxSpeed = 3;
+    maxSpeed = 2;
   }
 
   public Alien(String name, int maxHp, RecoveryBehavior behavior) throws RecoveryRateException {
