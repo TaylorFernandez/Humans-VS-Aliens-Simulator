@@ -1,6 +1,7 @@
 package commands;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -127,6 +128,9 @@ public class TestCommands {
 	@Test
 	public void testReload() throws WeaponException, EnvironmentException {
 		Environment environment = Environment.getEnvironment(10, 10);
+		environment.clearBoard();
+		environment = Environment.getEnvironment(10,10);
+		
 		LifeForm lf = new MockLifeForm("Bob", 20);
 		LifeForm lf2 = new MockLifeForm("John", 40);
 		LifeForm lf3 = new MockLifeForm("bobby", 40);
@@ -140,7 +144,7 @@ public class TestCommands {
 		environment.changeSelectedCell(6, 2);
 		AttackCommand a = new AttackCommand(environment);
 		a.execute();
-		assertEquals(8, environment.getCell(6, 2).getWeapon1().getCurrentAmmo());
+		assertEquals(9, environment.getCell(6, 2).getWeapon1().getCurrentAmmo());
 		ReloadCommand r = new ReloadCommand(environment);
 		r.execute();
 		assertEquals(10, environment.getCell(6, 2).getWeapon1().getCurrentAmmo());
@@ -198,7 +202,9 @@ public class TestCommands {
 	 @Test
 	  public void testDropWeaponNoSpace() {
 	    Environment environment = Environment.getEnvironment(10, 10);
-	    LifeForm bob = new MockLifeForm("Bobby", 100, 10);
+	    environment.clearBoard();
+	    environment = Environment.getEnvironment(10, 10);
+	    LifeForm bobby = new MockLifeForm("Bobby", 100, 10);
 	    Pistol pistol1 = new Pistol();
 	    Pistol pistol2 = new Pistol();
 	    Pistol pistol3 = new Pistol();
@@ -206,17 +212,21 @@ public class TestCommands {
 	    environment.addWeapon(pistol2, 4, 1);
 	    environment.addWeapon(pistol3, 4, 1);
 	    
-	    bob.pickUpWeapon(pistol1);
-	    environment.addLifeForm(bob, 4, 1);
+	    bobby.pickUpWeapon(pistol1);
+	    environment.addLifeForm(bobby, 4, 1);
 	    environment.changeSelectedCell(4, 1);
-	    bob.dropWeapon();
+	    bobby.dropWeapon();
 	    
-	    assertTrue(bob.hasWeapon());
+	    assertNull(bobby.getWeapon());
 	  }
 	
 	@Test
   public void testPickUpWeapon() {
+	  
     Environment environment = Environment.getEnvironment(10, 10);
+    environment.clearBoard();
+    environment = Environment.getEnvironment(10, 10);
+    
     LifeForm bob = new MockLifeForm("Bobby", 100, 10);
     environment.addLifeForm(bob, 4, 1);
     environment.changeSelectedCell(4, 1);
@@ -231,13 +241,16 @@ public class TestCommands {
     //pick up pistol
     PickWeaponOneCommand pickUp1 = new PickWeaponOneCommand(environment);
     pickUp1.execute();
+
     
     //pick up chainGun
     PickWeaponTwoCommand pickUp2 = new PickWeaponTwoCommand(environment);
     pickUp2.execute();
+    
+    assertEquals(environment.getCell(4, 1).getWeapon1().getClass(), Pistol.class);
 
-    assertTrue(bob.hasWeapon());
-    assertNull(weapons);
+    assertEquals(bob.getWeapon().getClass(), ChainGun.class);
+
     assertEquals(chainGun, bob.dropWeapon());
     
     //No weapons will be picked up

@@ -155,12 +155,11 @@ public abstract class LifeForm {
    */
 
   public boolean pickUpWeapon(Weapon w) {
-    if (!hasWeapon()) {
+    if (weapon == null) {
       weapon = w;
       return true;
-    } else {
-      return false;
     }
+      return false;
   }
 
   /**
