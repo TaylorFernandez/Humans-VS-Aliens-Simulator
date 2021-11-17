@@ -2,6 +2,7 @@ package commands;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 
@@ -272,7 +273,7 @@ public class TestCommands {
 		 environment.addWeapon(chainGun, 4, 1);
 		 environment.addWeapon(pistol, 4, 1);
 		 bob.pickUpWeapon(chainGun);
-		 assertTrue(bob.hasWeapon());
+		 assertNotNull(bob.getWeapon());
 		 PickWeaponOneCommand pickUp1 = new PickWeaponOneCommand(environment);
 		 pickUp1.execute();
 		 assertEquals("ChainGun", bob.getWeapon().toString());
