@@ -33,6 +33,7 @@ Answer: Other members will decide how much of the grade the member should miss b
 #Team roles
 
 | Name | Role | 
+| --- | --- |
 | Taylor Fernandez | A |
 | Yong Hang Lin | B |
 | Luke Henry | C |
