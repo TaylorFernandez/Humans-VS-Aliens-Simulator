@@ -110,6 +110,7 @@ public class TestCommands {
 	@Test
   public void testMove() {
     Environment environment = Environment.getEnvironment(10, 10);
+    environment.clearBoard();
     Human lf = new Human("Dan", 100, 10);
     environment.addLifeForm(lf, 4, 4);
     environment.changeSelectedCell(4, 4);
@@ -194,6 +195,25 @@ public class TestCommands {
     assertEquals(pistol, bob.dropWeapon());
   }
 	
+	 @Test
+	  public void testDropWeaponNoSpace() {
+	    Environment environment = Environment.getEnvironment(10, 10);
+	    LifeForm bob = new MockLifeForm("Bobby", 100, 10);
+	    Pistol pistol1 = new Pistol();
+	    Pistol pistol2 = new Pistol();
+	    Pistol pistol3 = new Pistol();
+	    
+	    environment.addWeapon(pistol2, 4, 1);
+	    environment.addWeapon(pistol3, 4, 1);
+	    
+	    bob.pickUpWeapon(pistol1);
+	    environment.addLifeForm(bob, 4, 1);
+	    environment.changeSelectedCell(4, 1);
+	    bob.dropWeapon();
+	    
+	    assertTrue(bob.hasWeapon());
+	  }
+	
 	@Test
   public void testPickUpWeapon() {
     Environment environment = Environment.getEnvironment(10, 10);
@@ -227,19 +247,5 @@ public class TestCommands {
     assertFalse(monkey.hasWeapon());
     pickUp2.execute();
     assertFalse(monkey.hasWeapon());
-  }
-	
-//	@Test
-//	public void testDropWithSpace() {
-//		Environment environment = Environment.getEnvironment(10, 10);
-//		LifeForm lf4 = new MockLifeForm("Bob", 20);
-//		environment.addLifeForm(lf4, 1, 1);
-//		Pistol gun = new Pistol();
-//		lf4.pickUpWeapon(gun);
-//		assertEquals(true, lf4.hasWeapon());
-//		DropCommand d = new DropCommand(environment);
-//		d.execute();
-//		assertEquals(false, lf4.hasWeapon());
-//	}
-
+	}
 }
