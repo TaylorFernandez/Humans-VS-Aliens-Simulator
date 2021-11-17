@@ -21,6 +21,7 @@ public class PickWeaponOneCommand implements Commands {
     System.out.print("Weapon1");
     if (environment.getLifeForm(row, col) != null) {
       Weapon pickUp = environment.getCell(row, col).getWeapon1();
+      
       if (pickUp != null && form.hasWeapon() == true) {
         Weapon old = environment.getLifeForm(row, col).dropWeapon();
         environment.getLifeForm(row, col).pickUpWeapon(pickUp);
