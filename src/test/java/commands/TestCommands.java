@@ -116,7 +116,7 @@ public class TestCommands {
     MoveCommand move = new MoveCommand(environment);
     move.execute();
     assertEquals(lf, environment.getLifeForm(1, 4));
-    environment.changeSelectedCell(1, 4);
+    environment.changeSelectedCell(1, 4); 
     lf.setDirection(3);
     move.execute();
     assertEquals(lf, environment.getLifeForm(1, 1));
