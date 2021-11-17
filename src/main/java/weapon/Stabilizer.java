@@ -22,7 +22,7 @@ public class Stabilizer extends Attachment {
    * the weapon bonus damage per shot taken
    */
 
-@Override
+  @Override
   public int fire(int distance) throws WeaponException {
     if (distance < 0) {
       throw new WeaponException("Cannot be less than 0");
@@ -41,8 +41,7 @@ public class Stabilizer extends Attachment {
     return newDamage;
   }
 
-
-@Override
+  @Override
   public String toString() {
     return base.toString() + " +Stabilizer";
   }

@@ -22,8 +22,7 @@ public class Scope extends Attachment {
     }
   }
 
-
-@Override
+  @Override
   public int getMaxRange() {
     return base.getMaxRange() + 10;
   }
@@ -32,7 +31,7 @@ public class Scope extends Attachment {
    * This method adds damage based on the distance of the target
    */
 
-@Override
+  @Override
   public int fire(int distance) throws WeaponException {
     if (distance < 0) {
       throw new WeaponException("Cannot be less than 0");
@@ -52,8 +51,7 @@ public class Scope extends Attachment {
 
   }
 
-
-@Override
+  @Override
   public String toString() {
     return base.toString() + " +Scope";
 

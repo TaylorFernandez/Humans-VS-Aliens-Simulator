@@ -26,8 +26,8 @@ public class PlasmaCannon extends GenericWeapon implements TimerObserver, Weapon
    *
    * @param distance - distance between the shooter and target
    */
- 
-@Override
+
+  @Override
   public int fire(int distance) throws WeaponException {
     if (distance < 0) {
       throw new WeaponException("Negative Shooting Distance");
@@ -54,7 +54,7 @@ public class PlasmaCannon extends GenericWeapon implements TimerObserver, Weapon
    * returns the weapon and its attachments as a string
    */
 
-@Override
+  @Override
   public String toString() {
     return "PlasmaCannon";
   }

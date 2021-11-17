@@ -25,17 +25,17 @@ public abstract class Attachment implements Weapon {
    * @throws WeaponException
    */
   @Override
-public abstract int fire(int distance) throws WeaponException;
+  public abstract int fire(int distance) throws WeaponException;
 
   @Override
-public int getBaseDamage() {
+  public int getBaseDamage() {
     return base.getBaseDamage();
   }
 
   /**
    * gets the current ammo of the weapon
    */
-@Override
+  @Override
   public int getCurrentAmmo() {
     return base.getCurrentAmmo();
   }
@@ -43,8 +43,8 @@ public int getBaseDamage() {
   /**
    * gets the maximum ammo the base weapon can hold
    */
- 
-@Override
+
+  @Override
   public int getMaxAmmo() {
     return base.getMaxAmmo();
   }
@@ -53,7 +53,7 @@ public int getBaseDamage() {
    * Gets the maximum range the base weapon can shoot
    */
 
-@Override
+  @Override
   public int getMaxRange() {
     return base.getMaxRange();
   }
@@ -62,7 +62,7 @@ public int getBaseDamage() {
    * Gets the number of attachments the base weapon has
    */
 
-@Override
+  @Override
   public int getNumAttachments() throws AttachmentException {
     if (base.getNumAttachments() == 2) {
       throw new AttachmentException("Attachments cannot exceed 2");
@@ -74,7 +74,7 @@ public int getBaseDamage() {
    * Gets the rate of fire of the base weapon
    */
 
-@Override
+  @Override
   public int getRateOfFire() {
     return base.getRateOfFire();
   }
@@ -83,7 +83,7 @@ public int getBaseDamage() {
    * gets the shots the weapon can shoot in the current round
    */
 
-@Override
+  @Override
   public int getShotsLeft() {
     return base.getShotsLeft();
   }
@@ -92,7 +92,7 @@ public int getBaseDamage() {
    * reloads the weapon
    */
 
-@Override
+  @Override
   public void reload() {
     base.reload();
   }
@@ -103,7 +103,7 @@ public int getBaseDamage() {
    * @param time - current round
    */
 
-@Override
+  @Override
   public void updateTime(int time) {
     base.updateTime(time);
   }

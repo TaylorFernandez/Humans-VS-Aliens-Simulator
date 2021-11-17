@@ -18,8 +18,7 @@ public class ChainGun extends GenericWeapon implements TimerObserver, Weapon {
     currentAmmo = maxAmmo;
   }
 
-
-@Override
+  @Override
   public int fire(int distance) throws WeaponException {
     if (distance < 0) {
       throw new WeaponException("Negative Distance");
@@ -38,8 +37,7 @@ public class ChainGun extends GenericWeapon implements TimerObserver, Weapon {
     }
   }
 
-  
-@Override
+  @Override
   public String toString() {
     return "ChainGun";
   }
