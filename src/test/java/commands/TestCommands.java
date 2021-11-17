@@ -261,4 +261,23 @@ public class TestCommands {
     pickUp2.execute();
     assertFalse(monkey.hasWeapon());
 	}
+	
+	@Test
+	public void testWeaponFull() {
+		LifeForm bob = new MockLifeForm("Bobby", 100, 10);
+		Environment environment = Environment.getEnvironment(10, 10);
+		environment.addLifeForm(bob, 4, 1);
+		environment.changeSelectedCell(4, 1);
+		 Pistol pistol = new Pistol();
+		 ChainGun chainGun = new ChainGun();
+		 environment.addWeapon(chainGun, 4, 1);
+		 environment.addWeapon(pistol, 4, 1);
+		 bob.pickUpWeapon(chainGun);
+		 assertTrue(bob.hasWeapon());
+		 PickWeaponOneCommand pickUp1 = new PickWeaponOneCommand(environment);
+		 pickUp1.execute();
+		 assertEquals("ChainGun", bob.getWeapon().toString());
+		 
+		
+	}
 }
