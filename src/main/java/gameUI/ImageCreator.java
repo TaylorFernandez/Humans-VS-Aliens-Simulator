@@ -42,10 +42,10 @@ public class ImageCreator {
     //sets the lifeform in the grid
     if(environ.getCell(i, j).getLifeForm() != null) {
       if(environ.getCell(i,j).getLifeForm().getClass() == Human.class) {
-        drawer.setColor(new Color(0,255,0));
+        drawer.setColor(new Color(255,253,208));
         drawer.fillOval(20,20,10,10);
       }else {
-        drawer.setColor(new Color(200,240,100));
+        drawer.setColor(new Color(0,50,0));
         drawer.fillOval(20,20,10,10);
       }
     }
