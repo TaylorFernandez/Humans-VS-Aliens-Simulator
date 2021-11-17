@@ -63,6 +63,8 @@ public class TestEnvironment {
   public void testSingleton() {
     MockLifeForm form1 = new MockLifeForm("Bob", 100);
     Environment env1 = Environment.getEnvironment(2, 2);
+    env1.clearBoard();
+    env1 = Environment.getEnvironment(2, 2);
     Environment env2 = Environment.getEnvironment(1, 1);
 
     env1.addLifeForm(form1, 1, 1);
